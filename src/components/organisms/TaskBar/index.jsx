@@ -1,6 +1,13 @@
 import './index.css';
 
-export const TaskBar = ({ windows, activeWindowId, onWindowClick, onRestore }) => {
+export const TaskBar = ({ 
+  windows, 
+  activeWindowId, 
+  onWindowClick, 
+  onRestore,
+  isStartOpen,
+  onStartClick 
+}) => {
   return (
     <div className="taskbar" style={{
       position: 'fixed',
@@ -16,7 +23,7 @@ export const TaskBar = ({ windows, activeWindowId, onWindowClick, onRestore }) =
       zIndex: 1000
     }}>
       <button 
-        className="start-button"
+        className={`start-button ${isStartOpen ? 'active' : ''}`}
         style={{ 
           display: 'flex', 
           alignItems: 'center', 
@@ -24,6 +31,7 @@ export const TaskBar = ({ windows, activeWindowId, onWindowClick, onRestore }) =
           fontWeight: 'bold',
           marginRight: '8px'
         }}
+        onClick={onStartClick}
       >
         <img src="https://win98icons.alexmeub.com/icons/png/windows-0.png" width="16" height="16" alt="" />
         Start

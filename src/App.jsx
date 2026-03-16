@@ -1,7 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Window } from './components/organisms/Window';
 import { TaskBar } from './components/organisms/TaskBar';
+import { StartMenu } from './components/organisms/StartMenu';
 import './components/templates/Desktop/index.css';
+
+const welcomeContent = (
+  <div style={{ padding: '10px' }}>
+    <p>Welcome to React Desktop!</p>
+    <p style={{ marginTop: '10px' }}>This is a Windows 98 style desktop environment.</p>
+    <p style={{ marginTop: '10px' }}>You can drag windows by their title bar.</p>
+    <p style={{ marginTop: '10px' }}>Try minimizing, maximizing, and closing windows!</p>
+  </div>
+);
 
 function App() {
   const [windows, setWindows] = useState([
@@ -11,21 +21,41 @@ function App() {
       isMinimized: false,
       isActive: true,
       initialPosition: { x: 0, y: 0 },
-      content: (
-        <div style={{ padding: '10px' }}>
-          <p>Welcome to React Desktop!</p>
-          <p style={{ marginTop: '10px' }}>This is a Windows 98 style desktop environment.</p>
-          <p style={{ marginTop: '10px' }}>You can drag windows by their title bar.</p>
-          <p style={{ marginTop: '10px' }}>Try minimizing, maximizing, and closing windows!</p>
-        </div>
-      )
+      content: welcomeContent
     }
   ]);
 
   const [activeWindowId, setActiveWindowId] = useState('welcome');
+  const [isStartOpen, setIsStartOpen] = useState(false);
+
+  useEffect(() => {
+    let isClickFromStart = false;
+    
+    const handleClickOutside = (e) => {
+      if (isClickFromStart) {
+        isClickFromStart = false;
+        return;
+      }
+      
+      const startMenu = document.querySelector('.start-menu');
+      
+      if (isStartOpen && startMenu && !startMenu.contains(e.target)) {
+        setIsStartOpen(false);
+      }
+    };
+    
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isStartOpen]);
+
+  const handleStartClick = (e) => {
+    e.stopPropagation();
+    setIsStartOpen(!isStartOpen);
+  };
 
   const handleWindowFocus = (id) => {
     setActiveWindowId(id);
+    setIsStartOpen(false);
     setWindows(prev => prev.map(win => ({
       ...win,
       isActive: win.id === id
@@ -59,6 +89,29 @@ function App() {
     });
   };
 
+  const handleOpenWelcome = () => {
+    const welcomeWindow = windows.find(w => w.id === 'welcome');
+    if (welcomeWindow) {
+      if (welcomeWindow.isMinimized) {
+        handleRestore('welcome');
+      } else {
+        handleWindowFocus('welcome');
+      }
+    } else {
+      const newWindow = {
+        id: 'welcome',
+        title: 'Welcome',
+        isMinimized: false,
+        isActive: true,
+        initialPosition: { x: 0, y: 0 },
+        content: welcomeContent
+      };
+      setWindows([newWindow]);
+      setActiveWindowId('welcome');
+    }
+    setIsStartOpen(false);
+  };
+
   return (
     <div className="desktop" style={{
       width: '100vw',
@@ -72,7 +125,16 @@ function App() {
         activeWindowId={activeWindowId}
         onWindowClick={handleWindowFocus}
         onRestore={handleRestore}
+        isStartOpen={isStartOpen}
+        onStartClick={handleStartClick}
       />
+      
+      {isStartOpen && (
+        <StartMenu 
+          onClose={() => setIsStartOpen(false)}
+          onOpenWelcome={handleOpenWelcome}
+        />
+      )}
       
       {windows.map(win => (
         <Window

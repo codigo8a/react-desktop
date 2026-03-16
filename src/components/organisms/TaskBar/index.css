@@ -3,6 +3,12 @@
   border-top: 2px solid #fff;
 }
 
+.start-button.active {
+  background: #dfdfdf;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+}
+
 .taskbar-button {
   display: flex;
   align-items: center;
