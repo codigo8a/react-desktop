@@ -19,31 +19,3 @@ body {
   border: none;
   display: block;
 }
-
-.desktop {
-  position: relative;
-}
-
-.taskbar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  padding: 2px 4px;
-  z-index: 1000;
-}
-
-.start-button {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  font-weight: bold;
-  margin-right: 8px;
-}
-
-.window {
-  position: absolute;
-}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Window } from './components/organisms/Window';
 import { TaskBar } from './components/organisms/TaskBar';
+import './components/templates/Desktop/index.css';
 
 function App() {
   const [windows, setWindows] = useState([

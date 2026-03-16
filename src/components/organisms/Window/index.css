@@ -1,0 +1,13 @@
+.window {
+  background: #c0c0c0;
+  box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080, 1px 1px #000;
+}
+
+.window-body {
+  padding: 8px;
+  overflow: auto;
+}
+
+.window.inactive {
+  border-color: #808080;
+}

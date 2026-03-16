@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import Draggable from 'react-draggable';
-import { TitleBar } from '../molecules/TitleBar';
+import { TitleBar } from '../../molecules/TitleBar';
+import './index.css';
 
 export const Window = ({ 
   id, 
@@ -29,11 +30,40 @@ export const Window = ({
     return null;
   }
 
+  if (centered && !isMaximized) {
+    return (
+      <div 
+        className={`window ${isActive ? 'active' : ''}`}
+        style={{
+          position: 'absolute',
+          width: size.width,
+          height: size.height,
+          zIndex: isActive ? 100 : 10,
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+        }}
+        onClick={() => onFocus?.(id)}
+      >
+        <TitleBar 
+          title={title}
+          onMinimize={() => onMinimize?.(id)}
+          onMaximize={handleMaximize}
+          onClose={() => onClose?.(id)}
+          active={isActive}
+        />
+        <div className="window-body" style={{ height: 'calc(100% - 20px)' }}>
+          {children}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <Draggable
       handle=".title-bar"
       disabled={isMaximized}
-      position={centered ? null : initialPosition}
+      defaultPosition={initialPosition}
       nodeRef={nodeRef}
     >
       <div 
@@ -44,9 +74,8 @@ export const Window = ({
           width: isMaximized ? '100%' : size.width,
           height: isMaximized ? 'calc(100% - 30px)' : size.height,
           zIndex: isMaximized ? 999 : (isActive ? 100 : 10),
-          left: isMaximized ? '0' : centered ? '50%' : initialPosition.x,
-          top: isMaximized ? '30px' : centered ? '50%' : initialPosition.y,
-          transform: centered && !isMaximized ? 'translate(-50%, -50%)' : undefined,
+          left: isMaximized ? '0' : undefined,
+          top: isMaximized ? '30px' : undefined,
         }}
         onClick={() => onFocus?.(id)}
       >
@@ -64,4 +93,3 @@ export const Window = ({
     </Draggable>
   );
 };
-

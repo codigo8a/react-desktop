@@ -1,4 +1,5 @@
-import { WindowControls } from '../molecules/WindowControls';
+import './index.css';
+import { WindowControls } from '../WindowControls';
 
 export const TitleBar = ({ title, onMinimize, onMaximize, onClose, active = true }) => {
   return (

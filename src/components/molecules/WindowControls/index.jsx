@@ -1,3 +1,5 @@
+import './index.css';
+
 export const WindowControls = ({ onMinimize, onMaximize, onClose }) => {
   return (
     <div className="title-bar-controls">

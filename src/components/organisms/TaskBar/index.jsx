@@ -1,3 +1,5 @@
+import './index.css';
+
 export const TaskBar = ({ windows, activeWindowId, onWindowClick, onRestore }) => {
   return (
     <div className="taskbar" style={{
