@@ -1,0 +1,49 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  max-width: none;
+  margin: 0;
+  text-align: left;
+  border: none;
+  display: block;
+}
+
+.desktop {
+  position: relative;
+}
+
+.taskbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 2px 4px;
+  z-index: 1000;
+}
+
+.start-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.window {
+  position: absolute;
+}
