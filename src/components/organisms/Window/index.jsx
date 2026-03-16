@@ -1,4 +1,4 @@
-import { useState, useRef, useMemo } from 'react';
+import { useState, useRef } from 'react';
 import Draggable from 'react-draggable';
 import { TitleBar } from '../../molecules/TitleBar';
 import './index.css';
@@ -12,6 +12,7 @@ export const Window = ({
   isActive = false,
   isMinimized = false,
   centered = false,
+  zIndex = 10,
   onFocus,
   onMinimize,
   onMaximize,
@@ -19,31 +20,36 @@ export const Window = ({
 }) => {
   const [isMaximized, setIsMaximized] = useState(false);
   const [size] = useState(initialSize);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
   const nodeRef = useRef(null);
-
-  const centerPos = useMemo(() => {
-    if (!centered || isMaximized) return { x: 0, y: 0 };
-    return {
-      x: (window.innerWidth - size.width) / 2,
-      y: (window.innerHeight - size.height) / 2
-    };
-  }, [centered, isMaximized, size.width, size.height]);
-
-  useState(() => {
-    if (centered && !isMaximized) {
-      setPosition(centerPos);
-    }
-  }, [centered, isMaximized]);
 
   const handleMaximize = () => {
     setIsMaximized(!isMaximized);
     onMaximize?.(id);
   };
 
+  const handleMinimize = () => {
+    setIsMaximized(false);
+    onMinimize?.(id);
+  };
+
   if (isMinimized) {
     return null;
   }
+
+  const renderContent = () => (
+    <>
+      <TitleBar 
+        title={title}
+        onMinimize={handleMinimize}
+        onMaximize={handleMaximize}
+        onClose={() => onClose?.(id)}
+        active={isActive}
+      />
+      <div className="window-body" style={{ height: 'calc(100% - 20px)' }}>
+        {children}
+      </div>
+    </>
+  );
 
   if (isMaximized) {
     return (
@@ -53,64 +59,45 @@ export const Window = ({
           position: 'absolute',
           width: '100%',
           height: 'calc(100% - 30px)',
-          zIndex: 999,
+          zIndex: 9999,
           left: '0px',
           top: '30px',
         }}
         onClick={() => onFocus?.(id)}
       >
-        <TitleBar 
-          title={title}
-          onMinimize={() => onMinimize?.(id)}
-          onMaximize={handleMaximize}
-          onClose={() => onClose?.(id)}
-          active={isActive}
-        />
-        <div className="window-body" style={{ height: 'calc(100% - 20px)' }}>
-          {children}
-        </div>
+        {renderContent()}
       </div>
     );
   }
 
-  const isDraggable = true;
+  const getInitialPosition = () => {
+    if (centered && !isMaximized) {
+      return {
+        x: (window.innerWidth - size.width) / 2,
+        y: (window.innerHeight - size.height) / 2
+      };
+    }
+    return initialPosition;
+  };
 
   return (
     <Draggable
       handle=".title-bar"
-      disabled={!isDraggable}
-      position={isDraggable ? (centered ? position : initialPosition) : null}
+      defaultPosition={getInitialPosition()}
       nodeRef={nodeRef}
-      onStop={(_e, data) => {
-        if (centered) {
-          setPosition({ x: data.x, y: data.y });
-        }
-      }}
     >
       <div 
         ref={nodeRef}
         className={`window ${isActive ? 'active' : ''}`}
         style={{
           position: 'absolute',
-          width: isMaximized ? '100%' : size.width,
-          height: isMaximized ? 'calc(100% - 30px)' : size.height,
-          zIndex: isMaximized ? 999 : (isActive ? 100 : 10),
-          left: isMaximized ? '0px' : undefined,
-          top: isMaximized ? '30px' : undefined,
-          margin: isMaximized ? '0' : undefined,
+          width: size.width,
+          height: size.height,
+          zIndex,
         }}
         onClick={() => onFocus?.(id)}
       >
-        <TitleBar 
-          title={title}
-          onMinimize={() => onMinimize?.(id)}
-          onMaximize={handleMaximize}
-          onClose={() => onClose?.(id)}
-          active={isActive}
-        />
-        <div className="window-body" style={{ height: 'calc(100% - 20px)' }}>
-          {children}
-        </div>
+        {renderContent()}
       </div>
     </Draggable>
   );

@@ -3,25 +3,22 @@ import { Window } from './components/organisms/Window';
 import { TaskBar } from './components/organisms/TaskBar';
 import { StartMenu } from './components/organisms/StartMenu';
 import { DesktopProvider, useDesktop } from './context/DesktopContext';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { APPS } from './apps/apps';
 import './components/templates/Desktop/index.css';
-
-const welcomeContent = (
-  <div style={{ padding: '10px' }}>
-    <p>Welcome to React Desktop!</p>
-    <p style={{ marginTop: '10px' }}>This is a Windows 98 style desktop environment.</p>
-    <p style={{ marginTop: '10px' }}>You can drag windows by their title bar.</p>
-    <p style={{ marginTop: '10px' }}>Try minimizing, maximizing, and closing windows!</p>
-  </div>
-);
 
 const initialWindows = [
   {
-    id: 'welcome',
+    appId: 'welcome',
+    id: 'welcome-' + Date.now(),
     title: 'Welcome',
     isMinimized: false,
     isActive: true,
     initialPosition: { x: 0, y: 0 },
-    content: welcomeContent
+    initialSize: APPS.welcome.defaultSize,
+    centered: APPS.welcome.centered,
+    zIndex: 10,
+    content: <APPS.welcome.component />
   }
 ];
 
@@ -33,27 +30,19 @@ const Desktop = () => {
     handleMinimize,
     handleRestore,
     handleClose,
-    openWindow
+    openApp
   } = useDesktop();
 
   const [isStartOpen, setIsStartOpen] = useState(false);
+  const [testErrorTrigger, setTestErrorTrigger] = useState(0);
 
   useEffect(() => {
-    let isClickFromStart = false;
-    
     const handleClickOutside = (e) => {
-      if (isClickFromStart) {
-        isClickFromStart = false;
-        return;
-      }
-      
       const startMenu = document.querySelector('.start-menu');
-      
       if (isStartOpen && startMenu && !startMenu.contains(e.target)) {
         setIsStartOpen(false);
       }
     };
-    
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isStartOpen]);
@@ -63,17 +52,19 @@ const Desktop = () => {
     setIsStartOpen(!isStartOpen);
   };
 
-  const handleOpenWelcome = () => {
-    openWindow({
-      id: 'welcome',
-      title: 'Welcome',
-      isMinimized: false,
-      isActive: true,
-      initialPosition: { x: 0, y: 0 },
-      content: welcomeContent
-    });
-    setIsStartOpen(false);
+  const handleOpenApp = (appId) => {
+    openApp(appId);
   };
+
+  const handleTestError = () => {
+    setTestErrorTrigger(prev => prev + 1);
+  };
+
+  useEffect(() => {
+    if (testErrorTrigger > 0) {
+      throw new Error('This is a test error to verify the ErrorBoundary works correctly!');
+    }
+  }, [testErrorTrigger]);
 
   return (
     <div className="desktop" style={{
@@ -95,7 +86,8 @@ const Desktop = () => {
       {isStartOpen && (
         <StartMenu 
           onClose={() => setIsStartOpen(false)}
-          onOpenWelcome={handleOpenWelcome}
+          onOpenApp={handleOpenApp}
+          onTestError={handleTestError}
         />
       )}
       
@@ -106,9 +98,10 @@ const Desktop = () => {
           title={win.title}
           isActive={activeWindowId === win.id && !win.isMinimized}
           isMinimized={win.isMinimized}
-          centered={true}
+          centered={win.centered}
           initialPosition={win.initialPosition}
           initialSize={win.initialSize}
+          zIndex={win.zIndex}
           onFocus={handleWindowFocus}
           onMinimize={handleMinimize}
           onMaximize={() => {}}
@@ -123,9 +116,11 @@ const Desktop = () => {
 
 function App() {
   return (
-    <DesktopProvider initialWindows={initialWindows}>
-      <Desktop />
-    </DesktopProvider>
+    <ErrorBoundary>
+      <DesktopProvider initialWindows={initialWindows}>
+        <Desktop />
+      </DesktopProvider>
+    </ErrorBoundary>
   );
 }
 

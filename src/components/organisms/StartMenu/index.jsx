@@ -1,37 +1,49 @@
+import { APPS, getAppList } from '../../../apps/apps';
 import './index.css';
 
-export const StartMenu = ({ onClose, onOpenWelcome }) => {
+export const StartMenu = ({ onClose, onOpenApp, onTestError }) => {
+  const appList = getAppList();
+
   return (
     <div className="start-menu" onClick={(e) => e.stopPropagation()}>
       <div className="start-menu-sidebar">
         <span>Desktop</span>
       </div>
       <div className="start-menu-items">
-        <button onClick={() => { onOpenWelcome(); onClose(); }}>
-          Welcome
-        </button>
+        {appList.map(app => (
+          <button 
+            key={app.id}
+            onClick={() => { onOpenApp(app.id); onClose(); }}
+          >
+            <span style={{ marginRight: '8px' }}>{app.icon}</span>
+            {app.title}
+          </button>
+        ))}
         <div className="start-menu-divider" />
-        <button disabled onClick={onClose}>
+        <button onClick={() => { onTestError(); onClose(); }}>
+          Test Error
+        </button>
+        <button disabled>
           Programs
         </button>
-        <button disabled onClick={onClose}>
+        <button disabled>
           Documents
         </button>
-        <button disabled onClick={onClose}>
+        <button disabled>
           Settings
         </button>
-        <button disabled onClick={onClose}>
+        <button disabled>
           Find
         </button>
         <div className="start-menu-divider" />
-        <button disabled onClick={onClose}>
+        <button disabled>
           Help
         </button>
-        <button disabled onClick={onClose}>
+        <button disabled>
           Run...
         </button>
         <div className="start-menu-divider" />
-        <button disabled onClick={onClose}>
+        <button disabled>
           Shut Down...
         </button>
       </div>

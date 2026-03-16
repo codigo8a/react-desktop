@@ -1,19 +1,25 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useCallback } from 'react';
+import { getAppById } from '../apps/apps';
 
 const DesktopContext = createContext(null);
 
 export const DesktopProvider = ({ children, initialWindows = [] }) => {
   const [windows, setWindows] = useState(initialWindows);
   const [activeWindowId, setActiveWindowId] = useState(initialWindows[0]?.id || null);
+  const [zIndexCounter, setZIndexCounter] = useState(10);
 
   const handleWindowFocus = useCallback((id) => {
+    const newZIndex = zIndexCounter + 1;
+    setZIndexCounter(newZIndex);
+    
     setActiveWindowId(id);
     setWindows(prev => prev.map(win => ({
       ...win,
-      isActive: win.id === id
+      isActive: win.id === id,
+      zIndex: win.id === id ? newZIndex : win.zIndex
     })));
-  }, []);
+  }, [zIndexCounter]);
 
   const handleMinimize = useCallback((id) => {
     setWindows(prev => prev.map(win => 
@@ -26,11 +32,14 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
   }, [windows]);
 
   const handleRestore = useCallback((id) => {
+    const newZIndex = zIndexCounter + 1;
+    setZIndexCounter(newZIndex);
+    
     setWindows(prev => prev.map(win => 
-      win.id === id ? { ...win, isMinimized: false, isActive: true } : { ...win, isActive: false }
+      win.id === id ? { ...win, isMinimized: false, isActive: true, zIndex: newZIndex } : { ...win, isActive: false }
     ));
     setActiveWindowId(id);
-  }, []);
+  }, [zIndexCounter]);
 
   const handleClose = useCallback((id) => {
     setWindows(prev => {
@@ -42,27 +51,52 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
     });
   }, []);
 
-  const addWindow = useCallback((window) => {
-    setWindows(prev => [...prev, window]);
-    setActiveWindowId(window.id);
-  }, []);
+  const addWindow = useCallback((windowConfig) => {
+    const newZIndex = zIndexCounter + 1;
+    setZIndexCounter(newZIndex);
+    
+    const offset = Math.floor((newZIndex - 10) / 2) * 20;
+    
+    const newWindow = {
+      ...windowConfig,
+      id: windowConfig.appId + '-' + Date.now(),
+      initialPosition: windowConfig.initialPosition || { x: 100 + offset, y: 100 + offset },
+      zIndex: newZIndex
+    };
+    setWindows(prev => [...prev, newWindow]);
+    setActiveWindowId(newWindow.id);
+  }, [zIndexCounter]);
 
-  const openWindow = useCallback((windowConfig) => {
-    const existingWindow = windows.find(w => w.id === windowConfig.id);
+  const openApp = useCallback((appId) => {
+    const app = getAppById(appId);
+    if (!app) return;
+
+    const existingWindow = windows.find(w => w.appId === appId);
     
     if (existingWindow) {
-      if (existingWindow.isMinimized) {
-        handleRestore(windowConfig.id);
-      } else {
-        handleWindowFocus(windowConfig.id);
-      }
+      const newZIndex = zIndexCounter + 1;
+      setZIndexCounter(newZIndex);
+      
+      setWindows(prev => prev.map(win => 
+        win.appId === appId 
+          ? { ...win, zIndex: newZIndex, isMinimized: false, isActive: true }
+          : { ...win, isActive: false }
+      ));
+      setActiveWindowId(existingWindow.id);
     } else {
-      addWindow(windowConfig);
+      const AppComponent = app.component;
+      addWindow({
+        appId: app.id,
+        title: app.title,
+        initialSize: app.defaultSize,
+        centered: app.centered,
+        content: <AppComponent />
+      });
     }
-  }, [windows, handleRestore, handleWindowFocus, addWindow]);
+  }, [windows, zIndexCounter, addWindow]);
 
-  const isWindowOpen = useCallback((id) => {
-    return windows.some(w => w.id === id);
+  const isWindowOpen = useCallback((appId) => {
+    return windows.some(w => w.appId === appId);
   }, [windows]);
 
   const value = {
@@ -73,7 +107,7 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
     handleRestore,
     handleClose,
     addWindow,
-    openWindow,
+    openApp,
     isWindowOpen
   };
 
