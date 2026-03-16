@@ -10,6 +10,7 @@ export const Window = ({
   initialSize = { width: 400, height: 300 },
   isActive = false,
   isMinimized = false,
+  centered = false,
   onFocus,
   onMinimize,
   onMaximize,
@@ -32,7 +33,7 @@ export const Window = ({
     <Draggable
       handle=".title-bar"
       disabled={isMaximized}
-      defaultPosition={initialPosition}
+      position={centered ? null : initialPosition}
       nodeRef={nodeRef}
     >
       <div 
@@ -40,11 +41,12 @@ export const Window = ({
         className={`window ${isActive ? 'active' : ''}`}
         style={{
           position: 'absolute',
-          width: isMaximized ? 'calc(100% - 20px)' : size.width,
-          height: isMaximized ? 'calc(100% - 100px)' : size.height,
-          zIndex: isActive ? 100 : 10,
-          left: isMaximized ? '10px' : undefined,
-          top: isMaximized ? '10px' : undefined,
+          width: isMaximized ? '100%' : size.width,
+          height: isMaximized ? 'calc(100% - 30px)' : size.height,
+          zIndex: isMaximized ? 999 : (isActive ? 100 : 10),
+          left: isMaximized ? '0' : centered ? '50%' : initialPosition.x,
+          top: isMaximized ? '30px' : centered ? '50%' : initialPosition.y,
+          transform: centered && !isMaximized ? 'translate(-50%, -50%)' : undefined,
         }}
         onClick={() => onFocus?.(id)}
       >

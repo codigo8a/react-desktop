@@ -2,7 +2,7 @@ export const TaskBar = ({ windows, activeWindowId, onWindowClick, onRestore }) =
   return (
     <div className="taskbar" style={{
       position: 'fixed',
-      bottom: 0,
+      top: 0,
       left: 0,
       right: 0,
       height: '30px',
@@ -10,7 +10,7 @@ export const TaskBar = ({ windows, activeWindowId, onWindowClick, onRestore }) =
       alignItems: 'center',
       padding: '2px 4px',
       background: '#c0c0c0',
-      borderTop: '2px solid #fff',
+      borderBottom: '2px solid #808080',
       zIndex: 1000
     }}>
       <button 
