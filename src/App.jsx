@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Window } from './components/organisms/Window';
 import { TaskBar } from './components/organisms/TaskBar';
 import { StartMenu } from './components/organisms/StartMenu';
+import { DesktopProvider, useDesktop } from './context/DesktopContext';
 import './components/templates/Desktop/index.css';
 
 const welcomeContent = (
@@ -13,19 +14,28 @@ const welcomeContent = (
   </div>
 );
 
-function App() {
-  const [windows, setWindows] = useState([
-    {
-      id: 'welcome',
-      title: 'Welcome',
-      isMinimized: false,
-      isActive: true,
-      initialPosition: { x: 0, y: 0 },
-      content: welcomeContent
-    }
-  ]);
+const initialWindows = [
+  {
+    id: 'welcome',
+    title: 'Welcome',
+    isMinimized: false,
+    isActive: true,
+    initialPosition: { x: 0, y: 0 },
+    content: welcomeContent
+  }
+];
 
-  const [activeWindowId, setActiveWindowId] = useState('welcome');
+const Desktop = () => {
+  const {
+    windows,
+    activeWindowId,
+    handleWindowFocus,
+    handleMinimize,
+    handleRestore,
+    handleClose,
+    openWindow
+  } = useDesktop();
+
   const [isStartOpen, setIsStartOpen] = useState(false);
 
   useEffect(() => {
@@ -53,62 +63,15 @@ function App() {
     setIsStartOpen(!isStartOpen);
   };
 
-  const handleWindowFocus = (id) => {
-    setActiveWindowId(id);
-    setIsStartOpen(false);
-    setWindows(prev => prev.map(win => ({
-      ...win,
-      isActive: win.id === id
-    })));
-  };
-
-  const handleMinimize = (id) => {
-    setWindows(prev => prev.map(win => 
-      win.id === id ? { ...win, isMinimized: true } : win
-    ));
-    const visibleWindows = windows.filter(w => !w.isMinimized && w.id !== id);
-    if (visibleWindows.length > 0) {
-      setActiveWindowId(visibleWindows[0].id);
-    }
-  };
-
-  const handleRestore = (id) => {
-    setWindows(prev => prev.map(win => 
-      win.id === id ? { ...win, isMinimized: false, isActive: true } : { ...win, isActive: false }
-    ));
-    setActiveWindowId(id);
-  };
-
-  const handleClose = (id) => {
-    setWindows(prev => {
-      const remaining = prev.filter(win => win.id !== id);
-      if (remaining.length > 0) {
-        setActiveWindowId(remaining[remaining.length - 1].id);
-      }
-      return remaining;
-    });
-  };
-
   const handleOpenWelcome = () => {
-    const welcomeWindow = windows.find(w => w.id === 'welcome');
-    if (welcomeWindow) {
-      if (welcomeWindow.isMinimized) {
-        handleRestore('welcome');
-      } else {
-        handleWindowFocus('welcome');
-      }
-    } else {
-      const newWindow = {
-        id: 'welcome',
-        title: 'Welcome',
-        isMinimized: false,
-        isActive: true,
-        initialPosition: { x: 0, y: 0 },
-        content: welcomeContent
-      };
-      setWindows([newWindow]);
-      setActiveWindowId('welcome');
-    }
+    openWindow({
+      id: 'welcome',
+      title: 'Welcome',
+      isMinimized: false,
+      isActive: true,
+      initialPosition: { x: 0, y: 0 },
+      content: welcomeContent
+    });
     setIsStartOpen(false);
   };
 
@@ -155,6 +118,14 @@ function App() {
         </Window>
       ))}
     </div>
+  );
+};
+
+function App() {
+  return (
+    <DesktopProvider initialWindows={initialWindows}>
+      <Desktop />
+    </DesktopProvider>
   );
 }
 

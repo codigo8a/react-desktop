@@ -4,7 +4,7 @@ export const StartMenu = ({ onClose, onOpenWelcome }) => {
   return (
     <div className="start-menu" onClick={(e) => e.stopPropagation()}>
       <div className="start-menu-sidebar">
-        <span>React Desktop</span>
+        <span>Desktop</span>
       </div>
       <div className="start-menu-items">
         <button onClick={() => { onOpenWelcome(); onClose(); }}>
