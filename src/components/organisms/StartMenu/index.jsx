@@ -15,7 +15,7 @@ export const StartMenu = ({ onClose, onOpenApp, onTestError }) => {
             key={app.id}
             onClick={() => { onOpenApp(app.id); onClose(); }}
           >
-            <span style={{ marginRight: '8px' }}>{app.icon}</span>
+            <span className="icon" style={{ marginRight: '8px' }}>{app.icon}</span>
             {app.title}
           </button>
         ))}

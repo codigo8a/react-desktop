@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import './index.css';
 
 export const TaskBar = ({ 
@@ -8,6 +9,15 @@ export const TaskBar = ({
   isStartOpen,
   onStartClick 
 }) => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="taskbar" style={{
       position: 'fixed',
@@ -71,7 +81,7 @@ export const TaskBar = ({
       }} />
       
       <div style={{ marginLeft: '8px', fontSize: '12px' }}>
-        {new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        {time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
       </div>
     </div>
   );
