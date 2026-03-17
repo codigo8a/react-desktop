@@ -56,14 +56,6 @@ export const FileExplorerApp = () => {
       background: '#c0c0c0'
     }}>
       <div style={{ 
-        padding: '8px',
-        borderBottom: '2px solid #808080',
-        background: '#c0c0c0'
-      }}>
-        <span style={{ fontWeight: 'bold' }}>Explorador de Archivos</span>
-      </div>
-      
-      <div style={{ 
         flex: 1, 
         overflow: 'auto', 
         padding: '8px'
