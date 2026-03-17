@@ -18,13 +18,33 @@ Entorno de escritorio estilo Windows 98 construido con React. Simula un sistema 
 
 ```
 src/
-├── apps/                    # Aplicaciones del sistema
-├── components/              # Componentes (Diseño Atómico)
-├── context/
-├── hooks/
-├── data/files/              # Archivos markdown
+├── apps/                         # Aplicaciones del sistema
+│   ├── WelcomeApp/              # Pantalla de bienvenida
+│   ├── SettingsApp/             # Configuración
+│   ├── NotepadApp/             # Bloc de notas
+│   ├── FileExplorerApp/        # Explorador de archivos
+│   ├── FileViewerApp/          # Visor de markdown
+│   ├── SearchApp/              # Buscador de archivos
+│   └── apps.js                 # Registro de apps
+├── components/                  # Componentes (Diseño Atómico)
+│   ├── atoms/
+│   ├── molecules/
+│   ├── organisms/
+│   └── DesktopIcons/           # Iconos del escritorio
+├── context/                     # Contextos de React
+│   ├── DesktopContext.jsx
+│   ├── WindowContext.jsx
+│   └── LanguageContext.jsx
+├── hooks/                       # Hooks personalizados
+│   ├── useFileSystem.js
+│   ├── useWindow.js
+│   ├── useLanguage.js
+│   └── useWindowHook.js
+├── i18n/                        # Traducciones
+│   └── translations.js
+├── data/files/                  # Archivos markdown
 ├── public/
-│   └── images/              # Imágenes para archivos markdown
+│   └── images/                  # Imágenes para archivos markdown
 ├── App.jsx
 ├── index.css
 └── main.jsx
@@ -64,16 +84,33 @@ Gestiona el estado local de cada ventana individual:
 - `id` - ID de la ventana
 - `onClose` - Función para cerrar la ventana
 
+### Context (LanguageContext)
+
+Gestiona el idioma de la interfaz:
+
+- `language` - Idioma actual ('es' | 'en')
+- `changeLanguage(lang)` - Cambia el idioma
+- Persistencia en localStorage
+
 ### Hooks Personalizados
 
 - **useFileSystem**: Lee archivos markdown de `data/files/`, extrae fechas del contenido
 - **useWindow**: Lógica de manejo de ventanas (integrado en Window)
+- **useLanguage**: Acceso al contexto de idioma
+- **useTranslation**: Función `t(key)` para traducciones
+
+### Sistema de Traducciones (i18n)
+
+- Todas las apps y componentes usan el hook `useTranslation()`
+- Traducciones en `src/i18n/translations.js`
+- Idiomas disponibles: Español e Inglés
 
 ### Aplicaciones
 
 | App | Descripción | Instancia única |
 |-----|-------------|-----------------|
-| Welcome | Pantalla de bienvenida con tips de Windows 95 | Sí |
+| Welcome | Pantalla de bienvenida con tips de Windows 95 y selector de idioma | Sí |
+| Settings | Configuración del sistema (idioma) | Sí |
 | Notepad | Bloc de notas | Sí |
 | FileExplorer | Explorador de archivos con tabs (Tabla/Arbol) | Sí |
 | FileViewer | Visor markdown con tabs (Preview/Source) | No (por archivo) |
@@ -135,3 +172,6 @@ npm run lint   # Linting
 - Ventana Welcome con tips interactivos estilo Windows 95
 - Buscador de archivos (SearchApp)
 - WindowContext para estado local de ventanas
+- Iconos de escritorio (My Computer, Recycle Bin, My Documents)
+- Sistema de traducciones ES/EN con Settings
+- Cambiador de idioma en ventana Welcome
