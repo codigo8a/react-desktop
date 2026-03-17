@@ -63,13 +63,13 @@ export const FileViewerApp: React.FC<FileViewerAppProps> = ({ file }) => {
       <div className="window" role="tabpanel" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: '0', border: 'none', boxShadow: 'none', overflow: 'hidden' }}>
         <div className="window-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: '0', padding: '4px', background: '#c0c0c0', overflow: 'hidden' }}>
           {activeTab === 'preview' ? (
-            <div className="fileviewer-markdown sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff', padding: '10px' }}>
+            <div className="fileviewer-markdown sunken-panel" style={{ flex: 1, overflow: 'auto', background: '#fff', padding: '10px' }}>
               <ReactMarkdown components={MarkdownComponents} rehypePlugins={[rehypeRaw]}>
                 {file.content}
               </ReactMarkdown>
             </div>
           ) : (
-            <div className="sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff' }}>
+            <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', background: '#fff' }}>
               <pre className="fileviewer-source" style={{ margin: 0, padding: '10px', border: 'none', overflow: 'visible', width: 'max-content', minWidth: '100%' }}>
                 {file.rawContent || file.content}
               </pre>

@@ -82,7 +82,7 @@ export const FileExplorerApp: React.FC = () => {
     allFiles.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
     return (
-      <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
+      <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none', margin: 0 }}>
         <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
           <tr>
             <th style={{ textAlign: 'left', width: '50%' }}>{t('name')}</th>
@@ -131,13 +131,13 @@ export const FileExplorerApp: React.FC = () => {
       <div className="window" role="tabpanel" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: '0', border: 'none', boxShadow: 'none', overflow: 'hidden' }}>
         <div className="window-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: '0', padding: '4px', background: '#c0c0c0', overflow: 'hidden' }}>
           {activeTab === 'tree' ? (
-            <div className="sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff' }}>
-              <ul className="tree-view" style={{ border: 'none', boxShadow: 'none', margin: 0, overflow: 'visible', width: 'max-content', minWidth: '100%' }}>
+            <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', background: '#fff' }}>
+              <ul className="tree-view" style={{ border: 'none', boxShadow: 'none', margin: 0, width: 'max-content', minWidth: '100%', overflow: 'visible' }}>
                 {renderTree()}
               </ul>
             </div>
           ) : (
-            <div className="sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff', display: 'flex', flexDirection: 'column' }}>
+            <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', background: '#fff' }}>
               {renderTable()}
             </div>
           )}
