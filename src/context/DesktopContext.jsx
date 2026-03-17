@@ -101,15 +101,22 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
     const app = getAppById(appId);
     if (!app) return;
 
+    const windowKey = appData?.windowKey || null;
     const allowMultiple = app.singleInstance === false;
-    const existingWindow = allowMultiple ? null : windows.find(w => w.appId === appId);
     
-    if (existingWindow && allowMultiple !== true) {
+    let existingWindow = null;
+    if (windowKey) {
+      existingWindow = windows.find(w => w.appId === appId && w.windowKey === windowKey);
+    } else if (allowMultiple !== true) {
+      existingWindow = windows.find(w => w.appId === appId);
+    }
+    
+    if (existingWindow) {
       const newZIndex = zIndexCounter + 1;
       setZIndexCounter(newZIndex);
       
       setWindows(prev => prev.map(win => 
-        win.appId === appId 
+        win.id === existingWindow.id
           ? { ...win, zIndex: newZIndex, isMinimized: false, isActive: true }
           : { ...win, isActive: false }
       ));
@@ -118,7 +125,8 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
       const AppComponent = app.component;
       addWindow({
         appId: app.id,
-        title: app.title,
+        windowKey: windowKey,
+        title: appData?.title || app.title,
         initialSize: app.defaultSize,
         centered: app.centered,
         content: <AppComponent file={appData?.file} />

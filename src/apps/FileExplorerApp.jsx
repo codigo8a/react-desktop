@@ -23,7 +23,9 @@ export const FileExplorerApp = () => {
         name: file.name.replace('.md', ''),
         content: content,
         folder: folderName
-      }
+      },
+      windowKey: `${folderName}/${file.name}`,
+      title: file.name.replace('.md', '')
     });
   };
 
