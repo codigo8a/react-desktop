@@ -7,9 +7,8 @@
 
 ## Reglas de Git
 
-1. **NUNCA hacer push** a menos que el usuario escriba explícitamente "push" en el chat.
-2. Cuando el usuario escribe "push", hacer commit automáticamente (no pedir permiso) y luego hacer push.
-3. Solo proceder con commit/push después de que el usuario lo confirme explícitamente.
+1. **NUNCA hacer push** nunca hacer push automaticamente.
+2. Solo proceder con commit/push después de que el usuario lo confirme explícitamente.
 
 ## Flujo de trabajo recomendado
 
