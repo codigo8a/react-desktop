@@ -97,13 +97,14 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
     setActiveWindowId(newWindow.id);
   }, [zIndexCounter]);
 
-  const openApp = useCallback((appId) => {
+  const openApp = useCallback((appId, appData = null) => {
     const app = getAppById(appId);
     if (!app) return;
 
-    const existingWindow = windows.find(w => w.appId === appId);
+    const allowMultiple = app.singleInstance === false;
+    const existingWindow = allowMultiple ? null : windows.find(w => w.appId === appId);
     
-    if (existingWindow) {
+    if (existingWindow && allowMultiple !== true) {
       const newZIndex = zIndexCounter + 1;
       setZIndexCounter(newZIndex);
       
@@ -120,7 +121,7 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
         title: app.title,
         initialSize: app.defaultSize,
         centered: app.centered,
-        content: <AppComponent />
+        content: <AppComponent file={appData?.file} />
       });
     }
   }, [windows, zIndexCounter, addWindow]);

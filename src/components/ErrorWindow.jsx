@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 export const ErrorWindow = ({ error, onReset }) => {
   const errorMessage = error?.message || 'An unknown error occurred';
   const errorStack = error?.stack || '';
-  const [position] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
   const dragStart = useRef({ x: 0, y: 0, posX: 0, posY: 0 });
 
@@ -12,9 +11,7 @@ export const ErrorWindow = ({ error, onReset }) => {
       setIsDragging(true);
       dragStart.current = {
         x: e.clientX,
-        y: e.clientY,
-        posX: position.x,
-        posY: position.y
+        y: e.clientY
       };
     }
   };
@@ -22,11 +19,10 @@ export const ErrorWindow = ({ error, onReset }) => {
   const handleMouseMove = (e) => {
     if (isDragging) {
       const dx = e.clientX - dragStart.current.x;
-      const dy = e.clientY - dragStart.current.y;
       const el = document.querySelector('.error-window');
       if (el) {
         el.style.left = `${dragStart.current.posX + dx + 50}%`;
-        el.style.top = `${dragStart.current.posY + 50}%`;
+        el.style.top = '50%';
         el.style.transform = 'translate(0, 0)';
       }
     }

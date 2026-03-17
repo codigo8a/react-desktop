@@ -1,5 +1,7 @@
 import { WelcomeApp } from './WelcomeApp';
 import { NotepadApp } from './NotepadApp';
+import { FileExplorerApp } from './FileExplorerApp';
+import { FileViewerApp } from './FileViewerApp';
 
 export const APPS = {
   welcome: {
@@ -17,6 +19,23 @@ export const APPS = {
     component: NotepadApp,
     defaultSize: { width: 450, height: 350 },
     centered: false
+  },
+  fileExplorer: {
+    id: 'fileExplorer',
+    title: 'Explorador de Archivos',
+    icon: '📁',
+    component: FileExplorerApp,
+    defaultSize: { width: 400, height: 350 },
+    centered: false
+  },
+  fileViewer: {
+    id: 'fileViewer',
+    title: 'Visor de Archivo',
+    icon: '📄',
+    component: FileViewerApp,
+    defaultSize: { width: 500, height: 400 },
+    centered: false,
+    singleInstance: false
   }
 };
 
