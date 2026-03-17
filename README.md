@@ -61,6 +61,13 @@ Gestiona el estado global de todas las ventanas:
 - `handleWindowMove(id, position)` - Actualiza posición
 - `handleResize(id, size)` - Actualiza tamaño
 
+### Context (WindowContext)
+
+Gestiona el estado local de cada ventana individual:
+
+- `id` - ID de la ventana
+- `onClose` - Función para cerrar la ventana
+
 ### Hooks Personalizados
 
 - **useFileSystem**: Lee archivos markdown de `data/files/`, extrae fechas del contenido
@@ -70,10 +77,11 @@ Gestiona el estado global de todas las ventanas:
 
 | App | Descripción | Instancia única |
 |-----|-------------|-----------------|
-| Welcome | Pantalla de bienvenida | Sí |
+| Welcome | Pantalla de bienvenida con tips de Windows 95 | Sí |
 | Notepad | Bloc de notas | Sí |
 | FileExplorer | Explorador de archivos con tabs (Tabla/Arbol) | Sí |
 | FileViewer | Visor markdown con tabs (Preview/Source) | No (por archivo) |
+| Search | Buscador de archivos | Sí |
 
 ### Explorador de Archivos
 
@@ -128,3 +136,6 @@ npm run lint   # Linting
 - Reloj en tiempo real en la barra de tareas
 - Prevención de ventanas duplicadas por archivo
 - Archivos markdown con fecha de creación en formato `Fecha: DD/MM/AAAA`
+- Ventana Welcome con tips interactivos estilo Windows 95
+- Buscador de archivos (SearchApp)
+- WindowContext para estado local de ventanas
