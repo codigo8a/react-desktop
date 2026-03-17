@@ -21,7 +21,7 @@ export const WelcomeApp: React.FC = () => {
   const windowContext = useWindow();
   const onClose = windowContext?.onClose;
   
-  const { language } = useLanguage();
+  const { language, changeLanguage } = useLanguage();
   const { openApp } = useDesktop();
   const { getRawFileContent } = useFileSystem();
   const { t } = useTranslation();
@@ -133,7 +133,7 @@ export const WelcomeApp: React.FC = () => {
         fontWeight: 'normal',
         color: '#000'
       }}>
-        Welcome
+        {t('welcome')}
       </h2>
 
       <div style={{ 
@@ -226,6 +226,32 @@ export const WelcomeApp: React.FC = () => {
           >
             {t('close')}
           </button>
+          
+          <fieldset style={{ marginTop: 'auto', padding: '10px' }}>
+            <legend>{t('language')}</legend>
+            <div className="field-row">
+              <input 
+                id="lang-en" 
+                type="radio" 
+                name="language-select" 
+                value="en" 
+                checked={language === 'en'} 
+                onChange={() => changeLanguage('en')}
+              />
+              <label htmlFor="lang-en">English</label>
+            </div>
+            <div className="field-row" style={{ marginTop: '4px' }}>
+              <input 
+                id="lang-es" 
+                type="radio" 
+                name="language-select" 
+                value="es" 
+                checked={language === 'es'} 
+                onChange={() => changeLanguage('es')}
+              />
+              <label htmlFor="lang-es">Español</label>
+            </div>
+          </fieldset>
         </div>
       </div>
 
@@ -239,7 +265,7 @@ export const WelcomeApp: React.FC = () => {
           style={{ cursor: 'pointer' }}
         />
         <label htmlFor="startup-check" style={{ cursor: 'pointer' }}>
-          Show this Welcome Screen next time you start Windows
+          {t('showWelcomeScreen')}
         </label>
       </div>
     </div>
