@@ -13,14 +13,30 @@ export const WelcomeApp = () => {
 
   const tips = {
     en: [
-      "Full Stack Developer expert in Cloud Process Automation, PaintBall Player, Softcombat Enthusiast, Robotics, Electronics and Technology Lover.",
-      "The buttons on the right give a variety of actions you can perform.",
+      "Full Stack Developer expert in Cloud Process Automation, PaintBall, Softcombat and Roller derby Player, Robotics, Electronics and Technology Lover.",
+      <div>
+        <p style={{ margin: '0 0 8px 0', fontStyle: 'italic' }}>About me</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <a href="https://juandavid.site" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📄 Resume</a>
+          <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
+          <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
+          <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
+        </div>
+      </div>,
       "Click on the Next Tip button to see a new tip in the Welcome window.",
       "You can de-select the option 'Show this Welcome Screen next time you start Windows' if you prefer not to see this window again."
     ],
     es: [
-      "Desarrollador Full Stack experto en Automatización de Procesos en la Nube, Jugador de PaintBall, Entusiasta de Softcombat, Robótica, Electrónica y Tecnología.",
-      "Los botones de la derecha ofrecen diversas acciones que puede realizar.",
+      "Desarrollador Full Stack experto en Automatización de Procesos en la Nube, jugador de PaintBall, Softcombat y Roller derby, Gomoso de la Robótica, Electrónica y Tecnología.",
+      <div>
+        <p style={{ margin: '0 0 8px 0', fontStyle: 'italic' }}>Sobre mí</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <a href="https://juandavid.site" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📄 Hoja de vida</a>
+          <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
+          <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
+          <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
+        </div>
+      </div>,
       "Haga clic en el botón Siguiente Tip para ver un nuevo consejo.",
       "Puede deseleccionar la opción 'Mostrar esta pantalla de bienvenida al iniciar Windows' si prefiere no ver esta ventana."
     ]
@@ -77,12 +93,12 @@ export const WelcomeApp = () => {
         }}>
            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
              <div style={{ fontSize: '32px' }}>💡</div>
-             <div style={{ flex: 1 }}>
-                <p style={{ margin: '0 0 12px 0', fontWeight: 'bold', fontSize: '13px' }}>{t('welcomeTip')}</p>
-                <p style={{ margin: 0, lineHeight: '1.5', fontSize: '12px' }}>
-                  {currentTips[currentTip]}
-                </p>
-             </div>
+              <div style={{ flex: 1 }}>
+                 <p style={{ margin: '0 0 12px 0', fontWeight: 'bold', fontSize: '13px' }}>{t('welcomeTip')}</p>
+                 <div style={{ margin: 0, lineHeight: '1.5', fontSize: '12px' }}>
+                   {currentTips[currentTip]}
+                 </div>
+              </div>
            </div>
         </div>
 
