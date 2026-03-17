@@ -1,6 +1,7 @@
 import { Window } from './components/organisms/Window';
 import { TaskBar } from './components/organisms/TaskBar';
 import { StartMenu } from './components/organisms/StartMenu';
+import { DesktopIcons } from './components/DesktopIcons';
 import { DesktopProvider, useDesktop } from './context/DesktopContext';
 import { LanguageProvider } from './context/LanguageContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -60,6 +61,8 @@ const Desktop = () => {
         isStartOpen={isStartOpen}
         onStartClick={handleStartClick}
       />
+      
+      <DesktopIcons />
       
       {isStartOpen && (
         <StartMenu 
