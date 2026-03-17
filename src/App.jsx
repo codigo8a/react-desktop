@@ -14,6 +14,8 @@ const initialWindows = [
     title: 'Welcome',
     isMinimized: false,
     isActive: true,
+    isMaximized: false,
+    currentPosition: null,
     initialPosition: { x: 0, y: 0 },
     initialSize: APPS.welcome.defaultSize,
     centered: APPS.welcome.centered,
@@ -26,12 +28,12 @@ const Desktop = () => {
   const {
     windows,
     activeWindowId,
-    maximizedWindowId,
     handleWindowFocus,
     handleMinimize,
     handleRestore,
     handleClose,
     handleMaximize,
+    handleWindowMove,
     openApp
   } = useDesktop();
 
@@ -104,11 +106,13 @@ const Desktop = () => {
           initialPosition={win.initialPosition}
           initialSize={win.initialSize}
           zIndex={win.zIndex}
-          isMaximized={maximizedWindowId === win.id}
+          isMaximized={win.isMaximized}
+          currentPosition={win.currentPosition}
           onFocus={handleWindowFocus}
           onMinimize={handleMinimize}
           onMaximize={handleMaximize}
           onClose={handleClose}
+          onMove={handleWindowMove}
         >
           {win.content}
         </Window>

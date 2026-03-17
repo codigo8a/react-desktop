@@ -1,5 +1,4 @@
 import { useState, useRef } from 'react';
-import Draggable from 'react-draggable';
 import { TitleBar } from '../../molecules/TitleBar';
 import './index.css';
 
@@ -14,13 +13,26 @@ export const Window = ({
   centered = false,
   zIndex = 10,
   isMaximized = false,
+  currentPosition = null,
   onFocus,
   onMinimize,
   onMaximize,
-  onClose 
+  onClose,
+  onMove
 }) => {
   const [size] = useState(initialSize);
-  const nodeRef = useRef(null);
+  const [position, setPosition] = useState(() => {
+    if (currentPosition) return currentPosition;
+    if (centered) {
+      return {
+        x: (window.innerWidth - initialSize.width) / 2,
+        y: (window.innerHeight - initialSize.height) / 2
+      };
+    }
+    return initialPosition;
+  });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0, posX: 0, posY: 0 });
 
   const handleMinimize = () => {
     onMinimize?.(id);
@@ -64,35 +76,56 @@ export const Window = ({
     );
   }
 
-  const getInitialPosition = () => {
-    if (centered) {
-      return {
-        x: (window.innerWidth - size.width) / 2,
-        y: (window.innerHeight - size.height) / 2
+  const handleMouseDown = (e) => {
+    if (e.target.closest('.title-bar')) {
+      setIsDragging(true);
+      dragStart.current = {
+        x: e.clientX,
+        y: e.clientY,
+        posX: position.x,
+        posY: position.y
       };
     }
-    return initialPosition;
+  };
+
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      const dx = e.clientX - dragStart.current.x;
+      const dy = e.clientY - dragStart.current.y;
+      setPosition({
+        x: dragStart.current.posX + dx,
+        y: dragStart.current.posY + dy
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      onMove?.(id, position);
+    }
   };
 
   return (
-    <Draggable
-      handle=".title-bar"
-      defaultPosition={getInitialPosition()}
-      nodeRef={nodeRef}
+    <div 
+      className={`window ${isActive ? 'active' : ''}`}
+      style={{
+        position: 'absolute',
+        width: size.width,
+        height: size.height,
+        zIndex,
+        left: position.x,
+        top: position.y,
+        cursor: isDragging ? 'move' : 'default',
+        userSelect: isDragging ? 'none' : 'auto'
+      }}
+      onClick={() => onFocus?.(id)}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
     >
-      <div 
-        ref={nodeRef}
-        className={`window ${isActive ? 'active' : ''}`}
-        style={{
-          position: 'absolute',
-          width: size.width,
-          height: size.height,
-          zIndex,
-        }}
-        onClick={() => onFocus?.(id)}
-      >
-        {renderContent()}
-      </div>
-    </Draggable>
+      {renderContent()}
+    </div>
   );
 };
