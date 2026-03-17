@@ -28,16 +28,15 @@ src/
 │   ├── FileExplorerApp.jsx  # Explorador de archivos
 │   └── FileViewerApp.jsx    # Visor de archivos con tabs
 ├── components/              # Componentes (Diseño Atómico)
-│   ├── atoms/
+│   ├── ErrorBoundary.jsx    # Error boundary global
+│   ├── ErrorWindow.jsx      # Ventana de error
 │   ├── molecules/
 │   │   ├── TitleBar/        # Barra de título
 │   │   └── WindowControls/  # Botones minimizar/maximizar/cerrar
-│   ├── organisms/
-│   │   ├── Window/           # Ventana con drag, resize, minimize, maximize
-│   │   ├── TaskBar/         # Barra de tareas
-│   │   └── StartMenu/       # Menú inicio
-│   └── templates/
-│       └── Desktop/          # Plantilla del escritorio
+│   └── organisms/
+│       ├── Window/           # Ventana con drag, resize, minimize, maximize
+│       ├── TaskBar/         # Barra de tareas
+│       └── StartMenu/       # Menú inicio
 ├── context/
 │   └── DesktopContext.jsx   # Estado global de ventanas
 ├── hooks/
@@ -48,6 +47,7 @@ src/
 │   ├── Sistemas/
 │   └── Paginas/
 ├── App.jsx                  # Componente principal
+├── index.css                # Estilos globales
 └── main.jsx                 # Entry point
 ```
 
@@ -58,7 +58,6 @@ src/
 - **Átomos**: Elementos base simples
 - **Moléculas**: Composición simple de átomos (TitleBar, WindowControls)
 - **Organismos**: Componentes complejos (Window, TaskBar, StartMenu)
-- **Templates**: Estructuras de layout (Desktop)
 
 ### Responsabilidad Única
 
@@ -82,8 +81,8 @@ Gestiona el estado global de todas las ventanas:
 
 ### Hooks Personalizados
 
-- **useFileSystem**: Lee archivos markdown de `data/files/`
-- **useWindow**: Lógica de manejo de ventanas (no usado actualmente, integrado en Window)
+- **useFileSystem**: Lee archivos markdown de `data/files/`, extrae fechas del contenido
+- **useWindow**: Lógica de manejo de ventanas (integrado en Window)
 
 ### Aplicaciones
 
@@ -91,8 +90,14 @@ Gestiona el estado global de todas las ventanas:
 |-----|-------------|-----------------|
 | Welcome | Pantalla de bienvenida | Sí |
 | Notepad | Bloc de notas | Sí |
-| FileExplorer | Explorador de archivos | Sí |
-| FileViewer | Visor markdown con tabs | No (por archivo) |
+| FileExplorer | Explorador de archivos con tabs (Tabla/Arbol) | Sí |
+| FileViewer | Visor markdown con tabs (Preview/Source) | No (por archivo) |
+
+### Explorador de Archivos
+
+- **Tab Tabla**: Muestra todos los archivos en formato tabla con columnas Nombre, Ubicación, Fecha
+- **Tab Arbol**: Muestra estructura de carpetas expandible estilo Windows 98
+- Las fechas se leen directamente del archivo markdown (línea `Fecha: DD/MM/AAAA`)
 
 ### Características de las Ventanas
 
@@ -103,6 +108,12 @@ Gestiona el estado global de todas las ventanas:
 - **Close**: Cierra la ventana
 - **Enfoque**: Al hacer clic se trae al frente (z-index)
 - **Centrado**: Se abren centradas en pantalla
+
+### Barra de Tareas
+
+- Muestra botón Start y lista de ventanas abiertas
+- Reloj en tiempo real con hora, minutos y segundos
+- Click en ventana minimizada la restaura
 
 ### Prevención de Ventanas Duplicadas
 
@@ -122,7 +133,11 @@ npm run lint   # Linting
 ## Estado Actual
 
 - Ventanas funcionales con drag, resize, minimize, maximize
-- Explorador de archivos con tree-view
+- Explorador de archivos con dos vistas: Tabla y Arbol
+- Vista Tabla: muestra archivos con columnas Nombre, Ubicación, Fecha
+- Vista Arbol: estructura de carpetas expandible
 - Visor de markdown con tabs (Preview / Source)
 - Menú Start y barra de tareas
-- Prevent duplicates para archivos abiertos
+- Reloj en tiempo real en la barra de tareas
+- Prevención de ventanas duplicadas por archivo
+- Archivos markdown con fecha de creación en formato `Fecha: DD/MM/AAAA`

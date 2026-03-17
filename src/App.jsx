@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
 import { Window } from './components/organisms/Window';
 import { TaskBar } from './components/organisms/TaskBar';
 import { StartMenu } from './components/organisms/StartMenu';
 import { DesktopProvider, useDesktop } from './context/DesktopContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { useStartMenu } from './hooks/useWindow';
 import { APPS } from './apps/apps';
-import './components/templates/Desktop/index.css';
 
 const initialWindows = [
   {
@@ -37,38 +36,12 @@ const Desktop = () => {
     openApp
   } = useDesktop();
 
-  const [isStartOpen, setIsStartOpen] = useState(false);
-  const [testErrorTrigger, setTestErrorTrigger] = useState(0);
-
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      const startMenu = document.querySelector('.start-menu');
-      if (isStartOpen && startMenu && !startMenu.contains(e.target)) {
-        setIsStartOpen(false);
-      }
-    };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [isStartOpen]);
+  const { isOpen: isStartOpen, toggle: toggleStart, close: closeStart } = useStartMenu();
 
   const handleStartClick = (e) => {
     e.stopPropagation();
-    setIsStartOpen(!isStartOpen);
+    toggleStart();
   };
-
-  const handleOpenApp = (appId) => {
-    openApp(appId);
-  };
-
-  const handleTestError = () => {
-    setTestErrorTrigger(prev => prev + 1);
-  };
-
-  useEffect(() => {
-    if (testErrorTrigger > 0) {
-      throw new Error('This is a test error to verify the ErrorBoundary works correctly!');
-    }
-  }, [testErrorTrigger]);
 
   return (
     <div className="desktop" style={{
@@ -89,9 +62,8 @@ const Desktop = () => {
       
       {isStartOpen && (
         <StartMenu 
-          onClose={() => setIsStartOpen(false)}
-          onOpenApp={handleOpenApp}
-          onTestError={handleTestError}
+          onClose={closeStart}
+          onOpenApp={openApp}
         />
       )}
       

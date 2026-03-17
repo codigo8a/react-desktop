@@ -1,37 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
-
-export const useDraggable = (initialPosition = { x: 0, y: 0 }, disabled = false) => {
-  const [position, setPosition] = useState(initialPosition);
-
-  const updatePosition = useCallback((newPosition) => {
-    if (!disabled) {
-      setPosition(newPosition);
-    }
-  }, [disabled]);
-
-  return {
-    position,
-    updatePosition
-  };
-};
-
-export const useWindowMaximized = () => {
-  const [isMaximized, setIsMaximized] = useState(false);
-
-  const toggleMaximize = useCallback(() => {
-    setIsMaximized(prev => !prev);
-  }, []);
-
-  const minimize = useCallback(() => {
-    setIsMaximized(false);
-  }, []);
-
-  return {
-    isMaximized,
-    toggleMaximize,
-    minimize
-  };
-};
+import { useState, useEffect, useCallback, useMemo } from 'react';
 
 export const useStartMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,5 +26,18 @@ export const useStartMenu = () => {
     return () => document.removeEventListener('click', handleClickOutside);
   }, [isOpen]);
 
-  return { isOpen, toggle, open, close };
+  return useMemo(() => ({ isOpen, toggle, open, close }), [isOpen, toggle, open, close]);
+};
+
+export const useClock = () => {
+  const [time, setTime] = useState(() => new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return time;
 };

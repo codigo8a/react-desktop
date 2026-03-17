@@ -1,7 +1,7 @@
 import { APPS, getAppList } from '../../../apps/apps';
 import './index.css';
 
-export const StartMenu = ({ onClose, onOpenApp, onTestError }) => {
+export const StartMenu = ({ onClose, onOpenApp }) => {
   const appList = getAppList();
 
   return (
@@ -20,9 +20,6 @@ export const StartMenu = ({ onClose, onOpenApp, onTestError }) => {
           </button>
         ))}
         <div className="start-menu-divider" />
-        <button onClick={() => { onTestError(); onClose(); }}>
-          Test Error
-        </button>
         <button disabled>
           Programs
         </button>
