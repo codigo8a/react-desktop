@@ -1,28 +1,59 @@
-import { FILE_STRUCTURE, FILE_CONTENT } from '../data/fileStructure';
+const files = import.meta.glob('../data/files/**/*.md', {
+  query: '?raw',
+  import: 'default',
+  eager: true
+});
 
 export const useFileSystem = () => {
   const getFileStructure = () => {
-    return FILE_STRUCTURE;
+    const structure = {};
+    
+    Object.entries(files).forEach(([path, content]) => {
+      const parts = path.replace('../data/files/', '').split('/');
+      const folder = parts[0];
+      const filename = parts[1].replace('.md', '');
+      
+      if (!structure[folder]) {
+        structure[folder] = [];
+      }
+      
+      structure[folder].push({
+        name: filename,
+        content: content || ''
+      });
+    });
+    
+    return Object.entries(structure).map(([name, children]) => ({
+      name,
+      type: 'folder',
+      children: children.map(c => ({
+        name: c.name + '.md',
+        type: 'file'
+      }))
+    }));
   };
 
-  const getFileContent = (filename) => {
-    return FILE_CONTENT[filename] || 'Archivo no encontrado';
+  const getFileContent = (filename, folderName) => {
+    const path = `../data/files/${folderName}/${filename}`;
+    return files[path] || 'Archivo no encontrado';
   };
 
   const getAllFiles = () => {
-    const files = [];
-    FILE_STRUCTURE.forEach(folder => {
-      if (folder.children) {
-        folder.children.forEach(file => {
-          files.push({
-            folder: folder.name,
-            name: file.name,
-            content: FILE_CONTENT[file.name] || ''
-          });
-        });
-      }
+    const result = [];
+    
+    Object.entries(files).forEach(([path, content]) => {
+      const parts = path.replace('../data/files/', '').split('/');
+      const folder = parts[0];
+      const filename = parts[1];
+      
+      result.push({
+        folder,
+        name: filename,
+        content: content || ''
+      });
     });
-    return files;
+    
+    return result;
   };
 
   return {

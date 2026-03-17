@@ -51,7 +51,7 @@ export const Window = ({
         onClose={() => onClose?.(id)}
         active={isActive}
       />
-      <div className="window-body" style={{ height: 'calc(100% - 20px)' }}>
+      <div className="window-body">
         {children}
       </div>
     </>

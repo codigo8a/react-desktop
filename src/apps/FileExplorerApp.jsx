@@ -17,7 +17,7 @@ export const FileExplorerApp = () => {
   };
 
   const handleFileClick = (file, folderName) => {
-    const content = getFileContent(file.name);
+    const content = getFileContent(file.name, folderName);
     openApp('fileViewer', {
       file: {
         name: file.name.replace('.md', ''),
@@ -30,7 +30,7 @@ export const FileExplorerApp = () => {
   const renderTree = () => {
     return fileStructure.map((folder) => (
       <li key={folder.name}>
-        <details open={expandedFolders[folder.name]} onToggle={() => toggleFolder(folder.name)}>
+        <details open={expandedFolders[folder.name] !== false} onToggle={() => toggleFolder(folder.name)}>
           <summary style={{ cursor: 'pointer' }}>📁 {folder.name}</summary>
           <ul>
             {folder.children?.map((file) => (
@@ -73,12 +73,12 @@ export const FileExplorerApp = () => {
         </ul>
       </div>
       
-      <div style={{ 
-        padding: '4px 8px',
-        borderTop: '2px solid #808080',
-        fontSize: '11px'
-      }}>
-        {fileStructure.reduce((acc, f) => acc + (f.children?.length || 0), 0)} archivo(s)
+      <div className="status-bar">
+        <p className="status-bar-field">{fileStructure.length} carpeta(s)</p>
+        <p className="status-bar-field">
+          {fileStructure.reduce((acc, f) => acc + (f.children?.length || 0), 0)} archivo(s)
+        </p>
+        <p className="status-bar-field">Listo</p>
       </div>
     </div>
   );
