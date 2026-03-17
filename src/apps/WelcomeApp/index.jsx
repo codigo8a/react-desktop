@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useWindow } from '../../context/WindowContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { useDesktop } from '../../context/DesktopContext';
+import { useFileSystem } from '../../hooks/useFileSystem';
 import { useTranslation } from '../../i18n/translations';
 import './index.css';
 
@@ -9,7 +11,23 @@ export const WelcomeApp = () => {
   const [currentTip, setCurrentTip] = useState(0);
   const { onClose } = useWindow() || {};
   const { language, changeLanguage } = useLanguage();
+  const { openApp } = useDesktop();
+  const { getRawFileContent } = useFileSystem();
   const { t } = useTranslation();
+
+  const handleOpenResume = () => {
+    const content = getRawFileContent('hoja-de-vida.md', 'content');
+    openApp('fileViewer', {
+      file: {
+        name: 'hoja-de-vida',
+        content: content,
+        folder: 'content',
+        date: '01/01/2009'
+      },
+      windowKey: 'content/hoja-de-vida.md',
+      title: 'hoja-de-vida'
+    });
+  };
 
   const tips = {
     en: [
@@ -17,7 +35,10 @@ export const WelcomeApp = () => {
       <div>
         <p style={{ margin: '0 0 8px 0', fontStyle: 'italic' }}>About me</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <a href="https://juandavid.site" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📄 Resume</a>
+          <div 
+            onClick={handleOpenResume}
+            style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+          >📄 Resume</div>
           <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
           <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
           <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
@@ -31,7 +52,10 @@ export const WelcomeApp = () => {
       <div>
         <p style={{ margin: '0 0 8px 0', fontStyle: 'italic' }}>Sobre mí</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
-          <a href="https://juandavid.site" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📄 Hoja de vida</a>
+          <div 
+            onClick={handleOpenResume}
+            style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
+          >📄 Hoja de vida</div>
           <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
           <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
           <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
