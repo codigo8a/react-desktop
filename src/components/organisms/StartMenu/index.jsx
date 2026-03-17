@@ -1,29 +1,24 @@
-import { APPS, getAppList } from '../../../apps/apps';
+import { APPS } from '../../../apps/apps';
 import './index.css';
 
 export const StartMenu = ({ onClose, onOpenApp }) => {
-  const appList = getAppList();
-
   return (
     <div className="start-menu" onClick={(e) => e.stopPropagation()}>
       <div className="start-menu-sidebar">
         <span>Desktop</span>
       </div>
       <div className="start-menu-items">
-        {appList.map(app => (
           <button 
-            key={app.id}
-            onClick={() => { onOpenApp(app.id); onClose(); }}
+            onClick={() => { onOpenApp('welcome'); onClose(); }}
           >
-            <span className="icon" style={{ marginRight: '8px' }}>{app.icon}</span>
-            {app.title}
+            <span className="icon" style={{ marginRight: '8px' }}>{APPS.welcome.icon}</span>
+            {APPS.welcome.title}
           </button>
-        ))}
         <div className="start-menu-divider" />
         <button disabled>
           Programs
         </button>
-        <button disabled>
+        <button onClick={() => { onOpenApp('fileExplorer'); onClose(); }}>
           Documents
         </button>
         <button disabled>
