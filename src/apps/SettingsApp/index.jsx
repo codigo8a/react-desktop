@@ -24,47 +24,73 @@ export const SettingsApp = () => {
       display: 'flex', 
       flexDirection: 'column',
       background: '#c0c0c0',
-      padding: '16px',
       fontFamily: '"MS Sans Serif", Arial, sans-serif',
       fontSize: '11px'
     }}>
-      <div style={{ marginBottom: '16px' }}>
-        <p style={{ marginBottom: '12px' }}>{t('selectLanguage')}</p>
-        
-        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px', cursor: 'pointer' }}>
-          <input 
-            type="radio" 
-            name="language" 
-            value="es"
-            checked={selectedLanguage === 'es'}
-            onChange={(e) => setSelectedLanguage(e.target.value)}
-          />
-          {t('spanish')}
-        </label>
-        
-        <label style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}>
-          <input 
-            type="radio" 
-            name="language" 
-            value="en"
-            checked={selectedLanguage === 'en'}
-            onChange={(e) => setSelectedLanguage(e.target.value)}
-          />
-          {t('english')}
-        </label>
+      <div style={{ 
+        padding: '16px',
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '16px'
+      }}>
+        <div style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '12px'
+        }}>
+          <label style={{ 
+            fontWeight: 'bold',
+            minWidth: '80px'
+          }}>
+            {t('language')}:
+          </label>
+          <div className="field-row" style={{ flex: 1 }}>
+            <select 
+              value={selectedLanguage}
+              onChange={(e) => setSelectedLanguage(e.target.value)}
+              style={{ 
+                width: '100%',
+                minWidth: '120px'
+              }}
+            >
+              <option value="en">English</option>
+              <option value="es">Español</option>
+            </select>
+          </div>
+        </div>
+
+        <div style={{ 
+          marginTop: '8px',
+          padding: '8px',
+          background: '#fffff0',
+          border: '1px solid #000',
+          fontSize: '10px',
+          color: '#444'
+        }}>
+          {selectedLanguage === 'es' 
+            ? 'El idioma seleccionado afectará toda la interfaz de usuario.'
+            : 'The selected language will affect the entire user interface.'}
+        </div>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '8px', marginTop: 'auto' }}>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'flex-end', 
+        gap: '8px', 
+        padding: '8px 16px 16px'
+      }}>
         <button 
           onClick={handleApply}
           style={{
-            padding: '4px 16px',
+            padding: '4px 20px',
             background: '#c0c0c0',
             border: '2px outset #ffffff',
             boxShadow: '1px 1px 0px #000',
             cursor: 'pointer',
             fontFamily: '"MS Sans Serif", Arial, sans-serif',
-            fontSize: '11px'
+            fontSize: '11px',
+            minWidth: '75px'
           }}
         >
           {t('apply')}
@@ -72,13 +98,14 @@ export const SettingsApp = () => {
         <button 
           onClick={handleCancel}
           style={{
-            padding: '4px 16px',
+            padding: '4px 20px',
             background: '#c0c0c0',
             border: '2px outset #ffffff',
             boxShadow: '1px 1px 0px #000',
             cursor: 'pointer',
             fontFamily: '"MS Sans Serif", Arial, sans-serif',
-            fontSize: '11px'
+            fontSize: '11px',
+            minWidth: '75px'
           }}
         >
           {t('cancel')}

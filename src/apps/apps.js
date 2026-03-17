@@ -52,7 +52,7 @@ export const APPS = {
     title: 'Settings',
     icon: '⚙️',
     component: SettingsApp,
-    defaultSize: { width: 300, height: 150 },
+    defaultSize: { width: 350, height: 250 },
     centered: true
   }
 };
