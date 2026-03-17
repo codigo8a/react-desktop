@@ -4,6 +4,17 @@ const files = import.meta.glob('../data/files/**/*.md', {
   eager: true
 });
 
+const extractDate = (content) => {
+  if (!content) return '01/01/2026';
+  const match = content.match(/Fecha:\s*(\d{2}\/\d{2}\/\d{4})/);
+  return match ? match[1] : '01/01/2026';
+};
+
+const extractContentWithoutDate = (content) => {
+  if (!content) return '';
+  return content.replace(/^Fecha:\s*\d{2}\/\d{2}\/\d{4}\n?/gm, '');
+};
+
 export const useFileSystem = () => {
   const getFileStructure = () => {
     const structure = {};
@@ -19,7 +30,8 @@ export const useFileSystem = () => {
       
       structure[folder].push({
         name: filename,
-        content: content || ''
+        content: extractContentWithoutDate(content),
+        date: extractDate(content)
       });
     });
     
@@ -28,14 +40,16 @@ export const useFileSystem = () => {
       type: 'folder',
       children: children.map(c => ({
         name: c.name + '.md',
-        type: 'file'
+        type: 'file',
+        date: c.date
       }))
     }));
   };
 
   const getFileContent = (filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
-    return files[path] || 'Archivo no encontrado';
+    const content = files[path];
+    return content ? extractContentWithoutDate(content) : 'Archivo no encontrado';
   };
 
   const getAllFiles = () => {
@@ -49,7 +63,8 @@ export const useFileSystem = () => {
       result.push({
         folder,
         name: filename,
-        content: content || ''
+        content: extractContentWithoutDate(content),
+        date: extractDate(content)
       });
     });
     

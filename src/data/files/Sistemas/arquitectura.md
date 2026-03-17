@@ -1,3 +1,4 @@
+Fecha: 11/03/2026
 # Arquitectura de Sistemas
 
 ## Principios
