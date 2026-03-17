@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
+import { useTranslation } from '../i18n/translations';
 
 const markdownStyles = {
   padding: '16px',
@@ -130,6 +131,7 @@ const MarkdownComponents = {
 
 export const FileViewerApp = ({ file }) => {
   const [activeTab, setActiveTab] = useState('preview');
+  const { t } = useTranslation();
 
   if (!file) {
     return (
@@ -162,7 +164,7 @@ export const FileViewerApp = ({ file }) => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('preview'); }}>
-            Preview
+            {t('preview')}
           </a>
         </li>
         <li 
@@ -175,7 +177,7 @@ export const FileViewerApp = ({ file }) => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('source'); }}>
-            Source
+            {t('source')}
           </a>
         </li>
       </menu>

@@ -1,21 +1,33 @@
 import { useState } from 'react';
 import { useWindow } from '../../context/WindowContext';
+import { useTranslation } from '../../i18n/translations';
 import './index.css';
 
 export const WelcomeApp = () => {
   const [showAtStartup, setShowAtStartup] = useState(true);
   const [currentTip, setCurrentTip] = useState(0);
   const { onClose } = useWindow() || {};
+  const { t } = useTranslation();
 
-  const tips = [
-    "Full Stack Developer expert in Cloud Process Automation, PaintBall Player, Softcombat Enthusiast, Robotics, Electronics and Technology Lover.",
-    "The buttons on the right give a variety of actions you can perform.",
-    "Click on the Next Tip button to see a new tip in the Welcome window.",
-    "You can de-select the option 'Show this Welcome Screen next time you start Windows' if you prefer not to see this window again."
-  ];
+  const tips = {
+    en: [
+      "Full Stack Developer expert in Cloud Process Automation, PaintBall Player, Softcombat Enthusiast, Robotics, Electronics and Technology Lover.",
+      "The buttons on the right give a variety of actions you can perform.",
+      "Click on the Next Tip button to see a new tip in the Welcome window.",
+      "You can de-select the option 'Show this Welcome Screen next time you start Windows' if you prefer not to see this window again."
+    ],
+    es: [
+      "Desarrollador Full Stack experto en Automatización de Procesos en la Nube, Jugador de PaintBall, Entusiasta de Softcombat, Robótica, Electrónica y Tecnología.",
+      "Los botones de la derecha ofrecen diversas acciones que puede realizar.",
+      "Haga clic en el botón Siguiente Tip para ver un nuevo consejo.",
+      "Puede deseleccionar la opción 'Mostrar esta pantalla de bienvenida al iniciar Windows' si prefiere no ver esta ventana."
+    ]
+  };
+
+  const currentTips = t('language') === 'es' ? tips.es : tips.en;
 
   const handleNextTip = () => {
-    setCurrentTip((prev) => (prev + 1) % tips.length);
+    setCurrentTip((prev) => (prev + 1) % currentTips.length);
   };
 
   const handleClose = () => {
@@ -40,7 +52,7 @@ export const WelcomeApp = () => {
         fontWeight: 'normal',
         color: '#000'
       }}>
-        Welcome to juandavid.site
+        {t('welcome')}
       </h2>
 
       <div style={{ 
@@ -48,7 +60,6 @@ export const WelcomeApp = () => {
         flex: 1,
         gap: '20px'
       }}>
-        {/* Column 1: Tips */}
         <div style={{ 
           flex: 1,
           background: '#fff',
@@ -61,15 +72,14 @@ export const WelcomeApp = () => {
            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
              <div style={{ fontSize: '32px' }}>💡</div>
              <div style={{ flex: 1 }}>
-                <p style={{ margin: '0 0 12px 0', fontWeight: 'bold', fontSize: '13px' }}>Did you know...</p>
+                <p style={{ margin: '0 0 12px 0', fontWeight: 'bold', fontSize: '13px' }}>{t('welcomeTip')}</p>
                 <p style={{ margin: 0, lineHeight: '1.5', fontSize: '12px' }}>
-                  {tips[currentTip]}
+                  {currentTips[currentTip]}
                 </p>
              </div>
            </div>
         </div>
 
-        {/* Column 2: Buttons */}
         <div style={{ 
           width: '140px', 
           display: 'flex', 
@@ -88,7 +98,7 @@ export const WelcomeApp = () => {
               width: '100%'
             }}
           >
-            <u>N</u>ext Tip
+            {t('nextTip')}
           </button>
           <button 
             style={{
@@ -101,7 +111,7 @@ export const WelcomeApp = () => {
               width: '100%'
             }}
           >
-            What's <u>N</u>ew
+            {t('whatsNew')}
           </button>
           <button 
             style={{
@@ -114,7 +124,7 @@ export const WelcomeApp = () => {
               width: '100%'
             }}
           >
-            Online <u>R</u>egistration
+            {t('onlineRegistration')}
           </button>
           <button 
             onClick={handleClose}
@@ -129,12 +139,11 @@ export const WelcomeApp = () => {
               marginTop: '10px'
             }}
           >
-            <u>C</u>lose
+            {t('close')}
           </button>
         </div>
       </div>
 
-      {/* Footer: Checkbox */}
       <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
         <input 
           type="checkbox" 
@@ -144,7 +153,7 @@ export const WelcomeApp = () => {
           style={{ cursor: 'pointer' }}
         />
         <label htmlFor="startup-check" style={{ cursor: 'pointer' }}>
-          <u>S</u>how this Welcome Screen next time you start Windows
+          {t('showWelcomeScreen')}
         </label>
       </div>
     </div>

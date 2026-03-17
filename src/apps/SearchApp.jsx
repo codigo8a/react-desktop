@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useFileSystem } from '../hooks/useFileSystem';
 import { useDesktop } from '../context/DesktopContext';
+import { useTranslation } from '../i18n/translations';
 
 export const SearchApp = () => {
   const { getAllFiles, getRawFileContent } = useFileSystem();
   const { openApp } = useDesktop();
   const [searchTerm, setSearchTerm] = useState('');
+  const { t } = useTranslation();
 
   const allFiles = getAllFiles();
 
@@ -41,13 +43,13 @@ export const SearchApp = () => {
     }}>
       <div style={{ padding: '8px' }}>
         <div className="field-row" style={{ marginBottom: '8px' }}>
-          <label>Search:</label>
+          <label>{t('search')}:</label>
           <input 
             type="text" 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{ flex: 1 }}
-            placeholder="Type a word..."
+            placeholder={t('searchPlaceholder')}
           />
         </div>
       </div>
@@ -55,19 +57,19 @@ export const SearchApp = () => {
       <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', margin: '0 8px 8px 8px' }}>
         {searchTerm.trim() === '' ? (
           <div style={{ padding: '16px', color: '#666' }}>
-            Type a word to search in files
+            {t('typeToSearch')}
           </div>
         ) : results.length === 0 ? (
           <div style={{ padding: '16px', color: '#666' }}>
-            No files found matching "{searchTerm}"
+            {t('noFilesFound')} "{searchTerm}"
           </div>
         ) : (
           <table className="interactive" style={{ width: '100%' }}>
             <thead>
               <tr>
-                <th style={{ textAlign: 'left' }}>Name</th>
-                <th style={{ textAlign: 'left' }}>Location</th>
-                <th style={{ textAlign: 'left' }}>Type</th>
+                <th style={{ textAlign: 'left' }}>{t('name')}</th>
+                <th style={{ textAlign: 'left' }}>{t('location')}</th>
+                <th style={{ textAlign: 'left' }}>{t('type')}</th>
               </tr>
             </thead>
             <tbody>
@@ -81,7 +83,7 @@ export const SearchApp = () => {
                   >
                     <td>📄 {file.name}</td>
                     <td>{file.folder}</td>
-                    <td>{nameMatch ? 'Title' : 'Content'}</td>
+                    <td>{nameMatch ? t('title') : t('content')}</td>
                   </tr>
                 );
               })}
@@ -92,9 +94,9 @@ export const SearchApp = () => {
 
       <div className="status-bar">
         <p className="status-bar-field">
-          {searchTerm.trim() === '' ? 'No search' : `${results.length} result(s)`}
+          {searchTerm.trim() === '' ? t('noSearch') : `${results.length} ${t('results')}`}
         </p>
-        <p className="status-bar-field">Ready</p>
+        <p className="status-bar-field">{t('ready')}</p>
       </div>
     </div>
   );

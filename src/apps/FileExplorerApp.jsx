@@ -1,12 +1,14 @@
 import { useState, useMemo, useCallback } from 'react';
 import { useFileSystem } from '../hooks/useFileSystem';
 import { useDesktop } from '../context/DesktopContext';
+import { useTranslation } from '../i18n/translations';
 
 export const FileExplorerApp = () => {
   const { getFileStructure, getFileContent, getRawFileContent } = useFileSystem();
   const { openApp } = useDesktop();
   const [expandedFolders, setExpandedFolders] = useState({});
   const [activeTab, setActiveTab] = useState('table');
+  const { t } = useTranslation();
   
   const fileStructure = useMemo(() => getFileStructure(), []);
 
@@ -83,9 +85,9 @@ export const FileExplorerApp = () => {
         <table className="interactive" style={{ width: '100%' }}>
           <thead>
             <tr>
-              <th style={{ textAlign: 'left', width: '50%' }}>Name</th>
-              <th style={{ textAlign: 'left', width: '25%' }}>Location</th>
-              <th style={{ textAlign: 'left', width: '25%' }}>Date</th>
+              <th style={{ textAlign: 'left', width: '50%' }}>{t('name')}</th>
+              <th style={{ textAlign: 'left', width: '25%' }}>{t('location')}</th>
+              <th style={{ textAlign: 'left', width: '25%' }}>{t('date')}</th>
             </tr>
           </thead>
           <tbody>
@@ -137,7 +139,7 @@ export const FileExplorerApp = () => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('table'); }}>
-            Table
+            {t('table')}
           </a>
         </li>
         <li 
@@ -150,7 +152,7 @@ export const FileExplorerApp = () => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('tree'); }}>
-            Tree
+            {t('tree')}
           </a>
         </li>
       </menu>

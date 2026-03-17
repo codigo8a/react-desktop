@@ -3,6 +3,7 @@ import { NotepadApp } from './NotepadApp';
 import { FileExplorerApp } from './FileExplorerApp';
 import { FileViewerApp } from './FileViewerApp';
 import { SearchApp } from './SearchApp';
+import { SettingsApp } from './SettingsApp';
 
 export const APPS = {
   welcome: {
@@ -45,6 +46,14 @@ export const APPS = {
     component: SearchApp,
     defaultSize: { width: 500, height: 350 },
     centered: false
+  },
+  settings: {
+    id: 'settings',
+    title: 'Settings',
+    icon: '⚙️',
+    component: SettingsApp,
+    defaultSize: { width: 300, height: 150 },
+    centered: true
   }
 };
 

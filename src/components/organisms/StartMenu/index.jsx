@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { APPS } from '../../../apps/apps';
+import { useTranslation } from '../../../i18n/translations';
 import './index.css';
 
 export const StartMenu = ({ onClose, onOpenApp }) => {
   const [openSubmenu, setOpenSubmenu] = useState(null);
+  const { t } = useTranslation();
 
   const toggleSubmenu = (menu) => {
     setOpenSubmenu(openSubmenu === menu ? null : menu);
@@ -25,39 +27,39 @@ export const StartMenu = ({ onClose, onOpenApp }) => {
           <div className="menu-item-with-submenu">
             <button onClick={() => toggleSubmenu('programs')}>
               <span className="icon" style={{ marginRight: '8px' }}>🗃️</span>
-              Programs
+              {t('programs')}
             <span style={{ marginLeft: 'auto' }}>▶</span>
-          </button>
-          {openSubmenu === 'programs' && (
-            <div className="submenu">
-              <button onClick={() => { onOpenApp('notepad'); onClose(); }}>
-                <span className="icon" style={{ marginRight: '8px' }}>{APPS.notepad.icon}</span>
-                {APPS.notepad.title}
-              </button>
-            </div>
-          )}
-        </div>
+            </button>
+            {openSubmenu === 'programs' && (
+              <div className="submenu">
+                <button onClick={() => { onOpenApp('notepad'); onClose(); }}>
+                  <span className="icon" style={{ marginRight: '8px' }}>{APPS.notepad.icon}</span>
+                  {APPS.notepad.title}
+                </button>
+              </div>
+            )}
+          </div>
         <button onClick={() => { onOpenApp('fileExplorer'); onClose(); }}>
           <span className="icon" style={{ marginRight: '8px' }}>{APPS.fileExplorer.icon}</span>
-          Documents
+          {t('documents')}
         </button>
-        <button disabled>
-          Settings
+        <button onClick={() => { onOpenApp('settings'); onClose(); }}>
+          {t('settings')}
         </button>
         <button onClick={() => { onOpenApp('search'); onClose(); }}>
           <span className="icon" style={{ marginRight: '8px' }}>🔍</span>
-          Find
+          {t('find')}
         </button>
         <div className="start-menu-divider" />
         <button disabled>
-          Help
+          {t('help')}
         </button>
         <button disabled>
-          Run...
+          {t('run')}...
         </button>
         <div className="start-menu-divider" />
         <button disabled>
-          Shut Down...
+          {t('shutDown')}...
         </button>
       </div>
     </div>

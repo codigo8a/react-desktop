@@ -2,6 +2,7 @@ import { Window } from './components/organisms/Window';
 import { TaskBar } from './components/organisms/TaskBar';
 import { StartMenu } from './components/organisms/StartMenu';
 import { DesktopProvider, useDesktop } from './context/DesktopContext';
+import { LanguageProvider } from './context/LanguageContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useStartMenu } from './hooks/useWindow';
 import { APPS } from './apps/apps';
@@ -96,9 +97,11 @@ const Desktop = () => {
 function App() {
   return (
     <ErrorBoundary>
-      <DesktopProvider initialWindows={initialWindows}>
-        <Desktop />
-      </DesktopProvider>
+      <LanguageProvider>
+        <DesktopProvider initialWindows={initialWindows}>
+          <Desktop />
+        </DesktopProvider>
+      </LanguageProvider>
     </ErrorBoundary>
   );
 }
