@@ -26,7 +26,7 @@ export const WelcomeApp = () => {
     ]
   };
 
-  const currentTips = t('language') === 'es' ? tips.es : tips.en;
+  const currentTips = language === 'es' ? tips.es : tips.en;
 
   const handleNextTip = () => {
     setCurrentTip((prev) => (prev + 1) % currentTips.length);
@@ -148,14 +148,8 @@ export const WelcomeApp = () => {
             {t('close')}
           </button>
           
-          <div style={{ 
-            marginTop: '10px', 
-            paddingTop: '6px', 
-            borderTop: '1px solid #808080',
-            borderLeft: '1px solid #dfdfdf'
-          }} />
-          
-          <div style={{ marginTop: '10px' }}>
+          <fieldset style={{ marginTop: '10px' }}>
+            <legend>{t('language')}</legend>
             <div className="field-row">
               <input 
                 id="lang-en" 
@@ -176,7 +170,7 @@ export const WelcomeApp = () => {
               />
               <label htmlFor="lang-es">Español</label>
             </div>
-          </div>
+          </fieldset>
         </div>
       </div>
 
