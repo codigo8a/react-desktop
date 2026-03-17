@@ -1,17 +1,14 @@
 Fecha: 10/07/2025
 ---
-layout: post
-title:  "Cómo instalar Evolution-api en Docker Desktop"
-description: Cómo instalar Evolution-api en Docker Desktop
-comments: true
-category: Youtube
 tags: Tutoriales Docker Linux
-youtube: https://youtu.be/rSuEqJ1YvwQ
 ---
+
+# Cómo instalar Evolution-api en Docker Desktop
+
 
 Paso a paso para instalar Evolution-API con un sólo comando.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/rSuEqJ1YvwQ) hay un video del paso a paso:
 
 1. Instalar GIT
 2. Instalar Docker Desktop

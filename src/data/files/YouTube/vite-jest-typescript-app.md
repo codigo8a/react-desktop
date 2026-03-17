@@ -1,16 +1,13 @@
 Fecha: 21/01/2023
 ---
-layout: post
-title:  "Cómo crear y configurar prueba unitaria Jest en React con Vite y Typescript"
-description: Cómo configurar jest en React con vite y typescript
-comments: true
-category: Youtube
 tags: Tutoriales Framework React
-youtube: https://youtu.be/62yuvCMZHco
 ---
+
+# Cómo crear y configurar prueba unitaria Jest en React con Vite y Typescript
+
 Paso a paso para crear una prueba unitaria basica con Jest en React con Vite y Typescript.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/62yuvCMZHco) hay un video del paso a paso:
 
 ```react
 yarn add --dev jest babel-jest @babel/preset-env @babel/preset-react 

@@ -1,12 +1,10 @@
 Fecha: 01/03/2009
 ---
-layout: post
-title:  "Renacer Prendas"
-description: Sistema administrativo de procesos internos 
-comments: true
-category: Página web
 tags: Integración CMS Joomla E-commerce
 ---
+
+# Renacer Prendas
+
 <img src="/assets/imgs/proyectos/renacerPrendas.jpg" style="width: 100%;"/>
 
 Sistematización de procesos internos en Colombia y Venezuela para empresa dedicada a la comercialización por sistema de Venta Directa de las Colecciones de Accesorios en fantasía fina, baño de oro y plata.

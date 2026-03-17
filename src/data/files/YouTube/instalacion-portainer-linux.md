@@ -1,17 +1,14 @@
 Fecha: 09/07/2025
 ---
-layout: post
-title:  "Cómo instalar docker en Ububtu Server linux"
-description: Cómo instalar docker en Ububtu Server linux
-comments: true
-category: Youtube
 tags: Tutoriales Linux Docker
-youtube: https://youtu.be/N1C96pBweWY
 ---
+
+# Cómo instalar docker en Ububtu Server linux
+
 
 Paso a paso para tener docker instalado junto con un administrador visual de contenedores.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/N1C96pBweWY) hay un video del paso a paso:
 
 Instalar docker
 ```csharp

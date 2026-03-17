@@ -1,16 +1,12 @@
 Fecha: 04/01/2022
 ---
-layout: post
-title:  "Cómo buscar y encontrar librerias flutter"
-description: Página web para buscar y encontrar librerias flutter
-comments: true
-category: Internet
 tags: Trucos Flutter Framework Links
-youtube: https://youtu.be/DHhiFybG-Mg
-link: https://fluttergems.dev/
 ---
+
+# Cómo buscar y encontrar librerias flutter
+
 Una página web para buscar librerias Flutter
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/DHhiFybG-Mg) hay un video del paso a paso:
 
 <a target="_blank" href="{{ page.link }}">https://fluttergems.dev/</a> 

@@ -1,17 +1,14 @@
 Fecha: 30/10/2024
 ---
-layout: post
-title:  "Cómo crear un Micro-FrontEnd React + Vite + Federation"
-description: "Cómo crear Micro-FrontEnd (remote - cliente)"
-comments: true
-category: Youtube
 tags: Tutoriales React Framework
-youtube: https://youtu.be/M2o32pzNXI8
 ---
+
+# Cómo crear un Micro-FrontEnd React + Vite + Federation
+
 
 Código paso a paso para crear dos aplicaciones (remoto y cliente) React + Vite + Federation para Micro-FrontEnd.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/M2o32pzNXI8) hay un video del paso a paso:
  
 1 Crear dos proyectos (remoto y cliente)
 - npm create vite@latest

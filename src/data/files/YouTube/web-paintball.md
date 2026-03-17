@@ -1,10 +1,8 @@
 Fecha: 02/01/2017
 ---
-layout: post
-title:  "TAG36 Medellin"
-description: Página web para la asociación de jugadores de paintball Medellin
-comments: true
-category: Página web
 tags: CMS Joomla PHP
 ---
+
+# TAG36 Medellin
+
 <img src="/assets/imgs/proyectos/paintball-Tag36.png" style="width: 100%;"/>

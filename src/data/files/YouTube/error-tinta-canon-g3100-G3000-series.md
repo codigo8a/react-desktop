@@ -1,16 +1,13 @@
 Fecha: 07/04/2019
 ---
-layout: post
-title:  "Problema Impresora Canon G3100 - G3000 series"
-description: Cómo solucionar el problema de aire en las mangueras de una impresora Canon G3100
-comments: true
-category: Youtube
 tags: Error Impresora
-youtube: https://youtu.be/KvldwGjCg5M
 ---
+
+# Problema Impresora Canon G3100 - G3000 series
+
 A continuación doy una solución rápida al problema de aire en las mangueras de una impresora Canon G3100 o G3000 Series, que hace que algunos colores o un color no imprima correctamente.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/KvldwGjCg5M) hay un video del paso a paso:
 
 Hay tres niveles de mantenimeinto para este problema (Limpieza del cabezal de impresión: Standar, A fondo y profundo). Cada una de ellas lleva un consumo mayor de tiempo y de tinta para realizarse.
 

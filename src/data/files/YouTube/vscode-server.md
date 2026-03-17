@@ -1,17 +1,14 @@
 Fecha: 16/02/2026
 ---
-layout: post
-title:  "Cómo instalar VS Code en Linux"
-description: Cómo instalar VS Code en Linux
-comments: true
-category: Youtube
 tags: Tutoriales Linux
-youtube: https://youtu.be/kN0RcPp5W7Y
 ---
+
+# Cómo instalar VS Code en Linux
+
 
 Paso a paso para instalar VS Code en Linux server y poder acceder a el desde cualquier parte por medio de una url.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/kN0RcPp5W7Y) hay un video del paso a paso:
 
 1. Descargar y ejecutar
 ```csharp

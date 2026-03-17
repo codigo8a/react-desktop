@@ -1,16 +1,13 @@
 Fecha: 01/01/2020
 ---
-layout: post
-title:  "Cómo saber el nombre de un video bloqueado o borrado de youtube"
-description: Cómo podemos saber el nombre de un video de nuestra lista de reproducción que fue borrado, bloqueado o convertido a privado  
-comments: true
-category: Youtube
 tags: Trucos Video
-youtube: https://youtu.be/5JCQUHk7rP4
 ---
+
+# Cómo saber el nombre de un video bloqueado o borrado de youtube
+
 Paso a paso de cómo saber el nombre de un video borrado o bloqueado en una lista de reproducción en youtube.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/5JCQUHk7rP4) hay un video del paso a paso:
 
 1. Buscar y dar clic en el video bloqueado o borrado
 2. Copiar la URL del video donde esta el código

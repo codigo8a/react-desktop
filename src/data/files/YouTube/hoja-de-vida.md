@@ -1,9 +1,9 @@
 Fecha: 01/01/2009
 ---
-layout: post
-title: Hoja de vida | Juan David Ochoa
-description: Hoja de vida Juan David Ochoa
 ---
+
+# Hoja de vida | Juan David Ochoa
+
 <p class="message">
 Full Stack Developer con más de 20 años de experiencia, siempre me he destacado en entender y analizar los procesos para  sistematizarlos eficientemente y resolver de una manera creativa los problemas. 
 </p>

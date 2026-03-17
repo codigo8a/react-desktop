@@ -1,17 +1,14 @@
 Fecha: 14/02/2026
 ---
-layout: post
-title:  "Cómo ejecutar un proyecto Jekyll localmente"
-description: Cómo ejecutar un proyecto Jekyll localmente
-comments: true
-category: Youtube
 tags: Tutoriales Linux
-youtube: https://youtu.be/WRT0RgIEXus
 ---
+
+# Cómo ejecutar un proyecto Jekyll localmente
+
 
 Paso a paso para correr un proyecto Jeckyll localmente y poder editarlo.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/WRT0RgIEXus) hay un video del paso a paso:
 
 1. Crear archivo docker-compose.yaml
 ```csharp

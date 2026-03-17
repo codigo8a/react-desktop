@@ -1,16 +1,13 @@
 Fecha: 10/10/2020
 ---
-layout: post
-title:  "Cómo solucionar problema de pantalla negra en OBS studio"
-description: Cuando el computador usa aceleradora de video la aplicacion OBS studio suele tener problemas para capturar la pantalla
-comments: true
-category: Youtube
 tags: Error Video Trucos
-youtube: https://youtu.be/6sUfXk17g8g
 ---
+
+# Cómo solucionar problema de pantalla negra en OBS studio
+
 Paso a paso para solucionar el problema de pantalla negra de la aplicación OBS studio.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/6sUfXk17g8g) hay un video del paso a paso:
 
 1. Asegurarse que tiene los Drivers en la ultima versión
 2. Configurar el panel de control de Nvidia

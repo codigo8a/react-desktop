@@ -1,16 +1,13 @@
 Fecha: 17/02/2026
 ---
-layout: post
-title:  "Cómo instalar sistema gráfico Linux"
-description: Cómo instalar sistema gráfico Linux
-comments: true
-category: Youtube
 tags: Tutoriales Linux
-youtube: https://youtu.be/bZnSi0pwkxI
 ---
+
+# Cómo instalar sistema gráfico Linux
+
 Paso a paso para instalar un sistema grafico liviano a Linux server.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/bZnSi0pwkxI) hay un video del paso a paso:
 
 1. Descargar
 ```csharp

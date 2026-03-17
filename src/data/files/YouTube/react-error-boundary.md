@@ -1,17 +1,14 @@
 Fecha: 31/10/2024
 ---
-layout: post
-title:  "Cómo manejar errores en React"
-description: "Cómo manejar errores en una app React"
-comments: true
-category: Youtube
 tags: Tutoriales React Framework
-youtube: https://youtu.be/nm8AcpPduV0
 ---
+
+# Cómo manejar errores en React
+
 
 Código paso a paso para agregar un archivo que nos maneje los errores en un Micro-FrontEnd.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/nm8AcpPduV0) hay un video del paso a paso:
  
 1 Crear ErrorBoundary.tsx
 ```react

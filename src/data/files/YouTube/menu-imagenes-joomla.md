@@ -1,16 +1,13 @@
 Fecha: 07/03/2019
 ---
-layout: post
-title:  "Menú JOOMLA con imagenes"
-description: Código Javascript para manejar un menú en JOOMLA sólo con imagenes (sin componenetes o modulos) 
-comments: true
-category: Página web
 tags: CMS Joomla Javascript PHP
-youtube: https://youtu.be/2NfTcPnlSpc
 ---
+
+# Menú JOOMLA con imagenes
+
 Codigo javascript para manejo de menus en joomla con imagenes (Hover y Active)
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso: 
+En [mi canal de youtube](https://youtu.be/2NfTcPnlSpc) hay un video del paso a paso: 
 
 ![ejemplo menu](https://raw.githubusercontent.com/juandavid8a/javascript-menu-images-joomla/master/menu-images.gif)
 

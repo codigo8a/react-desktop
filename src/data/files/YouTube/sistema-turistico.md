@@ -1,12 +1,10 @@
 Fecha: 01/04/2009
 ---
-layout: post
-title:  "Revista Turistica PasoBueno"
-description: Sistema administrativo de sitios turisticos Santa Elena
-comments: true
-category: Página web
 tags: Integración CMS Joomla
 ---
+
+# Revista Turistica PasoBueno
+
 <img src="/assets/imgs/proyectos/pasoBueno.png" style="width: 100%;"/>
 
 Directorio turístico (Backend y Frontend) Paso Bueno: La primera guía turística especializada del Corregimiento de Santa Elena.

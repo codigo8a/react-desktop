@@ -1,16 +1,13 @@
 Fecha: 08/11/2022
 ---
-layout: post
-title:  "Cómo instalar Raspbian en Raspberry Pi"
-description: Cómo instalar Raspbian y otras configuraciones
-comments: true
-category: Youtube
 tags: Tutoriales Trucos Linux Raspberry
-youtube: https://youtu.be/m60_OxnNz5s
 ---
+
+# Cómo instalar Raspbian en Raspberry Pi
+
 Listado de cosas por instalar en una Raspberry, otras aplicaciones y configuraciones.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/m60_OxnNz5s) hay un video del paso a paso:
 
 Raspberry Pi Image
 ```csharp

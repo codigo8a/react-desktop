@@ -1,12 +1,10 @@
 Fecha: 01/02/2009
 ---
-layout: post
-title:  "Fundación el Cinco"
-description: Sistema para administrar aportes que realizan empresas y empleados a ONG
-comments: true
-category: Página web
 tags: Integración CMS Joomla
 ---
+
+# Fundación el Cinco
+
 <img src="/assets/imgs/proyectos/elcinco.png" style="width: 100%;"/>
 
 Sistematización de procesos (Backend y Frontend) para el desarrollo de proyectos productivos de carácter asociativo. Se establece encadenamientos productivos, empleando para ello recursos provenientes de individuos e instituciones.

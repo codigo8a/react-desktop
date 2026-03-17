@@ -1,10 +1,8 @@
 Fecha: 01/05/2017
 ---
-layout: post
-title:  "Restaurante Sancho Paisa"
-description: Página para el restaurante Sancho Paisa
-comments: true
-category: Página web
 tags: CMS Joomla
 ---
+
+# Restaurante Sancho Paisa
+
 <img src="/assets/imgs/proyectos/sanchoPaisa.jpg" style="width: 100%;"/>

@@ -1,16 +1,13 @@
 Fecha: 01/07/2021
 ---
-layout: post
-title:  "Cómo instalar EntityUser y JWT NetCore 5"
-description: Cómo instalar service EntityUser y JWT en NetCore 5
-comments: true
-category: Youtube
 tags: CSharp Framework NetCore
-youtube: https://youtu.be/EbKw0Dcaf6o
 ---
+
+# Cómo instalar EntityUser y JWT NetCore 5
+
 Paso a paso para instalar el servicio EntityUser que trae por defecto .Net Core 5 y activar JWT para el login de usuarios desde un front-end
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/EbKw0Dcaf6o) hay un video del paso a paso:
 
 - Crear la carpeta Models
 - Crear el modelo: ApplicationUser

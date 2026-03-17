@@ -1,12 +1,10 @@
 Fecha: 07/01/2017
 ---
-layout: post
-title:  "Hotel La Naval"
-description: Página web para Hotel La Naval
-comments: true
-category: Página web
 tags: CMS Joomla
 ---
+
+# Hotel La Naval
+
 <img src="/assets/imgs/proyectos/hotelLaNaval.jpg" style="width: 100%;"/>
 <hr>
 <img src="/assets/imgs/proyectos/hotelLaNaval1.jpg" style="width: 100%;"/>

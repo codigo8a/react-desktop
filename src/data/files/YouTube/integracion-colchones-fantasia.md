@@ -1,12 +1,10 @@
 Fecha: 01/03/2016
 ---
-layout: post
-title:  "Colchones Fantasia"
-description: Integración con Joomla, creación de sistema de envios especiales a la medida
-comments: true
-category: Página web
 tags: Integración CMS Joomla E-commerce
 ---
+
+# Colchones Fantasia
+
 <img src="/assets/imgs/proyectos/colchonesFantasia.png" style="width: 100%;"/>
 
 (Backend y Frontend) Maquetación web, e-commerce y creación de sistema de envíos a la medida. 

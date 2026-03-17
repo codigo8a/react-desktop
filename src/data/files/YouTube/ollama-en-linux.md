@@ -1,17 +1,14 @@
 Fecha: 15/02/2026
 ---
-layout: post
-title:  "Cómo instalar ollama en linux"
-description: Cómo instalar ollama en linux
-comments: true
-category: Youtube
 tags: Tutoriales Linux IA
-youtube: https://youtu.be/HJKoVXKV3Oc
 ---
+
+# Cómo instalar ollama en linux
+
 
 Paso a paso para instalar Ollama en Linux y poder ejectar nuestros propios modelos localmente.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/HJKoVXKV3Oc) hay un video del paso a paso:
 
 1. Conectar a la consola (Putty o Cockpit).
 2. Instalar Ollama (ollama.com).

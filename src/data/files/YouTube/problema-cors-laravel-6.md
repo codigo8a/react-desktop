@@ -1,17 +1,14 @@
 Fecha: 21/09/2019
 ---
-layout: post
-title:  "Solucionar problema CORS en Laravel 6 | 2019"
-description: Cómo solucionar el problema Access-Control-Allow-Origin - CORS en Laravel 6
-comments: true
-category: Youtube
 tags: Error Framework Laravel PHP
-youtube: https://youtu.be/CDEaBtEeVwM
 ---
+
+# Solucionar problema CORS en Laravel 6 | 2019
+
 Este tutorial es la actualización de un post anterior que ya no funciona en versiones nuevas:
 A continuación doy una solución rápida al problema Access-Control-Allow-Origin - CORS en Laravel 6 que sucede por razones de seguridad, los exploradores restringen las solicitudes HTTP de origen cruzado iniciadas dentro de un script.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/CDEaBtEeVwM) hay un video del paso a paso:
 
 ```csharp
 //Instalamos

@@ -1,16 +1,13 @@
 Fecha: 10/03/2020
 ---
-layout: post
-title:  "Cómo instalar un certificado SSL gratis en Ubuntu Server"
-description: Cómo instalar un certificado SSL gratis en Ubuntu Server
-comments: true
-category: Youtube
 tags: Trucos Linux
-youtube: https://youtu.be/CDEaBtEeVwM
 ---
+
+# Cómo instalar un certificado SSL gratis en Ubuntu Server
+
 Paso a paso para instalar un certificado SSL gratis en servidor web ubuntu
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/CDEaBtEeVwM) hay un video del paso a paso:
 
 Instalamos Certbot
 ```csharp

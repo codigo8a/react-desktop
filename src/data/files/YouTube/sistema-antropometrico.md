@@ -1,12 +1,10 @@
 Fecha: 01/01/2010
 ---
-layout: post
-title:  "Promesas del Futbol"
-description: Plataforma tecnológica para promoción de futbolistas Colombianos en el exterior.
-comments: true
-category: Página web
 tags: Integración CMS PHP
 ---
+
+# Promesas del Futbol
+
 <img src="/assets/imgs/proyectos/promesas.jpg" style="width: 100%;"/>
 
 

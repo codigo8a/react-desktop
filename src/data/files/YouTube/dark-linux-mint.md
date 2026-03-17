@@ -1,16 +1,13 @@
 Fecha: 28/02/2019
 ---
-layout: post
-title:  "Instalación Theme Arc-Dark Linux Mint"
-description: Comandos de consola paso a paso para instalar el theme Arc-Dark en linux mint
-comments: true
-category: Youtube
 tags: Tutoriales Linux
-youtube: https://bit.ly/2wSo5iD
 ---
+
+# Instalación Theme Arc-Dark Linux Mint
+
 A continuación describo los comandos de consola SSH para instalar en menos de 5 minutos el Theme Arc-Dark para Linux Mint.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://bit.ly/2wSo5iD) hay un video del paso a paso:
 
 ```csharp
 sudo rm -rf /usr/share/themes/{Arc,Arc-Darker,Arc-Dark}

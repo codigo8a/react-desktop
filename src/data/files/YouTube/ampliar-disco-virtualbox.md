@@ -1,15 +1,12 @@
 Fecha: 20/03/2019
 ---
-layout: post
-title:  "Resize Disk - VirtualBox - Linux - Windows"
-description: Ampliar disco de virtualbox desde linux para windows
-comments: true
-category: Youtube
 tags: Error VirtualBox Linux Windows
-youtube: https://bit.ly/2wSo5iD
 ---
+
+# Resize Disk - VirtualBox - Linux - Windows
+
 <p>Dos sencillos pasos para ampliar el disco de virtualbox desde Linux para Windows.</p>
-<p>En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso: </p>
+<p>En [mi canal de youtube](https://bit.ly/2wSo5iD) hay un video del paso a paso: </p>
 
 ```csharp
 vboxmanage modifyhd "/home/ochoa/VirtualBox VMs/win10/win10.vdi" --resize 102400

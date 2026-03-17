@@ -1,16 +1,13 @@
 Fecha: 25/09/2019
 ---
-layout: post
-title:  "Puntos curiosos en google maps de Chernobyl"
-description: Listado de puntos en google maps sobre sitios curiosos en Chenobyl
-comments: true
-category: Internet
 tags: Links
-youtube: https://youtu.be/Sp00ZqfBnM4
 ---
+
+# Puntos curiosos en google maps de Chernobyl
+
 Recopilación de puntos en google maps sobre sitios curiosos dentro de Chernobyl 
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/Sp00ZqfBnM4) hay un video del paso a paso:
 
 ```csharp
 //Hospital Unit Number 126

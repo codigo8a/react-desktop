@@ -1,16 +1,13 @@
 Fecha: 29/07/2023
 ---
-layout: post
-title:  "Cómo usar EntityUser y JWT con MongoDB"
-description: "Cómo usar EntityUser y JWT con MongoDB"
-comments: true
-category: Youtube
 tags: Tutoriales Framework CSharp BaseDeDatos NetCore
-youtube: https://youtu.be/f1hoUoB16NI
 ---
+
+# Cómo usar EntityUser y JWT con MongoDB
+
 Codigo paso a paso para integrar EntityUser y JWT con MongoDB.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/f1hoUoB16NI) hay un video del paso a paso:
 
 Instalamos paquetes:
 ```csharp

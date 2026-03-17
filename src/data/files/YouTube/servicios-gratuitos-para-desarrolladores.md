@@ -1,20 +1,10 @@
 Fecha: 05/01/2022
 ---
-layout: post
-title:  "Servicios gratuitos para desarrolladores"
-description: Servicios gratuitos para desarrolladores
-comments: true
-category: Internet
 tags: Links Servicios
-videosomee: https://youtu.be/3Tue1UPaqlo
-videofreeasp: https://youtu.be/3nlA5RI7jqg
-videoblogger: https://youtu.be/_yiyB8sOfAE
-videogithub: https://youtu.be/h9FvfSM9zW8
-linksome: https://somee.com
-linkfreeasp: https://freeasphosting.net
-linkblogger: https://www.blogger.com
-linkgithub: https://github.com
 ---
+
+# Servicios gratuitos para desarrolladores
+
 Recopilación de herramientas o recursos gratuitos en la red para desarrolladores.
 <hr>
 

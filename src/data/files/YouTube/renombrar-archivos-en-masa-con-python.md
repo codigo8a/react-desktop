@@ -1,16 +1,13 @@
 Fecha: 01/07/2022
 ---
-layout: post
-title:  "Cómo renombrar archivos en masa con Python"
-description: Cómo renombrar archivos en masa con Python
-comments: true
-category: Código
 tags: Python Trucos
-youtube: https://youtu.be/6fsG3UX7Cfo
 ---
+
+# Cómo renombrar archivos en masa con Python
+
 Paso a paso para renombrar archivos MP3 en masa y poder darle un orden aleatorio para reproducir en un radio vehicular
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/6fsG3UX7Cfo) hay un video del paso a paso:
 
 ```python
 cont = 1

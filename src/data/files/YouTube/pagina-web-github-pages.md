@@ -1,17 +1,14 @@
 Fecha: 30/11/2023
 ---
-layout: post
-title:  "Cómo crear página web en Github Pages"
-description: "Cómo crear página web en Github Pages con dominio personalizado"
-comments: true
-category: Youtube
 tags: Tutoriales GitHub Servicios
-youtube: https://youtu.be/h9FvfSM9zW8
 ---
+
+# Cómo crear página web en Github Pages
+
 
 Código paso a paso para crear una pagina web usando el hosting gratuito de Github Pages, con dominio personalizado y certificado SSL.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/h9FvfSM9zW8) hay un video del paso a paso:
  
 1. Buscar pantilla HTML
 - Descargar

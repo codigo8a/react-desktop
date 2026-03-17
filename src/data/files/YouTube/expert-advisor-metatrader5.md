@@ -1,17 +1,14 @@
 Fecha: 20/02/2024
 ---
-layout: post
-title:  "Cómo crear un Expert Advisor metatrader 5"
-description: "Cómo crear un Expert Advisor para metatrader 5"
-comments: true
-category: Código 
 tags: Tutoriales Inversiones Forex
-youtube: https://youtu.be/rcEfVyMp8XE
 ---
+
+# Cómo crear un Expert Advisor metatrader 5
+
 
 Código paso a paso para crear un expert advisor que nos ayude a administrar las posiciones que vamos abriendo manualmente.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/rcEfVyMp8XE) hay un video del paso a paso:
  
 1. Crear un nuevo proyecto.
 

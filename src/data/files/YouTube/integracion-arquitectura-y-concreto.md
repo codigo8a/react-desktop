@@ -1,12 +1,10 @@
 Fecha: 01/01/2016
 ---
-layout: post
-title:  "Arquitectura y Concreto"
-description: Integración de sistemas, sistematización de procesos y catalogo de proyectos.
-comments: true
-category: Página web
 tags: Integración CMS Joomla
 ---
+
+# Arquitectura y Concreto
+
 <img src="/assets/imgs/proyectos/arquitectura.png" style="width: 100%;"/>
 
 Herramienta web (Backend y Frontend) para la empresa Arquitectura y Concreto, dedicada a la construcción, comercialización y gerencia de proyectos inmobiliarios de índole institucional, pública, comercial, empresarial, turística y residencial.

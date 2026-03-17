@@ -1,16 +1,13 @@
 Fecha: 02/01/2019
 ---
-layout: post
-title:  "Instalación Laravel SSH Servidor UBUNTU"
-description: Comandos de consola paso a paso para instalar laravel en servidor UBUNTU
-comments: true
-category: Youtube
 tags: Tutoriales Laravel PHP AWS
-youtube: https://www.youtube.com/watch?v=nExuiPqHkVA
 ---
+
+# Instalación Laravel SSH Servidor UBUNTU
+
 A continuación describo linea a linea lo que hay que hacer en la consola SSH para tener en menos de 10 minutos un proyecto Laravel corriendo en un servidor UBUNTU (AWS Amazon Web Services).
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso: 
+En [mi canal de youtube](https://www.youtube.com/watch?v=nExuiPqHkVA) hay un video del paso a paso: 
 
 ```
 sudo apt-get update

@@ -1,12 +1,10 @@
 Fecha: 01/02/2009
 ---
-layout: post
-title:  "Positivo + Group Publicidad"
-description: Backend y frontend para administración de publicidad en ascensores
-comments: true
-category: Página web
 tags: Integración CMS Joomla
 ---
+
+# Positivo + Group Publicidad
+
 <img src="/assets/imgs/proyectos/positivoGroup.png" style="width: 100%;"/>
 
 (Backend y Frontend) Base de datos nacional con información de ascensores disponibles para publicidad en edificios recidenciales y comerciales, todo en un mapa interactivo con geo-localización. 

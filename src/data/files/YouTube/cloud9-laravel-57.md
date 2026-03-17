@@ -1,16 +1,13 @@
 Fecha: 20/12/2018
 ---
-layout: post
-title:  "Instalación Cloud9 Laravel 5.7"
-description: Instalación en Cloud9 de un sistema Laravel 5.7 y php 7.1
-comments: true
-category: Youtube
 tags: Tutoriales Laravel Framework PHP
-youtube: https://bit.ly/2wSo5iD
 ---
+
+# Instalación Cloud9 Laravel 5.7
+
 A continuación describo linea a linea lo que hay que hacer en la consola para tener en menos de 10 minutos un proyecto Laravel 5.7 corriendo en Cloud9.
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso: 
+En [mi canal de youtube](https://bit.ly/2wSo5iD) hay un video del paso a paso: 
 
 
 ```

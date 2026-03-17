@@ -1,16 +1,13 @@
 Fecha: 23/09/2019
 ---
-layout: post
-title:  "Encriptación factura electrónica AES"
-description: Cómo crear facilmente el código de encriptación y poder descargar facturas de Cadena
-comments: true
-category: Código
 tags: CSharp
-youtube: https://youtu.be/Sp00ZqfBnM4
 ---
+
+# Encriptación factura electrónica AES
+
 Este tutorial es un código muy simple para encriptar los números de facturas electrónicas y poderlas bajar en PDF desde la plataforma de CADENA
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/Sp00ZqfBnM4) hay un video del paso a paso:
 
 ```csharp
 private static readonly int tamanyoClave = 32;

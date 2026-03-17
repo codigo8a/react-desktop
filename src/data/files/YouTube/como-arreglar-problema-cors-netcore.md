@@ -1,16 +1,13 @@
 Fecha: 15/07/2021
 ---
-layout: post
-title:  "Solucionar problema CORS en .Net Core 5"
-description: Cómo Solucionar problema CORS en .Net Core 5
-comments: true
-category: Código 
 tags: Error Framework CSharp NetCore Trucos
-youtube: https://youtu.be/CDEaBtEeVwM
 ---
+
+# Solucionar problema CORS en .Net Core 5
+
 Un par de lineas para solucionar el problema de CORS en API .Net Core 5
 
-En <a target="_blank" href="{{ page.youtube }}">mi canal de youtube</a> hay un video del paso a paso:
+En [mi canal de youtube](https://youtu.be/CDEaBtEeVwM) hay un video del paso a paso:
 
 - Poner en el archivo startup en la seccion de servicios
 ```csharp
