@@ -1,4 +1,9 @@
 import { useCallback } from 'react';
+import { 
+  extractDate, 
+  extractContentWithoutDate, 
+  extractRawContent 
+} from '../utils/fileUtils';
 
 const files = import.meta.glob('../data/files/**/*.md', {
   query: '?raw',
@@ -6,23 +11,10 @@ const files = import.meta.glob('../data/files/**/*.md', {
   eager: true
 });
 
-const extractDate = (content) => {
-  if (!content) return '01/01/2026';
-  const match = content.match(/Fecha:\s*(\d{1,2}\/\d{1,2}\/\d{4})/);
-  return match ? match[1] : '01/01/2026';
-};
-
-const extractContentWithoutDate = (content) => {
-  if (!content) return '';
-  return content.replace(/^Fecha:\s*\d{1,2}\/\d{1,2}\/\d{4}\n?/gm, '');
-};
-
-const extractRawContent = (content) => {
-  if (!content) return '';
-  return content;
-};
-
 export const useFileSystem = () => {
+  /**
+   * Builds a folder/file structure for the file explorer
+   */
   const getFileStructure = useCallback(() => {
     const structure = {};
     
@@ -53,18 +45,27 @@ export const useFileSystem = () => {
     }));
   }, []);
 
+  /**
+   * Retrieves specific file content by folder and name
+   */
   const getFileContent = useCallback((filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
     const content = files[path];
     return content ? extractContentWithoutDate(content) : 'File not found';
   }, []);
 
+  /**
+   * Retrieves raw file content for editing or advanced viewing
+   */
   const getRawFileContent = useCallback((filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
     const content = files[path];
     return content ? extractRawContent(content) : 'File not found';
   }, []);
 
+  /**
+   * Retrieves a file object with both processed and raw content plus metadata
+   */
   const getFileWithDate = useCallback((filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
     const content = files[path];
@@ -76,6 +77,9 @@ export const useFileSystem = () => {
     };
   }, []);
 
+  /**
+   * Flattened list of all files in the system
+   */
   const getAllFiles = useCallback(() => {
     const result = [];
     
@@ -96,10 +100,15 @@ export const useFileSystem = () => {
     return result;
   }, []);
 
+  /**
+   * Case-insensitive file lookup for URL routing
+   */
   const findFileByUrl = useCallback((folderName, fileName) => {
     const allFiles = getAllFiles();
     const targetFolder = folderName.toLowerCase();
-    const targetFile = fileName.toLowerCase().endsWith('.md') ? fileName.toLowerCase() : `${fileName.toLowerCase()}.md`;
+    const targetFile = fileName.toLowerCase().endsWith('.md') 
+      ? fileName.toLowerCase() 
+      : `${fileName.toLowerCase()}.md`;
     
     return allFiles.find(f => 
       f.folder.toLowerCase() === targetFolder && 
