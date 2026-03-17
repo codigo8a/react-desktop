@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useWindow } from '../context/WindowContext';
+import { useWindow } from '../../context/WindowContext';
+import './index.css';
 
 export const WelcomeApp = () => {
   const [showAtStartup, setShowAtStartup] = useState(true);
