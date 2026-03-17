@@ -49,7 +49,7 @@ export const SearchApp: React.FC = () => {
         </div>
       </div>
 
-      <div className="sunken-panel search-results">
+      <div className="sunken-panel search-results" style={{ flex: 1, overflow: 'auto', background: '#fff', margin: 0 }}>
         {searchTerm.trim() === '' ? (
           <div className="search-empty">
             {t('typeToSearch')}
@@ -59,8 +59,8 @@ export const SearchApp: React.FC = () => {
             {t('noFilesFound')} "{searchTerm}"
           </div>
         ) : (
-          <table className="interactive" style={{ width: '100%' }}>
-            <thead>
+          <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
+            <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
               <tr>
                 <th style={{ textAlign: 'left' }}>{t('name')}</th>
                 <th style={{ textAlign: 'left' }}>{t('location')}</th>

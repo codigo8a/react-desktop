@@ -82,9 +82,15 @@ export const FileExplorerApp: React.FC = () => {
     allFiles.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
     return (
-      <div className="sunken-panel" style={{ flex: 1, overflow: 'auto' }}>
-        <table className="interactive" style={{ width: '100%' }}>
-          <thead>
+      <div className="sunken-panel" style={{ 
+        flex: 1, 
+        overflow: 'auto', 
+        background: '#fff',
+        margin: '0',
+        display: 'block'
+      }}>
+        <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
+          <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
             <tr>
               <th style={{ textAlign: 'left', width: '50%' }}>{t('name')}</th>
               <th style={{ textAlign: 'left', width: '25%' }}>{t('location')}</th>
@@ -123,21 +129,23 @@ export const FileExplorerApp: React.FC = () => {
   return (
     <div className="fileexplorer-container">
       <menu role="tablist">
-        <li role="tab" className={activeTab === 'table' ? 'active' : ''}>
+        <li role="tab" aria-selected={activeTab === 'table'}>
           <a href="#table" onClick={(e) => { e.preventDefault(); setActiveTab('table'); }}>{t('tableView')}</a>
         </li>
-        <li role="tab" className={activeTab === 'tree' ? 'active' : ''}>
+        <li role="tab" aria-selected={activeTab === 'tree'}>
           <a href="#tree" onClick={(e) => { e.preventDefault(); setActiveTab('tree'); }}>{t('treeView')}</a>
         </li>
       </menu>
-      <div role="tabpanel" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        {activeTab === 'tree' ? (
-          <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', padding: '10px' }}>
-            <ul className="tree-view">
-              {renderTree()}
-            </ul>
-          </div>
-        ) : renderTable()}
+      <div className="window" role="tabpanel" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: 0, border: 'none', boxShadow: 'none', overflow: 'hidden' }}>
+        <div className="window-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: 0, padding: 0, overflow: 'hidden' }}>
+          {activeTab === 'tree' ? (
+            <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', padding: '10px', background: '#fff' }}>
+              <ul className="tree-view">
+                {renderTree()}
+              </ul>
+            </div>
+          ) : renderTable()}
+        </div>
       </div>
     </div>
   );
