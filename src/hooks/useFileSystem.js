@@ -6,13 +6,13 @@ const files = import.meta.glob('../data/files/**/*.md', {
 
 const extractDate = (content) => {
   if (!content) return '01/01/2026';
-  const match = content.match(/Fecha:\s*(\d{2}\/\d{2}\/\d{4})/);
+  const match = content.match(/Fecha:\s*(\d{1,2}\/\d{1,2}\/\d{4})/);
   return match ? match[1] : '01/01/2026';
 };
 
 const extractContentWithoutDate = (content) => {
   if (!content) return '';
-  return content.replace(/^Fecha:\s*\d{2}\/\d{2}\/\d{4}\n?/gm, '');
+  return content.replace(/^Fecha:\s*\d{1,2}\/\d{1,2}\/\d{4}\n?/gm, '');
 };
 
 export const useFileSystem = () => {

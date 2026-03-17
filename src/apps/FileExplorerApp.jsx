@@ -70,10 +70,13 @@ export const FileExplorerApp = () => {
         allFiles.push({
           name: file.name,
           folder: folder.name,
-          date: file.date
+          date: file.date,
+          dateObj: new Date(file.date.split('/').reverse().join('-'))
         });
       });
     });
+
+    allFiles.sort((a, b) => b.dateObj - a.dateObj);
 
     return (
       <div className="sunken-panel" style={{ flex: 1, overflow: 'auto' }}>
