@@ -2,10 +2,6 @@
 
 Entorno de escritorio estilo Windows 98 construido con React.
 
-## ⚠️ Reglas de Contribución
-
-**NO hacer push a git a menos que el usuario lo exprese directamente en el chat.**
-
 ## Overview
 
 Entorno de escritorio estilo Windows 98 construido con React. Simula un sistema de ventanas con barra de tareas, menú Start, explorador de archivos y visor de markdown.
