@@ -15,6 +15,11 @@ const extractContentWithoutDate = (content) => {
   return content.replace(/^Fecha:\s*\d{1,2}\/\d{1,2}\/\d{4}\n?/gm, '');
 };
 
+const extractRawContent = (content) => {
+  if (!content) return '';
+  return content;
+};
+
 export const useFileSystem = () => {
   const getFileStructure = () => {
     const structure = {};
@@ -52,6 +57,12 @@ export const useFileSystem = () => {
     return content ? extractContentWithoutDate(content) : 'Archivo no encontrado';
   };
 
+  const getRawFileContent = (filename, folderName) => {
+    const path = `../data/files/${folderName}/${filename}`;
+    const content = files[path];
+    return content ? extractRawContent(content) : 'Archivo no encontrado';
+  };
+
   const getAllFiles = () => {
     const result = [];
     
@@ -74,6 +85,7 @@ export const useFileSystem = () => {
   return {
     getFileStructure,
     getFileContent,
+    getRawFileContent,
     getAllFiles
   };
 };

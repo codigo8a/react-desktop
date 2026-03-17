@@ -173,17 +173,6 @@ export const FileViewerApp = ({ file }) => {
         background: '#fff',
         margin: '4px'
       }}>
-        {file.date && (
-          <div style={{ 
-            padding: '4px 8px', 
-            background: '#ffffcc', 
-            borderBottom: '1px solid #c0c0c0',
-            fontSize: '12px',
-            fontFamily: 'monospace'
-          }}>
-            Fecha: {file.date}
-          </div>
-        )}
         {activeTab === 'preview' ? (
           <div style={markdownStyles}>
             <ReactMarkdown components={MarkdownComponents}>

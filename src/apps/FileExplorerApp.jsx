@@ -3,7 +3,7 @@ import { useFileSystem } from '../hooks/useFileSystem';
 import { useDesktop } from '../context/DesktopContext';
 
 export const FileExplorerApp = () => {
-  const { getFileStructure, getFileContent } = useFileSystem();
+  const { getFileStructure, getFileContent, getRawFileContent } = useFileSystem();
   const { openApp } = useDesktop();
   const [expandedFolders, setExpandedFolders] = useState({});
   const [activeTab, setActiveTab] = useState('table');
@@ -18,7 +18,7 @@ export const FileExplorerApp = () => {
   }, []);
 
   const handleFileClick = useCallback((file, folderName) => {
-    const content = getFileContent(file.name, folderName);
+    const content = getRawFileContent(file.name, folderName);
     openApp('fileViewer', {
       file: {
         name: file.name.replace('.md', ''),
@@ -29,11 +29,11 @@ export const FileExplorerApp = () => {
       windowKey: `${folderName}/${file.name}`,
       title: file.name.replace('.md', '')
     });
-  }, [getFileContent, openApp]);
+  }, [getRawFileContent, openApp]);
 
   const renderTree = () => {
     return fileStructure.map((folder) => {
-      const isOpen = expandedFolders[folder.name] !== false;
+      const isOpen = expandedFolders[folder.name] === true;
       return (
         <li key={folder.name}>
           <div 
@@ -93,7 +93,7 @@ export const FileExplorerApp = () => {
               <tr 
                 key={index}
                 onClick={() => {
-                  const content = getFileContent(item.name, item.folder);
+                  const content = getRawFileContent(item.name, item.folder);
                   openApp('fileViewer', {
                     file: {
                       name: item.name.replace('.md', ''),
