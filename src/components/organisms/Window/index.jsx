@@ -18,9 +18,10 @@ export const Window = ({
   onMinimize,
   onMaximize,
   onClose,
-  onMove
+  onMove,
+  onResize
 }) => {
-  const [size] = useState(initialSize);
+  const [size, setSize] = useState(initialSize);
   const [position, setPosition] = useState(() => {
     if (currentPosition) return currentPosition;
     if (centered) {
@@ -32,7 +33,8 @@ export const Window = ({
     return initialPosition;
   });
   const [isDragging, setIsDragging] = useState(false);
-  const dragStart = useRef({ x: 0, y: 0, posX: 0, posY: 0 });
+  const [isResizing, setIsResizing] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0, posX: 0, posY: 0, width: 0, height: 0 });
 
   const handleMinimize = () => {
     onMinimize?.(id);
@@ -54,6 +56,7 @@ export const Window = ({
       <div className="window-body">
         {children}
       </div>
+      {!isMaximized && <div className="window-resize-handle" onMouseDown={handleResizeMouseDown} />}
     </>
   );
 
@@ -88,6 +91,17 @@ export const Window = ({
     }
   };
 
+  const handleResizeMouseDown = (e) => {
+    e.stopPropagation();
+    setIsResizing(true);
+    dragStart.current = {
+      x: e.clientX,
+      y: e.clientY,
+      width: size.width,
+      height: size.height
+    };
+  };
+
   const handleMouseMove = (e) => {
     if (isDragging) {
       const dx = e.clientX - dragStart.current.x;
@@ -97,12 +111,23 @@ export const Window = ({
         y: dragStart.current.posY + dy
       });
     }
+    if (isResizing) {
+      const dx = e.clientX - dragStart.current.x;
+      const dy = e.clientY - dragStart.current.y;
+      const newWidth = Math.max(200, dragStart.current.width + dx);
+      const newHeight = Math.max(150, dragStart.current.height + dy);
+      setSize({ width: newWidth, height: newHeight });
+    }
   };
 
   const handleMouseUp = () => {
     if (isDragging) {
       setIsDragging(false);
       onMove?.(id, position);
+    }
+    if (isResizing) {
+      setIsResizing(false);
+      onResize?.(id, size);
     }
   };
 
@@ -117,7 +142,7 @@ export const Window = ({
         left: position.x,
         top: position.y,
         cursor: isDragging ? 'move' : 'default',
-        userSelect: isDragging ? 'none' : 'auto'
+        userSelect: isDragging || isResizing ? 'none' : 'auto'
       }}
       onClick={() => onFocus?.(id)}
       onMouseDown={handleMouseDown}

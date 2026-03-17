@@ -15,3 +15,13 @@
 .window.inactive {
   border-color: #808080;
 }
+
+.window-resize-handle {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  cursor: se-resize;
+  background: linear-gradient(135deg, transparent 50%, #808080 50%);
+}
