@@ -15,13 +15,16 @@ export const NotepadApp: React.FC = () => {
   };
 
   return (
-    <div className="notepad-container">
-      <textarea 
-        className="notepad-textarea"
-        value={content}
-        onChange={handleChange}
-        placeholder="Type here..."
-      />
+    <div className="notepad-container" style={{ padding: '4px', background: '#c0c0c0', height: '100%', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+      <div className="sunken-panel" style={{ flex: 1, background: '#fff', display: 'flex', flexDirection: 'column' }}>
+        <textarea 
+          className="notepad-textarea"
+          value={content}
+          onChange={handleChange}
+          placeholder="Type here..."
+          style={{ border: 'none', flex: 1, width: '100%', resize: 'none', padding: '5px' }}
+        />
+      </div>
       <div className="notepad-statusbar">
         Ln {line}, Col {col}
       </div>

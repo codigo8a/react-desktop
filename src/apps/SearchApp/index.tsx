@@ -49,42 +49,44 @@ export const SearchApp: React.FC = () => {
         </div>
       </div>
 
-      <div className="sunken-panel search-results" style={{ flex: 1, overflow: 'auto', background: '#fff', margin: 0 }}>
-        {searchTerm.trim() === '' ? (
-          <div className="search-empty">
-            {t('typeToSearch')}
-          </div>
-        ) : results.length === 0 ? (
-          <div className="search-empty">
-            {t('noFilesFound')} "{searchTerm}"
-          </div>
-        ) : (
-          <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
-            <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
-              <tr>
-                <th style={{ textAlign: 'left' }}>{t('name')}</th>
-                <th style={{ textAlign: 'left' }}>{t('location')}</th>
-                <th style={{ textAlign: 'left' }}>{t('type')}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {results.map((file, index) => {
-                const nameMatch = file.name.toLowerCase().includes(searchTerm.toLowerCase());
-                return (
-                  <tr 
-                    key={index}
-                    onClick={() => handleFileClick(file)}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <td>📄 {file.name}</td>
-                    <td>{file.folder}</td>
-                    <td>{nameMatch ? t('title') : t('content')}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        )}
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '4px', background: '#c0c0c0', overflow: 'hidden' }}>
+        <div className="sunken-panel search-results" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff', margin: 0, display: 'block' }}>
+          {searchTerm.trim() === '' ? (
+            <div className="search-empty">
+              {t('typeToSearch')}
+            </div>
+          ) : results.length === 0 ? (
+            <div className="search-empty">
+              {t('noFilesFound')} "{searchTerm}"
+            </div>
+          ) : (
+            <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none', overflow: 'visible', minWidth: '100%' }}>
+              <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
+                <tr>
+                  <th style={{ textAlign: 'left' }}>{t('name')}</th>
+                  <th style={{ textAlign: 'left' }}>{t('location')}</th>
+                  <th style={{ textAlign: 'left' }}>{t('type')}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.map((file, index) => {
+                  const nameMatch = file.name.toLowerCase().includes(searchTerm.toLowerCase());
+                  return (
+                    <tr 
+                      key={index}
+                      onClick={() => handleFileClick(file)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <td>📄 {file.name}</td>
+                      <td>{file.folder}</td>
+                      <td>{nameMatch ? t('title') : t('content')}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          )}
+        </div>
       </div>
 
       <div className="status-bar">
