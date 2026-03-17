@@ -82,47 +82,39 @@ export const FileExplorerApp: React.FC = () => {
     allFiles.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
     return (
-      <div className="sunken-panel" style={{ 
-        flex: 1, 
-        overflow: 'auto', 
-        background: '#fff',
-        margin: '0',
-        display: 'block'
-      }}>
-        <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
-          <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
-            <tr>
-              <th style={{ textAlign: 'left', width: '50%' }}>{t('name')}</th>
-              <th style={{ textAlign: 'left', width: '25%' }}>{t('location')}</th>
-              <th style={{ textAlign: 'left', width: '25%' }}>{t('date')}</th>
+      <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none', margin: 0, display: 'table', overflow: 'visible' }}>
+        <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
+          <tr>
+            <th style={{ textAlign: 'left', width: '50%' }}>{t('name')}</th>
+            <th style={{ textAlign: 'left', width: '25%' }}>{t('location')}</th>
+            <th style={{ textAlign: 'left', width: '25%' }}>{t('date')}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {allFiles.map((item, index) => (
+            <tr 
+              key={index}
+              onClick={() => {
+                const content = getRawFileContent(item.name, item.folder);
+                openApp('fileViewer', {
+                  file: {
+                    name: item.name.replace('.md', ''),
+                    content: content,
+                    folder: item.folder,
+                    date: item.date
+                  },
+                  windowKey: `${item.folder}/${item.name}`,
+                  title: item.name.replace('.md', '')
+                });
+              }}
+            >
+              <td>{item.name}</td>
+              <td>{item.folder}</td>
+              <td>{item.date}</td>
             </tr>
-          </thead>
-          <tbody>
-            {allFiles.map((item, index) => (
-              <tr 
-                key={index}
-                onClick={() => {
-                  const content = getRawFileContent(item.name, item.folder);
-                  openApp('fileViewer', {
-                    file: {
-                      name: item.name.replace('.md', ''),
-                      content: content,
-                      folder: item.folder,
-                      date: item.date
-                    },
-                    windowKey: `${item.folder}/${item.name}`,
-                    title: item.name.replace('.md', '')
-                  });
-                }}
-              >
-                <td>{item.name}</td>
-                <td>{item.folder}</td>
-                <td>{item.date}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+          ))}
+        </tbody>
+      </table>
     );
   };
 
@@ -136,15 +128,19 @@ export const FileExplorerApp: React.FC = () => {
           <a href="#tree" onClick={(e) => { e.preventDefault(); setActiveTab('tree'); }}>{t('treeView')}</a>
         </li>
       </menu>
-      <div className="window" role="tabpanel" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: 0, border: 'none', boxShadow: 'none', overflow: 'hidden' }}>
-        <div className="window-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: 0, padding: 0, overflow: 'hidden' }}>
+      <div className="window" role="tabpanel" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: '0', border: 'none', boxShadow: 'none', overflow: 'hidden' }}>
+        <div className="window-body" style={{ flex: 1, display: 'flex', flexDirection: 'column', margin: '0', padding: '4px', background: '#c0c0c0', overflow: 'hidden' }}>
           {activeTab === 'tree' ? (
-            <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', padding: '10px', background: '#fff' }}>
-              <ul className="tree-view">
+            <div className="sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff' }}>
+              <ul className="tree-view" style={{ border: 'none', boxShadow: 'none', margin: 0, overflow: 'visible', width: 'max-content', minWidth: '100%' }}>
                 {renderTree()}
               </ul>
             </div>
-          ) : renderTable()}
+          ) : (
+            <div className="sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff' }}>
+              {renderTable()}
+            </div>
+          )}
         </div>
       </div>
     </div>
