@@ -5,10 +5,10 @@ tags: CMS Joomla
 
 # Hotel La Naval
 
-<img src="/assets/imgs/proyectos/hotelLaNaval.jpg" style="width: 100%;"/>
+<img src="/images/hotelLaNaval.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/hotelLaNaval1.jpg" style="width: 100%;"/>
+<img src="/images/hotelLaNaval1.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/hotelLaNaval2.jpg" style="width: 100%;"/>
+<img src="/images/hotelLaNaval2.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/hotelLaNaval3.jpg" style="width: 100%;"/>
+<img src="/images/hotelLaNaval3.jpg" style="width: 100%;"/>

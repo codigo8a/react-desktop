@@ -5,4 +5,4 @@ tags: CMS Joomla
 
 # Galletas Marce
 
-<img src="/assets/imgs/proyectos/galletasMarce.jpg" style="width: 100%;"/>
+<img src="/images/galletasMarce.jpg" style="width: 100%;"/>

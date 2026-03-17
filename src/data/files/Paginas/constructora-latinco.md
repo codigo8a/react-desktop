@@ -5,10 +5,10 @@ tags: CMS Joomla
 
 # Constructora Latinco S.A.
 
-<img src="/assets/imgs/proyectos/constructoraLatinco.jpg" style="width: 100%;"/>
+<img src="/images/constructoraLatinco.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/constructoraLatinco1.jpg" style="width: 100%;"/>
+<img src="/images/constructoraLatinco1.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/constructoraLatinco2.jpg" style="width: 100%;" />
+<img src="/images/constructoraLatinco2.jpg" style="width: 100%;" />
 <hr>
-<img src="/assets/imgs/proyectos/constructoraLatinco3.jpg" style="width: 100%;"/>
+<img src="/images/constructoraLatinco3.jpg" style="width: 100%;"/>

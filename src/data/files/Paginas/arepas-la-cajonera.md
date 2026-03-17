@@ -5,4 +5,4 @@ tags: CMS Joomla
 
 # Arepas La Cajonera
 
-<img src="/assets/imgs/proyectos/laCajonera.jpg" style="width: 100%;"/>
+<img src="/images/laCajonera.jpg" style="width: 100%;"/>

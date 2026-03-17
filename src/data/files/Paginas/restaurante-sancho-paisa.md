@@ -5,4 +5,4 @@ tags: CMS Joomla
 
 # Restaurante Sancho Paisa
 
-<img src="/assets/imgs/proyectos/sanchoPaisa.jpg" style="width: 100%;"/>
+<img src="/images/sanchoPaisa.jpg" style="width: 100%;"/>

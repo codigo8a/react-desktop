@@ -5,4 +5,4 @@ tags: CMS Joomla PHP
 
 # TAG36 Medellin
 
-<img src="/assets/imgs/proyectos/paintball-Tag36.png" style="width: 100%;"/>
+<img src="/images/paintball-Tag36.png" style="width: 100%;"/>

@@ -5,4 +5,4 @@ tags: Integración CMS Joomla E-commerce
 
 # Tienda Virtual Durespo
 
-<img src="/assets/imgs/proyectos/ecomerceDurespo.jpg" style="width: 100%;"/>
+<img src="/images/ecomerceDurespo.jpg" style="width: 100%;"/>

@@ -5,7 +5,7 @@ tags: Integración CMS PHP
 
 # Promesas del Futbol
 
-<img src="/assets/imgs/proyectos/promesas.jpg" style="width: 100%;"/>
+<img src="/images/promesas.jpg" style="width: 100%;"/>
 
 
 Vitrina virtual para deportistas de alto rendimiento en Colombia y el mundo. Sistematización de datos antropometricos, pruebas técnicas, físicas y psicológicas para promoción de futbolistas.

@@ -9,4 +9,4 @@ tags: Raspberry Android Integración
 
 > Este sistema es una integración con el ERP SAP BUSINESS ONE instalado en servidor windows privado en la nube y accedido por medio del SDK DIAPI
 
-<img src="/assets/imgs/proyectos/pantallaMetas.png" style="width: 100%;"/>
+<img src="/images/pantallaMetas.png" style="width: 100%;"/>

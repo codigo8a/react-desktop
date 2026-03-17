@@ -5,10 +5,10 @@ tags: CMS Joomla
 
 # Soluciones Massol
 
-<img src="/assets/imgs/proyectos/remaster.jpg" style="width: 100%;"/>
+<img src="/images/remaster.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/remaster1.jpg" style="width: 100%;"/>
+<img src="/images/remaster1.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/remaster2.jpg" style="width: 100%;"/>
+<img src="/images/remaster2.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/remaster3.jpg" style="width: 100%;"/>
+<img src="/images/remaster3.jpg" style="width: 100%;"/>

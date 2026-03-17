@@ -9,14 +9,14 @@ tags: SapBusinessOne Integración PHP Laravel
 > Este sistema es una integración con el ERP SAP BUSINESS ONE instalado en servidor windows privado en la nube y accedido por medio del SDK DIAPI
 
 
-<img src="/assets/imgs/proyectos/SapbusinessOne-informes-ArticulosBajaRotacion.png" style="width: 100%;"/>
+<img src="/images/SapbusinessOne-informes-ArticulosBajaRotacion.png" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/SapbusinessOne-Informes1.png" style="width: 100%;"/>
+<img src="/images/SapbusinessOne-Informes1.png" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/SapbusinessOne-Informes2.png" style="width: 100%;"/> 
+<img src="/images/SapbusinessOne-Informes2.png" style="width: 100%;"/> 
 <hr>
-<img src="/assets/imgs/proyectos/SapbusinessOne-Informes3.png" style="width: 100%;"/> 
+<img src="/images/SapbusinessOne-Informes3.png" style="width: 100%;"/> 
 <hr>
-<img src="/assets/imgs/proyectos/SapbusinessOne-Informes6.png" style="width: 100%;"/> 
+<img src="/images/SapbusinessOne-Informes6.png" style="width: 100%;"/> 
 <hr>
-<img src="/assets/imgs/proyectos/SapbusinessOne-Informes-ActividadesDeLlamada.png" style="width: 100%;"/>
+<img src="/images/SapbusinessOne-Informes-ActividadesDeLlamada.png" style="width: 100%;"/>

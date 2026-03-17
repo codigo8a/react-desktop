@@ -5,4 +5,4 @@ tags: Integración CMS Joomla
 
 # Lumes Ingenieria
 
-<img src="/assets/imgs/proyectos/lumesIngenieria.jpg" style="width: 100%;"/>
+<img src="/images/lumesIngenieria.jpg" style="width: 100%;"/>

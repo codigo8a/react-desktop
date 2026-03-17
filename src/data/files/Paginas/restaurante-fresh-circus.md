@@ -5,10 +5,10 @@ tags: CMS Joomla
 
 # Restaurante FreshCircus
 
-<img src="/assets/imgs/proyectos/freshCircus.jpg" style="width: 100%;"/>
+<img src="/images/freshCircus.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/freshCircus1.jpg" style="width: 100%;"/>
+<img src="/images/freshCircus1.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/freshCircus2.jpg" style="width: 100%;"/>
+<img src="/images/freshCircus2.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/freshCircus3.jpg" style="width: 100%;"/>
+<img src="/images/freshCircus3.jpg" style="width: 100%;"/>

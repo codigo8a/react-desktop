@@ -16,46 +16,28 @@ Entorno de escritorio estilo Windows 98 construido con React. Simula un sistema 
 - **Vite** - Build tool
 - **98.css** - Librería de estilos para Windows 98
 - **react-markdown** - Renderizado de archivos markdown
+- **rehype-raw** - Renderizado de HTML en markdown
 
 ## Estructura del Proyecto
 
 ```
 src/
 ├── apps/                    # Aplicaciones del sistema
-│   ├── apps.js              # Registro de aplicaciones
-│   ├── WelcomeApp.jsx       # App de bienvenida
-│   ├── NotepadApp.jsx       # Bloc de notas
-│   ├── FileExplorerApp.jsx  # Explorador de archivos
-│   └── FileViewerApp.jsx    # Visor de archivos con tabs
 ├── components/              # Componentes (Diseño Atómico)
-│   ├── ErrorBoundary.jsx    # Error boundary global
-│   ├── ErrorWindow.jsx      # Ventana de error
-│   ├── molecules/
-│   │   ├── TitleBar/        # Barra de título
-│   │   └── WindowControls/  # Botones minimizar/maximizar/cerrar
-│   └── organisms/
-│       ├── Window/           # Ventana con drag, resize, minimize, maximize
-│       ├── TaskBar/         # Barra de tareas
-│       └── StartMenu/       # Menú inicio
 ├── context/
-│   └── DesktopContext.jsx   # Estado global de ventanas
 ├── hooks/
-│   ├── useFileSystem.js     # Lógica de sistema de archivos
-│   └── useWindow.js         # Hook para manejo de ventanas
 ├── data/files/              # Archivos markdown
-│   ├── YouTube/
-│   ├── Sistemas/
-│   └── Paginas/
-├── App.jsx                  # Componente principal
-├── index.css                # Estilos globales
-└── main.jsx                 # Entry point
+├── public/
+│   └── images/              # Imágenes para archivos markdown
+├── App.jsx
+├── index.css
+└── main.jsx
 ```
 
 ## Patrones y Principios
 
 ### Diseño Atómico
 
-- **Átomos**: Elementos base simples
 - **Moléculas**: Composición simple de átomos (TitleBar, WindowControls)
 - **Organismos**: Componentes complejos (Window, TaskBar, StartMenu)
 
@@ -135,8 +117,13 @@ npm run lint   # Linting
 - Ventanas funcionales con drag, resize, minimize, maximize
 - Explorador de archivos con dos vistas: Tabla y Arbol
 - Vista Tabla: muestra archivos con columnas Nombre, Ubicación, Fecha
+- Vista Tabla: archivos ordenados por fecha (más reciente primero)
+- Vista Tabla: fechas en formato legible (ej: "17 mar 2026")
 - Vista Arbol: estructura de carpetas expandible
+- Vista Arbol: carpetas inicián contraídas
 - Visor de markdown con tabs (Preview / Source)
+- Visor de markdown renderiza imágenes desde `/images/`
+- Visor de markdown muestra contenido original (con línea Fecha:)
 - Menú Start y barra de tareas
 - Reloj en tiempo real en la barra de tareas
 - Prevención de ventanas duplicadas por archivo

@@ -33,7 +33,7 @@ export const APPS = {
     title: 'Visor de Archivo',
     icon: '📄',
     component: FileViewerApp,
-    defaultSize: { width: 500, height: 400 },
+    defaultSize: { width: 1000, height: 800 },
     centered: true,
     singleInstance: false
   }

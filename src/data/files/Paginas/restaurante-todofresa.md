@@ -5,10 +5,10 @@ tags: CMS Joomla
 
 # Restaurante TodoFresa
 
-<img src="/assets/imgs/proyectos/todofresa.jpg" style="width: 100%;"/>
+<img src="/images/todofresa.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/todofresa1.jpg" style="width: 100%;"/>
+<img src="/images/todofresa1.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/todofresa2.jpg" style="width: 100%;"/>
+<img src="/images/todofresa2.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/todofresa3.jpg" style="width: 100%;"/>
+<img src="/images/todofresa3.jpg" style="width: 100%;"/>

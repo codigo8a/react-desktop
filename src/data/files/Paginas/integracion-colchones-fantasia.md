@@ -5,7 +5,7 @@ tags: Integración CMS Joomla E-commerce
 
 # Colchones Fantasia
 
-<img src="/assets/imgs/proyectos/colchonesFantasia.png" style="width: 100%;"/>
+<img src="/images/colchonesFantasia.png" style="width: 100%;"/>
 
 (Backend y Frontend) Maquetación web, e-commerce y creación de sistema de envíos a la medida. 
 

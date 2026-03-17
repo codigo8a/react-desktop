@@ -5,7 +5,7 @@ tags: Integración CMS Joomla
 
 # Positivo + Group Publicidad
 
-<img src="/assets/imgs/proyectos/positivoGroup.png" style="width: 100%;"/>
+<img src="/images/positivoGroup.png" style="width: 100%;"/>
 
 (Backend y Frontend) Base de datos nacional con información de ascensores disponibles para publicidad en edificios recidenciales y comerciales, todo en un mapa interactivo con geo-localización. 
 

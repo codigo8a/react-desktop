@@ -5,7 +5,7 @@ tags: Integración CMS Joomla
 
 # Revista Turistica PasoBueno
 
-<img src="/assets/imgs/proyectos/pasoBueno.png" style="width: 100%;"/>
+<img src="/images/pasoBueno.png" style="width: 100%;"/>
 
 Directorio turístico (Backend y Frontend) Paso Bueno: La primera guía turística especializada del Corregimiento de Santa Elena.
 

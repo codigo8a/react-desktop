@@ -5,7 +5,7 @@ tags: Integración CMS Joomla E-commerce
 
 # Renacer Prendas
 
-<img src="/assets/imgs/proyectos/renacerPrendas.jpg" style="width: 100%;"/>
+<img src="/images/renacerPrendas.jpg" style="width: 100%;"/>
 
 Sistematización de procesos internos en Colombia y Venezuela para empresa dedicada a la comercialización por sistema de Venta Directa de las Colecciones de Accesorios en fantasía fina, baño de oro y plata.
 

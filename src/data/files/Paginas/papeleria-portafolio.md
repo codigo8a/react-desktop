@@ -5,10 +5,10 @@ tags: CMS Joomla
 
 # Papeleria Portafolio
 
-<img src="/assets/imgs/proyectos/portafolio.jpg" style="width: 100%;"/>
+<img src="/images/portafolio.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/portafolio1.jpg" style="width: 100%;"/>
+<img src="/images/portafolio1.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/portafolio2.jpg" style="width: 100%;"/>
+<img src="/images/portafolio2.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/portafolio3.jpg" style="width: 100%;"/>
+<img src="/images/portafolio3.jpg" style="width: 100%;"/>

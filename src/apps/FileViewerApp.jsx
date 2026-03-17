@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 
 const markdownStyles = {
   padding: '16px',
@@ -106,6 +107,18 @@ const MarkdownComponents = {
       textDecoration: 'underline'
     }}>{children}</a>
   ),
+  img: ({ src, alt }) => (
+    <img 
+      src={src} 
+      alt={alt || ''} 
+      style={{ 
+        maxWidth: '100%', 
+        height: 'auto',
+        display: 'block',
+        margin: '12px 0'
+      }} 
+    />
+  ),
   hr: () => (
     <hr style={{ 
       border: 'none',
@@ -175,7 +188,7 @@ export const FileViewerApp = ({ file }) => {
       }}>
         {activeTab === 'preview' ? (
           <div style={markdownStyles}>
-            <ReactMarkdown components={MarkdownComponents}>
+            <ReactMarkdown components={MarkdownComponents} rehypePlugins={[rehypeRaw]}>
               {file.content}
             </ReactMarkdown>
           </div>

@@ -5,11 +5,11 @@ tags: CMS Joomla
 
 # Motel Las Palmas
 
-<img src="/assets/imgs/proyectos/motelLasPalmas.jpg" style="width: 100%;"/>
+<img src="/images/motelLasPalmas.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/motelLasPalmas1.jpg" style="width: 100%;"/>
+<img src="/images/motelLasPalmas1.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/motelLasPalmas2.jpg" style="width: 100%;"/>
+<img src="/images/motelLasPalmas2.jpg" style="width: 100%;"/>
 <hr>
-<img src="/assets/imgs/proyectos/motelLasPalmas3.jpg" style="width: 100%;"/>
+<img src="/images/motelLasPalmas3.jpg" style="width: 100%;"/>
 

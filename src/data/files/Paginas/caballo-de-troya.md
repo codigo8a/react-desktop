@@ -5,4 +5,4 @@ tags: CMS Joomla
 
 # Cabayo De Troya
 
-<img src="/assets/imgs/proyectos/caballoDeTroya.jpg" style="width: 100%;"/>
+<img src="/images/caballoDeTroya.jpg" style="width: 100%;"/>
