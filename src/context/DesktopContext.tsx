@@ -100,6 +100,23 @@ export const DesktopProvider: React.FC<{ children: ReactNode; initialWindows?: a
     
     const offset = Math.floor((newZIndex - 10) / 2) * 20;
     
+    const defaultWidth = windowConfig.initialSize?.width || 400;
+    const defaultHeight = windowConfig.initialSize?.height || 300;
+    
+    // Ensure window fits within the screen (subtracting taskbar height)
+    const maxWidth = window.innerWidth;
+    const maxHeight = window.innerHeight - 30; // 30 is taskbar height
+    
+    const finalWidth = Math.min(defaultWidth, maxWidth - 40);
+    const finalHeight = Math.min(defaultHeight, maxHeight - 40);
+    
+    const initialX = windowConfig.initialPosition?.x ?? (100 + offset);
+    const initialY = windowConfig.initialPosition?.y ?? (100 + offset);
+    
+    // Constrain position to keep window visible
+    const finalX = Math.max(0, Math.min(initialX, maxWidth - finalWidth));
+    const finalY = Math.max(30, Math.min(initialY, maxHeight - finalHeight));
+    
     const newWindow: WindowConfig = {
       appId: windowConfig.appId,
       id: windowConfig.appId + '-' + Date.now(),
@@ -107,8 +124,8 @@ export const DesktopProvider: React.FC<{ children: ReactNode; initialWindows?: a
       isMinimized: false,
       isActive: true,
       isMaximized: false,
-      initialPosition: windowConfig.initialPosition || { x: 100 + offset, y: 100 + offset },
-      initialSize: windowConfig.initialSize || { width: 400, height: 300 },
+      initialPosition: { x: finalX, y: finalY },
+      initialSize: { width: finalWidth, height: finalHeight },
       currentPosition: null,
       centered: windowConfig.centered || false,
       zIndex: newZIndex,

@@ -97,16 +97,32 @@ export const Window: React.FC<WindowProps> = ({
     if (isDragging) {
       const dx = e.clientX - dragStart.current.x;
       const dy = e.clientY - dragStart.current.y;
+      
+      const newX = dragStart.current.posX + dx;
+      const newY = dragStart.current.posY + dy;
+      
+      // Boundary constraints
+      const maxWidth = window.innerWidth;
+      const maxHeight = window.innerHeight - 30; // 30 is taskbar height
+      
+      const boundedX = Math.max(0, Math.min(newX, maxWidth - size.width));
+      const boundedY = Math.max(30, Math.min(newY, maxHeight - size.height));
+      
       setPosition({
-        x: dragStart.current.posX + dx,
-        y: dragStart.current.posY + dy
+        x: boundedX,
+        y: boundedY
       });
     }
     if (isResizing) {
       const dx = e.clientX - dragStart.current.x;
       const dy = e.clientY - dragStart.current.y;
-      const newWidth = Math.max(200, dragStart.current.width + dx);
-      const newHeight = Math.max(150, dragStart.current.height + dy);
+      
+      const maxWidth = window.innerWidth;
+      const maxHeight = window.innerHeight - 30;
+      
+      const newWidth = Math.max(200, Math.min(dragStart.current.width + dx, maxWidth - position.x));
+      const newHeight = Math.max(150, Math.min(dragStart.current.height + dy, maxHeight - position.y));
+      
       setSize({ width: newWidth, height: newHeight });
     }
   };
