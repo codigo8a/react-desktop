@@ -13,6 +13,15 @@ export const FileExplorerApp: React.FC = () => {
   
   const fileStructure = useMemo(() => getFileStructure(), [getFileStructure]);
 
+  const stats = useMemo(() => {
+    let folderCount = fileStructure.length;
+    let fileCount = 0;
+    fileStructure.forEach(folder => {
+      fileCount += folder.children?.length || 0;
+    });
+    return { folderCount, fileCount };
+  }, [fileStructure]);
+
   const toggleFolder = useCallback((folderName: string) => {
     setExpandedFolders(prev => ({
       ...prev,
@@ -142,6 +151,11 @@ export const FileExplorerApp: React.FC = () => {
             </div>
           )}
         </div>
+      </div>
+      <div className="status-bar" style={{ marginTop: '4px' }}>
+        <p className="status-bar-field">{stats.folderCount} {t('folders')}</p>
+        <p className="status-bar-field">{stats.fileCount} {t('objects')}</p>
+        <p className="status-bar-field">{t('ready')}</p>
       </div>
     </div>
   );

@@ -5,12 +5,20 @@ type TranslationKeys =
   | 'close' | 'showWelcomeScreen' | 'settings' | 'language' | 'selectLanguage' 
   | 'spanish' | 'english' | 'apply' | 'cancel' | 'search' | 'searchPlaceholder' 
   | 'typeToSearch' | 'noFilesFound' | 'name' | 'location' | 'date' | 'type' 
-  | 'title' | 'content' | 'ready' | 'noSearch' | 'results' | 'tableView' | 'treeView' | 'didYouKnow' | 'preview' | 'source';
+  | 'title' | 'content' | 'ready' | 'noSearch' | 'results' | 'tableView' | 'treeView' | 'didYouKnow' | 'preview' | 'source' | 'objects' | 'folders';
 
 const translations: Record<string, Record<'es' | 'en', string>> = {
   welcome: {
     es: "Bienvenido a juandavid.site",
     en: "Welcome to juandavid.site"
+  },
+  objects: {
+    es: "objeto(s)",
+    en: "object(s)"
+  },
+  folders: {
+    es: "carpeta(s)",
+    en: "folder(s)"
   },
   preview: {
     es: "Vista Previa",
