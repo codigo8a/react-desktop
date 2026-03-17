@@ -29,6 +29,20 @@ export const WelcomeApp = () => {
     });
   };
 
+  const handleWhatsNew = () => {
+    const content = getRawFileContent('features.md', 'content');
+    openApp('fileViewer', {
+      file: {
+        name: 'features',
+        content: content,
+        folder: 'content',
+        date: '17/03/2026'
+      },
+      windowKey: 'content/features.md',
+      title: t('whatsNew')
+    });
+  };
+
   const tips = {
     en: [
       "Full Stack Developer expert in Cloud Process Automation, PaintBall, Softcombat and Roller derby Player, Robotics, Electronics and Technology Lover.",
@@ -44,8 +58,15 @@ export const WelcomeApp = () => {
           <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
         </div>
       </div>,
-      "Click on the Next Tip button to see a new tip in the Welcome window.",
-      "You can de-select the option 'Show this Welcome Screen next time you start Windows' if you prefer not to see this window again."
+      <div>
+        <p style={{ margin: '0 0 8px 0', fontStyle: 'italic' }}>Contact Info</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <a href="mailto:juandavid8a@gmail.com" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📧 juandavid8a@gmail.com</a>
+          <a href="tel:+573052370311" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 (+57) 3052370311</a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>📍 Medellín - Colombia</div>
+        </div>
+      </div>,
+      "Available for consulting, mentoring, or hourly freelance work. Let's build something great together!",
     ],
     es: [
       "Desarrollador Full Stack experto en Automatización de Procesos en la Nube, jugador de PaintBall, Softcombat y Roller derby, Gomoso de la Robótica, Electrónica y Tecnología.",
@@ -61,8 +82,15 @@ export const WelcomeApp = () => {
           <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
         </div>
       </div>,
-      "Haga clic en el botón Siguiente Tip para ver un nuevo consejo.",
-      "Puede deseleccionar la opción 'Mostrar esta pantalla de bienvenida al iniciar Windows' si prefiere no ver esta ventana."
+      <div>
+        <p style={{ margin: '0 0 8px 0', fontStyle: 'italic' }}>Datos de contacto</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px' }}>
+          <a href="mailto:juandavid8a@gmail.com" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📧 juandavid8a@gmail.com</a>
+          <a href="tel:+573052370311" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📞 (+57) 3052370311</a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>📍 Medellín - Colombia</div>
+        </div>
+      </div>,
+      "Disponible para asesorías, mentorías o trabajos por horas. ¡Impulsemos tu proyecto juntos!",
     ]
   };
 
@@ -147,6 +175,7 @@ export const WelcomeApp = () => {
             {t('nextTip')}
           </button>
           <button 
+            onClick={handleWhatsNew}
             style={{
               padding: '6px 12px',
               background: '#c0c0c0',
@@ -158,19 +187,6 @@ export const WelcomeApp = () => {
             }}
           >
             {t('whatsNew')}
-          </button>
-          <button 
-            style={{
-              padding: '6px 12px',
-              background: '#c0c0c0',
-              border: '2px outset #ffffff',
-              boxShadow: '1px 1px 0px #000',
-              cursor: 'pointer',
-              textAlign: 'left',
-              width: '100%'
-            }}
-          >
-            {t('onlineRegistration')}
           </button>
           <button 
             onClick={handleClose}
