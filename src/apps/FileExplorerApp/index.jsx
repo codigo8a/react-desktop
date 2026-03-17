@@ -1,16 +1,17 @@
 import { useState, useMemo, useCallback } from 'react';
-import { useFileSystem } from '../hooks/useFileSystem';
-import { useDesktop } from '../context/DesktopContext';
-import { useTranslation } from '../i18n/translations';
+import { useFileSystem } from '../../hooks/useFileSystem';
+import { useDesktop } from '../../context/DesktopContext';
+import { useTranslation } from '../../i18n/translations';
+import './index.css';
 
 export const FileExplorerApp = () => {
-  const { getFileStructure, getFileContent, getRawFileContent } = useFileSystem();
+  const { getFileStructure, getRawFileContent } = useFileSystem();
   const { openApp } = useDesktop();
   const [expandedFolders, setExpandedFolders] = useState({});
   const [activeTab, setActiveTab] = useState('table');
   const { t } = useTranslation();
   
-  const fileStructure = useMemo(() => getFileStructure(), []);
+  const fileStructure = useMemo(() => getFileStructure(), [getFileStructure]);
 
   const toggleFolder = useCallback((folderName) => {
     setExpandedFolders(prev => ({
@@ -39,21 +40,21 @@ export const FileExplorerApp = () => {
       return (
         <li key={folder.name}>
           <div 
-            style={{ cursor: 'pointer', userSelect: 'none' }}
+            className="fileexplorer-folder"
             onClick={() => toggleFolder(folder.name)}
           >
             {isOpen ? '📂' : '📁'} {folder.name}
           </div>
           {isOpen && (
-            <ul style={{ marginLeft: '20px' }}>
+            <ul>
               {folder.children?.map((file) => (
                 <li 
                   key={file.name}
+                  className="fileexplorer-file"
                   onClick={(e) => {
                     e.stopPropagation();
                     handleFileClick(file, folder.name);
                   }}
-                  style={{ cursor: 'pointer' }}
                 >
                   📄 {file.name}
                 </li>
@@ -121,22 +122,12 @@ export const FileExplorerApp = () => {
   };
 
   return (
-    <div style={{ 
-      height: '100%', 
-      display: 'flex', 
-      flexDirection: 'column',
-      background: '#c0c0c0'
-    }}>
-      <menu role="tablist" style={{ margin: 0, padding: '2px', display: 'flex' }}>
+    <div className="fileexplorer-container">
+      <menu role="tablist" className="fileexplorer-tabs">
         <li 
           role="tab" 
           aria-selected={activeTab === 'table'}
-          style={{ 
-            background: activeTab === 'table' ? '#c0c0c0' : '#a0a0a0',
-            padding: '2px 10px',
-            marginRight: '2px',
-            cursor: 'pointer'
-          }}
+          className={`fileexplorer-tab ${activeTab === 'table' ? 'fileexplorer-tab-active' : 'fileexplorer-tab-inactive'}`}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('table'); }}>
             {t('table')}
@@ -145,11 +136,7 @@ export const FileExplorerApp = () => {
         <li 
           role="tab" 
           aria-selected={activeTab === 'tree'}
-          style={{ 
-            background: activeTab === 'tree' ? '#c0c0c0' : '#a0a0a0',
-            padding: '2px 10px',
-            cursor: 'pointer'
-          }}
+          className={`fileexplorer-tab ${activeTab === 'tree' ? 'fileexplorer-tab-active' : 'fileexplorer-tab-inactive'}`}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('tree'); }}>
             {t('tree')}
@@ -157,11 +144,7 @@ export const FileExplorerApp = () => {
         </li>
       </menu>
       
-      <div style={{ 
-        flex: 1, 
-        overflow: 'auto', 
-        padding: '8px'
-      }}>
+      <div className="fileexplorer-content">
         {activeTab === 'table' ? renderTable() : (
           <ul className="tree-view" key="tree">
             {renderTree()}

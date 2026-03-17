@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './index.css';
 
 export const NotepadApp = () => {
   const [content, setContent] = useState('');
@@ -14,27 +15,14 @@ export const NotepadApp = () => {
   };
 
   return (
-    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <div className="notepad-container">
       <textarea 
-        style={{ 
-          flex: 1,
-          width: '100%', 
-          resize: 'none',
-          border: 'none',
-          outline: 'none',
-          padding: '5px',
-          fontFamily: 'monospace',
-          fontSize: '14px'
-        }} 
+        className="notepad-textarea"
         value={content}
         onChange={handleChange}
         placeholder="Type here..."
       />
-      <div style={{ 
-        borderTop: '2px solid #c0c0c0',
-        padding: '2px 8px',
-        fontSize: '12px'
-      }}>
+      <div className="notepad-statusbar">
         Ln {line}, Col {col}
       </div>
     </div>

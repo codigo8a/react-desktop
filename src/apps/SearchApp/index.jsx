@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useFileSystem } from '../hooks/useFileSystem';
-import { useDesktop } from '../context/DesktopContext';
-import { useTranslation } from '../i18n/translations';
+import { useFileSystem } from '../../hooks/useFileSystem';
+import { useDesktop } from '../../context/DesktopContext';
+import { useTranslation } from '../../i18n/translations';
+import './index.css';
 
 export const SearchApp = () => {
   const { getAllFiles, getRawFileContent } = useFileSystem();
@@ -35,32 +36,26 @@ export const SearchApp = () => {
   };
 
   return (
-    <div style={{ 
-      height: '100%', 
-      display: 'flex', 
-      flexDirection: 'column',
-      background: '#c0c0c0'
-    }}>
-      <div style={{ padding: '8px' }}>
-        <div className="field-row" style={{ marginBottom: '8px' }}>
+    <div className="search-container">
+      <div className="search-input-area">
+        <div className="field-row search-input-row">
           <label>{t('search')}:</label>
           <input 
             type="text" 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            style={{ flex: 1 }}
             placeholder={t('searchPlaceholder')}
           />
         </div>
       </div>
 
-      <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', margin: '0 8px 8px 8px' }}>
+      <div className="sunken-panel search-results">
         {searchTerm.trim() === '' ? (
-          <div style={{ padding: '16px', color: '#666' }}>
+          <div className="search-empty">
             {t('typeToSearch')}
           </div>
         ) : results.length === 0 ? (
-          <div style={{ padding: '16px', color: '#666' }}>
+          <div className="search-empty">
             {t('noFilesFound')} "{searchTerm}"
           </div>
         ) : (
