@@ -66,7 +66,7 @@ export const FileViewerApp = ({ file }) => {
           </div>
         ) : (
           <pre className="fileviewer-source">
-            {file.content}
+            {file.rawContent || file.content}
           </pre>
         )}
       </div>

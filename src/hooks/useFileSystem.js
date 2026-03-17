@@ -1,3 +1,5 @@
+import { useCallback } from 'react';
+
 const files = import.meta.glob('../data/files/**/*.md', {
   query: '?raw',
   import: 'default',
@@ -21,7 +23,7 @@ const extractRawContent = (content) => {
 };
 
 export const useFileSystem = () => {
-  const getFileStructure = () => {
+  const getFileStructure = useCallback(() => {
     const structure = {};
     
     Object.entries(files).forEach(([path, content]) => {
@@ -49,21 +51,32 @@ export const useFileSystem = () => {
         date: c.date
       }))
     }));
-  };
+  }, []);
 
-  const getFileContent = (filename, folderName) => {
+  const getFileContent = useCallback((filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
     const content = files[path];
     return content ? extractContentWithoutDate(content) : 'File not found';
-  };
+  }, []);
 
-  const getRawFileContent = (filename, folderName) => {
+  const getRawFileContent = useCallback((filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
     const content = files[path];
     return content ? extractRawContent(content) : 'File not found';
-  };
+  }, []);
 
-  const getAllFiles = () => {
+  const getFileWithDate = useCallback((filename, folderName) => {
+    const path = `../data/files/${folderName}/${filename}`;
+    const content = files[path];
+    if (!content) return null;
+    return {
+      content: extractContentWithoutDate(content),
+      rawContent: extractRawContent(content),
+      date: extractDate(content)
+    };
+  }, []);
+
+  const getAllFiles = useCallback(() => {
     const result = [];
     
     Object.entries(files).forEach(([path, content]) => {
@@ -75,17 +88,31 @@ export const useFileSystem = () => {
         folder,
         name: filename,
         content: extractContentWithoutDate(content),
+        rawContent: extractRawContent(content),
         date: extractDate(content)
       });
     });
     
     return result;
-  };
+  }, []);
+
+  const findFileByUrl = useCallback((folderName, fileName) => {
+    const allFiles = getAllFiles();
+    const targetFolder = folderName.toLowerCase();
+    const targetFile = fileName.toLowerCase().endsWith('.md') ? fileName.toLowerCase() : `${fileName.toLowerCase()}.md`;
+    
+    return allFiles.find(f => 
+      f.folder.toLowerCase() === targetFolder && 
+      f.name.toLowerCase() === targetFile
+    );
+  }, [getAllFiles]);
 
   return {
     getFileStructure,
     getFileContent,
     getRawFileContent,
-    getAllFiles
+    getFileWithDate,
+    getAllFiles,
+    findFileByUrl
   };
 };

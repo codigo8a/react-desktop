@@ -7,6 +7,8 @@ import { LanguageProvider } from './context/LanguageContext';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useStartMenu } from './hooks/useWindow';
 import { APPS } from './apps/apps';
+import { useFileSystem } from './hooks/useFileSystem';
+import { useEffect } from 'react';
 
 const initialWindows = [
   {
@@ -38,7 +40,56 @@ const Desktop = () => {
     openApp
   } = useDesktop();
 
+  const { findFileByUrl } = useFileSystem();
+
   const { isOpen: isStartOpen, toggle: toggleStart, close: closeStart } = useStartMenu();
+
+  // Handle initial URL routing
+  useEffect(() => {
+    const path = decodeURIComponent(window.location.pathname.slice(1));
+    if (path) {
+      const parts = path.split('/');
+      if (parts.length >= 2) {
+        const folder = parts[0];
+        const filename = parts[1];
+        
+        const fileData = findFileByUrl(folder, filename);
+        if (fileData) {
+          const displayTitle = fileData.name.replace('.md', '');
+          openApp('fileViewer', {
+            file: {
+              name: displayTitle,
+              content: fileData.content,
+              rawContent: fileData.rawContent,
+              folder: fileData.folder,
+              date: fileData.date
+            },
+            windowKey: `${fileData.folder}/${fileData.name}`,
+            title: displayTitle
+          });
+        }
+      }
+    }
+    // We only want this to run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Sync URL with window state
+  useEffect(() => {
+    const isAnyFileViewerOpen = windows.some(win => win.appId === 'fileViewer' && !win.isMinimized);
+    
+    if (!isAnyFileViewerOpen && window.location.pathname !== '/') {
+      window.history.pushState({}, '', '/');
+    }
+  }, [windows]);
+
+  const onMinimize = (id) => {
+    handleMinimize(id);
+  };
+
+  const onClose = (id) => {
+    handleClose(id);
+  };
 
   const handleStartClick = (e) => {
     e.stopPropagation();
@@ -85,9 +136,9 @@ const Desktop = () => {
           isMaximized={win.isMaximized}
           currentPosition={win.currentPosition}
           onFocus={handleWindowFocus}
-          onMinimize={handleMinimize}
+          onMinimize={onMinimize}
           onMaximize={handleMaximize}
-          onClose={handleClose}
+          onClose={onClose}
           onMove={handleWindowMove}
         >
           {win.content}
