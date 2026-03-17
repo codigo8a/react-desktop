@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { TitleBar } from '../../molecules/TitleBar';
+import { WindowProvider } from '../../../context/WindowContext';
 import './index.css';
 
 export const Window = ({ 
@@ -40,24 +41,28 @@ export const Window = ({
     onMinimize?.(id);
   };
 
+  const handleClose = () => {
+    onClose?.(id);
+  };
+
   if (isMinimized) {
     return null;
   }
 
   const renderContent = () => (
-    <>
+    <WindowProvider id={id} onClose={handleClose}>
       <TitleBar 
         title={title}
         onMinimize={handleMinimize}
         onMaximize={() => onMaximize?.(id)}
-        onClose={() => onClose?.(id)}
+        onClose={handleClose}
         active={isActive}
       />
       <div className="window-body">
         {children}
       </div>
       {!isMaximized && <div className="window-resize-handle" onMouseDown={handleResizeMouseDown} />}
-    </>
+    </WindowProvider>
   );
 
   if (isMaximized) {

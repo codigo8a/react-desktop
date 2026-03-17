@@ -10,7 +10,7 @@ export const APPS = {
     title: 'Welcome',
     icon: '👋',
     component: WelcomeApp,
-    defaultSize: { width: 400, height: 300 },
+    defaultSize: { width: 700, height: 420 },
     centered: true
   },
   notepad: {
