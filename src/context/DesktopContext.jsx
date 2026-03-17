@@ -7,9 +7,10 @@ const DesktopContext = createContext(null);
 export const DesktopProvider = ({ children, initialWindows = [] }) => {
   const [windows, setWindows] = useState(initialWindows);
   const [activeWindowId, setActiveWindowId] = useState(initialWindows[0]?.id || null);
+  const [maximizedWindowId, setMaximizedWindowId] = useState(null);
   const [zIndexCounter, setZIndexCounter] = useState(10);
 
-  const handleWindowFocus = useCallback((id) => {
+  const bringToFront = useCallback((id) => {
     const newZIndex = zIndexCounter + 1;
     setZIndexCounter(newZIndex);
     
@@ -21,10 +22,22 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
     })));
   }, [zIndexCounter]);
 
+  const handleWindowFocus = useCallback((id) => {
+    bringToFront(id);
+  }, [bringToFront]);
+
+  const handleWindowClick = useCallback((id) => {
+    const isMaximized = maximizedWindowId === id;
+    if (isMaximized) {
+      bringToFront(id);
+    }
+  }, [maximizedWindowId, bringToFront]);
+
   const handleMinimize = useCallback((id) => {
     setWindows(prev => prev.map(win => 
       win.id === id ? { ...win, isMinimized: true } : win
     ));
+    setMaximizedWindowId(prev => prev === id ? null : prev);
     const visibleWindows = windows.filter(w => !w.isMinimized && w.id !== id);
     if (visibleWindows.length > 0) {
       setActiveWindowId(visibleWindows[0].id);
@@ -32,16 +45,17 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
   }, [windows]);
 
   const handleRestore = useCallback((id) => {
-    const newZIndex = zIndexCounter + 1;
-    setZIndexCounter(newZIndex);
+    bringToFront(id);
     
     setWindows(prev => prev.map(win => 
-      win.id === id ? { ...win, isMinimized: false, isActive: true, zIndex: newZIndex } : { ...win, isActive: false }
+      win.id === id ? { ...win, isMinimized: false, isActive: true } : { ...win, isActive: false }
     ));
+    setMaximizedWindowId(prev => prev === id ? null : prev);
     setActiveWindowId(id);
-  }, [zIndexCounter]);
+  }, [bringToFront]);
 
   const handleClose = useCallback((id) => {
+    setMaximizedWindowId(prev => prev === id ? null : prev);
     setWindows(prev => {
       const remaining = prev.filter(win => win.id !== id);
       if (remaining.length > 0) {
@@ -50,6 +64,20 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
       return remaining;
     });
   }, []);
+
+  const handleMaximize = useCallback((id) => {
+    const newZIndex = zIndexCounter + 1;
+    setZIndexCounter(newZIndex);
+    
+    setMaximizedWindowId(prev => prev === id ? null : id);
+    
+    setWindows(prev => prev.map(win => ({
+      ...win,
+      isActive: win.id === id,
+      zIndex: win.id === id ? newZIndex : win.zIndex
+    })));
+    setActiveWindowId(id);
+  }, [zIndexCounter]);
 
   const addWindow = useCallback((windowConfig) => {
     const newZIndex = zIndexCounter + 1;
@@ -76,6 +104,7 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
     if (existingWindow) {
       const newZIndex = zIndexCounter + 1;
       setZIndexCounter(newZIndex);
+      setMaximizedWindowId(prev => prev === existingWindow.id ? null : prev);
       
       setWindows(prev => prev.map(win => 
         win.appId === appId 
@@ -102,10 +131,13 @@ export const DesktopProvider = ({ children, initialWindows = [] }) => {
   const value = {
     windows,
     activeWindowId,
+    maximizedWindowId,
     handleWindowFocus,
+    handleWindowClick,
     handleMinimize,
     handleRestore,
     handleClose,
+    handleMaximize,
     addWindow,
     openApp,
     isWindowOpen

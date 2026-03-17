@@ -26,10 +26,12 @@ const Desktop = () => {
   const {
     windows,
     activeWindowId,
+    maximizedWindowId,
     handleWindowFocus,
     handleMinimize,
     handleRestore,
     handleClose,
+    handleMaximize,
     openApp
   } = useDesktop();
 
@@ -102,9 +104,10 @@ const Desktop = () => {
           initialPosition={win.initialPosition}
           initialSize={win.initialSize}
           zIndex={win.zIndex}
+          isMaximized={maximizedWindowId === win.id}
           onFocus={handleWindowFocus}
           onMinimize={handleMinimize}
-          onMaximize={() => {}}
+          onMaximize={handleMaximize}
           onClose={handleClose}
         >
           {win.content}

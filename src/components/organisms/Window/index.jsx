@@ -13,22 +13,16 @@ export const Window = ({
   isMinimized = false,
   centered = false,
   zIndex = 10,
+  isMaximized = false,
   onFocus,
   onMinimize,
   onMaximize,
   onClose 
 }) => {
-  const [isMaximized, setIsMaximized] = useState(false);
   const [size] = useState(initialSize);
   const nodeRef = useRef(null);
 
-  const handleMaximize = () => {
-    setIsMaximized(!isMaximized);
-    onMaximize?.(id);
-  };
-
   const handleMinimize = () => {
-    setIsMaximized(false);
     onMinimize?.(id);
   };
 
@@ -41,7 +35,7 @@ export const Window = ({
       <TitleBar 
         title={title}
         onMinimize={handleMinimize}
-        onMaximize={handleMaximize}
+        onMaximize={() => onMaximize?.(id)}
         onClose={() => onClose?.(id)}
         active={isActive}
       />
@@ -59,7 +53,7 @@ export const Window = ({
           position: 'absolute',
           width: '100%',
           height: 'calc(100% - 30px)',
-          zIndex: 9999,
+          zIndex,
           left: '0px',
           top: '30px',
         }}
@@ -71,7 +65,7 @@ export const Window = ({
   }
 
   const getInitialPosition = () => {
-    if (centered && !isMaximized) {
+    if (centered) {
       return {
         x: (window.innerWidth - size.width) / 2,
         y: (window.innerHeight - size.height) / 2
