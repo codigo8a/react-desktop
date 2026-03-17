@@ -25,8 +25,8 @@ export const APPS = {
     title: 'Explorador de Archivos',
     icon: '📁',
     component: FileExplorerApp,
-    defaultSize: { width: 400, height: 350 },
-    centered: true
+    defaultSize: { width: 600, height: 350 },
+    centered: false
   },
   fileViewer: {
     id: 'fileViewer',
