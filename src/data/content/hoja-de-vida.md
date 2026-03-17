@@ -1,11 +1,8 @@
 Fecha: 01/01/2009
----
----
-
 # Hoja de vida | Juan David Ochoa
 
 <p class="message">
-Full Stack Developer con más de 20 años de experiencia, siempre me he destacado en entender y analizar los procesos para  sistematizarlos eficientemente y resolver de una manera creativa los problemas. 
+Full Stack Developer con más de 20 años de experiencia, enfocado en el análisis y la optimización de procesos. Experto en transformar necesidades en soluciones eficientes y creativas mediante la sistematización.
 </p>
 
 ```
