@@ -18,7 +18,7 @@ export const APPS = {
     icon: '📝',
     component: NotepadApp,
     defaultSize: { width: 450, height: 350 },
-    centered: false
+    centered: true
   },
   fileExplorer: {
     id: 'fileExplorer',
@@ -26,7 +26,7 @@ export const APPS = {
     icon: '📁',
     component: FileExplorerApp,
     defaultSize: { width: 400, height: 350 },
-    centered: false
+    centered: true
   },
   fileViewer: {
     id: 'fileViewer',
@@ -34,7 +34,7 @@ export const APPS = {
     icon: '📄',
     component: FileViewerApp,
     defaultSize: { width: 500, height: 400 },
-    centered: false,
+    centered: true,
     singleInstance: false
   }
 };
