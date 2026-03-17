@@ -82,7 +82,7 @@ export const FileExplorerApp: React.FC = () => {
     allFiles.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
     return (
-      <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none', margin: 0, display: 'table', overflow: 'visible' }}>
+      <table className="interactive" style={{ width: '100%', borderCollapse: 'collapse', border: 'none' }}>
         <thead style={{ position: 'sticky', top: 0, zIndex: 1, background: '#c0c0c0' }}>
           <tr>
             <th style={{ textAlign: 'left', width: '50%' }}>{t('name')}</th>
@@ -137,7 +137,7 @@ export const FileExplorerApp: React.FC = () => {
               </ul>
             </div>
           ) : (
-            <div className="sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff' }}>
+            <div className="sunken-panel" style={{ flex: 1, overflowY: 'auto', overflowX: 'auto', background: '#fff', display: 'flex', flexDirection: 'column' }}>
               {renderTable()}
             </div>
           )}
