@@ -168,6 +168,14 @@ const translations = {
   searchFiles: {
     es: "Buscar archivos",
     en: "Search Files"
+  },
+  folder: {
+    es: "carpeta(s)",
+    en: "folder(s)"
+  },
+  file: {
+    es: "archivo(s)",
+    en: "file(s)"
   }
 };
 

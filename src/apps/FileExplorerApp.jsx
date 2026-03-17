@@ -170,11 +170,11 @@ export const FileExplorerApp = () => {
       </div>
       
       <div className="status-bar">
-        <p className="status-bar-field">{fileStructure.length} carpeta(s)</p>
+        <p className="status-bar-field">{fileStructure.length} {t('folder')}</p>
         <p className="status-bar-field">
-          {fileStructure.reduce((acc, f) => acc + (f.children?.length || 0), 0)} archivo(s)
+          {fileStructure.reduce((acc, f) => acc + (f.children?.length || 0), 0)} {t('file')}
         </p>
-        <p className="status-bar-field">Listo</p>
+        <p className="status-bar-field">{t('ready')}</p>
       </div>
     </div>
   );
