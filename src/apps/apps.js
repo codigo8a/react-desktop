@@ -2,6 +2,7 @@ import { WelcomeApp } from './WelcomeApp';
 import { NotepadApp } from './NotepadApp';
 import { FileExplorerApp } from './FileExplorerApp';
 import { FileViewerApp } from './FileViewerApp';
+import { SearchApp } from './SearchApp';
 
 export const APPS = {
   welcome: {
@@ -36,6 +37,14 @@ export const APPS = {
     defaultSize: { width: 1000, height: 800 },
     centered: true,
     singleInstance: false
+  },
+  search: {
+    id: 'search',
+    title: 'Buscar Archivos',
+    icon: '🔍',
+    component: SearchApp,
+    defaultSize: { width: 500, height: 350 },
+    centered: true
   }
 };
 

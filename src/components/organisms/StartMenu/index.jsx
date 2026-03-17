@@ -29,7 +29,7 @@ export const StartMenu = ({ onClose, onOpenApp }) => {
         <button disabled>
           Settings
         </button>
-        <button disabled>
+        <button onClick={() => { onOpenApp('search'); onClose(); }}>
           Find
         </button>
         <div className="start-menu-divider" />
