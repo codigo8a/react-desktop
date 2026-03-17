@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useWindow } from '../../context/WindowContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { useTranslation } from '../../i18n/translations';
 import './index.css';
 
@@ -7,6 +8,7 @@ export const WelcomeApp = () => {
   const [showAtStartup, setShowAtStartup] = useState(true);
   const [currentTip, setCurrentTip] = useState(0);
   const { onClose } = useWindow() || {};
+  const { language, changeLanguage } = useLanguage();
   const { t } = useTranslation();
 
   const tips = {
@@ -32,6 +34,10 @@ export const WelcomeApp = () => {
 
   const handleClose = () => {
     onClose?.();
+  };
+
+  const handleLanguageChange = (lang) => {
+    changeLanguage(lang);
   };
 
   return (
@@ -141,6 +147,36 @@ export const WelcomeApp = () => {
           >
             {t('close')}
           </button>
+          
+          <div style={{ 
+            marginTop: '10px', 
+            paddingTop: '6px', 
+            borderTop: '1px solid #808080',
+            borderLeft: '1px solid #dfdfdf'
+          }} />
+          
+          <div style={{ marginTop: '10px' }}>
+            <div className="field-row">
+              <input 
+                id="lang-en" 
+                type="radio" 
+                name="language" 
+                checked={language === 'en'}
+                onChange={() => handleLanguageChange('en')}
+              />
+              <label htmlFor="lang-en">English</label>
+            </div>
+            <div className="field-row">
+              <input 
+                id="lang-es" 
+                type="radio" 
+                name="language" 
+                checked={language === 'es'}
+                onChange={() => handleLanguageChange('es')}
+              />
+              <label htmlFor="lang-es">Español</label>
+            </div>
+          </div>
         </div>
       </div>
 
