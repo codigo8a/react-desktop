@@ -1,13 +1,18 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { APPS } from "../../../apps/apps";
 import { useTranslation } from "../../../i18n/translations";
 import "./index.css";
 
-export const StartMenu = ({ onClose, onOpenApp }) => {
-  const [openSubmenu, setOpenSubmenu] = useState(null);
+interface StartMenuProps {
+  onClose: () => void;
+  onOpenApp: (appId: string) => void;
+}
+
+export const StartMenu: React.FC<StartMenuProps> = ({ onClose, onOpenApp }) => {
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const { t } = useTranslation();
 
-  const toggleSubmenu = (menu) => {
+  const toggleSubmenu = (menu: string) => {
     setOpenSubmenu(openSubmenu === menu ? null : menu);
   };
 
@@ -22,7 +27,7 @@ export const StartMenu = ({ onClose, onOpenApp }) => {
             <span className="icon" style={{ marginRight: "8px" }}>
               🗃️
             </span>
-            {t("programs")}
+            {t("programs" as any)}
             <span style={{ marginLeft: "auto" }}>▶</span>
           </button>
           {openSubmenu === "programs" && (
@@ -50,7 +55,7 @@ export const StartMenu = ({ onClose, onOpenApp }) => {
           <span className="icon" style={{ marginRight: "8px" }}>
             🔍
           </span>
-          {t("find")}
+          {t("find" as any)}
         </button>
         <button
           onClick={() => {
@@ -61,7 +66,7 @@ export const StartMenu = ({ onClose, onOpenApp }) => {
           <span className="icon" style={{ marginRight: "8px" }}>
             {APPS.fileExplorer.icon}
           </span>
-          {t("documents")}
+          {t("documents" as any)}
         </button>
         <div className="start-menu-divider" />
          <button
@@ -73,7 +78,7 @@ export const StartMenu = ({ onClose, onOpenApp }) => {
           <span className="icon" style={{ marginRight: "8px" }}>
             ⚙️
           </span>
-          {t("settings")}
+          {t("settings" as any)}
         </button>
         <button
           onClick={() => {
@@ -86,10 +91,10 @@ export const StartMenu = ({ onClose, onOpenApp }) => {
           </span>
           {APPS.welcome.title}
         </button>
-        <button disabled>{t("help")}</button>
-        <button disabled>{t("run")}...</button>
+        <button disabled>{t("help" as any)}</button>
+        <button disabled>{t("run" as any)}...</button>
         <div className="start-menu-divider" />
-        <button disabled>{t("shutDown")}...</button>
+        <button disabled>{t("shutDown" as any)}...</button>
       </div>
     </div>
   );

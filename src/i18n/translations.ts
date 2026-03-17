@@ -1,11 +1,22 @@
 import { useLanguage } from '../context/LanguageContext';
 
-const translations = {
+type TranslationKeys = 
+  | 'welcome' | 'welcomeTip' | 'nextTip' | 'whatsNew' | 'onlineRegistration' 
+  | 'close' | 'showWelcomeScreen' | 'settings' | 'language' | 'selectLanguage' 
+  | 'spanish' | 'english' | 'apply' | 'cancel' | 'search' | 'searchPlaceholder' 
+  | 'typeToSearch' | 'noFilesFound' | 'name' | 'location' | 'date' | 'type' 
+  | 'title' | 'content' | 'ready' | 'noSearch' | 'results' | 'tableView' | 'treeView' | 'didYouKnow';
+
+const translations: Record<string, Record<'es' | 'en', string>> = {
   welcome: {
     es: "Bienvenido a juandavid.site",
     en: "Welcome to juandavid.site"
   },
   welcomeTip: {
+    es: "¿Sabías que...?",
+    en: "Did you know...?"
+  },
+  didYouKnow: {
     es: "¿Sabías que...?",
     en: "Did you know...?"
   },
@@ -106,87 +117,26 @@ const translations = {
     en: "No search"
   },
   results: {
-    es: "resultado(s)",
-    en: "result(s)"
+    es: "resultados",
+    en: "results"
   },
-  preview: {
-    es: "Vista previa",
-    en: "Preview"
+  tableView: {
+    es: "Vista de Tabla",
+    en: "Table View"
   },
-  source: {
-    es: "Código fuente",
-    en: "Source"
-  },
-  table: {
-    es: "Tabla",
-    en: "Table"
-  },
-  tree: {
-    es: "Árbol",
-    en: "Tree"
-  },
-  programs: {
-    es: "Programas",
-    en: "Programs"
-  },
-  documents: {
-    es: "Documentos",
-    en: "Documents"
-  },
-  find: {
-    es: "Buscar",
-    en: "Find"
-  },
-  help: {
-    es: "Ayuda",
-    en: "Help"
-  },
-  run: {
-    es: "Ejecutar",
-    en: "Run"
-  },
-  shutDown: {
-    es: "Apagar",
-    en: "Shut Down"
-  },
-  fileNotFound: {
-    es: "Archivo no encontrado",
-    en: "File not found"
-  },
-  welcomeApp: {
-    es: "Bienvenida",
-    en: "Welcome"
-  },
-  notepad: {
-    es: "Bloc de notas",
-    en: "Notepad"
-  },
-  fileViewer: {
-    es: "Visor de archivos",
-    en: "File Viewer"
-  },
-  searchFiles: {
-    es: "Buscar archivos",
-    en: "Search Files"
-  },
-  folder: {
-    es: "carpeta(s)",
-    en: "folder(s)"
-  },
-  file: {
-    es: "archivo(s)",
-    en: "file(s)"
+  treeView: {
+    es: "Vista de Árbol",
+    en: "Tree View"
   }
 };
 
 export const useTranslation = () => {
   const { language } = useLanguage();
-  
-  const t = (key) => {
-    return translations[key]?.[language] || key;
-  };
-  
-  return { t, language };
-};
+  const currentLang = (language === 'es' || language === 'en') ? language : 'en';
 
-export default translations;
+  const t = (key: TranslationKeys) => {
+    return translations[key]?.[currentLang] || key;
+  };
+
+  return { t };
+};

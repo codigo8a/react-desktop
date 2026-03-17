@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useLanguage } from '../../context/LanguageContext';
 import { useWindow } from '../../context/WindowContext';
 import { useTranslation } from '../../i18n/translations';
 import './index.css';
 
-export const SettingsApp = () => {
+export const SettingsApp: React.FC = () => {
   const { language, changeLanguage } = useLanguage();
-  const { onClose } = useWindow() || {};
+  const windowContext = useWindow();
+  const onClose = windowContext?.onClose;
   const { t } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(language);
 

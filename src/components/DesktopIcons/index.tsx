@@ -1,16 +1,23 @@
+import React from 'react';
 import { useDesktop } from '../../context/DesktopContext';
 import './index.css';
 
-const DESKTOP_ICONS = [
+interface DesktopIcon {
+  id: string;
+  icon: string;
+  label: string;
+}
+
+const DESKTOP_ICONS: DesktopIcon[] = [
   { id: 'myComputer', icon: '💻', label: 'My Computer' },
   { id: 'recycleBin', icon: '🗑️', label: 'Recycle Bin' },
   { id: 'myDocuments', icon: '📁', label: 'My Documents' },
 ];
 
-export const DesktopIcons = () => {
+export const DesktopIcons: React.FC = () => {
   const { openApp } = useDesktop();
 
-  const handleIconClick = (iconId) => {
+  const handleIconClick = (iconId: string) => {
     if (iconId === 'myDocuments') {
       openApp('fileExplorer');
     }

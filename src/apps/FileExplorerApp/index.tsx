@@ -1,33 +1,33 @@
-import { useState, useMemo, useCallback } from 'react';
-import { useFileSystem } from '../../hooks/useFileSystem';
+import React, { useState, useMemo, useCallback } from 'react';
+import { useFileSystem, FileStructureItem } from '../../hooks/useFileSystem';
 import { useDesktop } from '../../context/DesktopContext';
 import { useTranslation } from '../../i18n/translations';
 import './index.css';
 
-export const FileExplorerApp = () => {
+export const FileExplorerApp: React.FC = () => {
   const { getFileStructure, getRawFileContent } = useFileSystem();
   const { openApp } = useDesktop();
-  const [expandedFolders, setExpandedFolders] = useState({});
-  const [activeTab, setActiveTab] = useState('table');
+  const [expandedFolders, setExpandedFolders] = useState<Record<string, boolean>>({});
+  const [activeTab, setActiveTab] = useState<'table' | 'tree'>('table');
   const { t } = useTranslation();
   
   const fileStructure = useMemo(() => getFileStructure(), [getFileStructure]);
 
-  const toggleFolder = useCallback((folderName) => {
+  const toggleFolder = useCallback((folderName: string) => {
     setExpandedFolders(prev => ({
       ...prev,
       [folderName]: !prev[folderName]
     }));
   }, []);
 
-  const handleFileClick = useCallback((file, folderName) => {
+  const handleFileClick = useCallback((file: { name: string; date?: string }, folderName: string) => {
     const content = getRawFileContent(file.name, folderName);
     openApp('fileViewer', {
       file: {
         name: file.name.replace('.md', ''),
         content: content,
         folder: folderName,
-        date: file.date
+        date: file.date || '01/01/2026'
       },
       windowKey: `${folderName}/${file.name}`,
       title: file.name.replace('.md', '')
@@ -35,7 +35,7 @@ export const FileExplorerApp = () => {
   }, [getRawFileContent, openApp]);
 
   const renderTree = () => {
-    return fileStructure.map((folder) => {
+    return fileStructure.map((folder: FileStructureItem) => {
       const isOpen = expandedFolders[folder.name] === true;
       return (
         <li key={folder.name}>
@@ -67,19 +67,19 @@ export const FileExplorerApp = () => {
   };
 
   const renderTable = () => {
-    const allFiles = [];
+    const allFiles: { name: string; folder: string; date: string; dateObj: Date }[] = [];
     fileStructure.forEach(folder => {
       folder.children?.forEach(file => {
         allFiles.push({
           name: file.name,
           folder: folder.name,
-          date: file.date,
-          dateObj: new Date(file.date.split('/').reverse().join('-'))
+          date: file.date || '01/01/2026',
+          dateObj: new Date((file.date || '01/01/2026').split('/').reverse().join('-'))
         });
       });
     });
 
-    allFiles.sort((a, b) => b.dateObj - a.dateObj);
+    allFiles.sort((a, b) => b.dateObj.getTime() - a.dateObj.getTime());
 
     return (
       <div className="sunken-panel" style={{ flex: 1, overflow: 'auto' }}>
@@ -108,9 +108,8 @@ export const FileExplorerApp = () => {
                     title: item.name.replace('.md', '')
                   });
                 }}
-                style={{ cursor: 'pointer' }}
               >
-                <td>📄 {item.name}</td>
+                <td>{item.name}</td>
                 <td>{item.folder}</td>
                 <td>{item.date}</td>
               </tr>
@@ -123,41 +122,22 @@ export const FileExplorerApp = () => {
 
   return (
     <div className="fileexplorer-container">
-      <menu role="tablist" className="fileexplorer-tabs">
-        <li 
-          role="tab" 
-          aria-selected={activeTab === 'table'}
-          className={`fileexplorer-tab ${activeTab === 'table' ? 'fileexplorer-tab-active' : 'fileexplorer-tab-inactive'}`}
-        >
-          <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('table'); }}>
-            {t('table')}
-          </a>
+      <menu role="tablist">
+        <li role="tab" className={activeTab === 'table' ? 'active' : ''}>
+          <a href="#table" onClick={(e) => { e.preventDefault(); setActiveTab('table'); }}>{t('tableView')}</a>
         </li>
-        <li 
-          role="tab" 
-          aria-selected={activeTab === 'tree'}
-          className={`fileexplorer-tab ${activeTab === 'tree' ? 'fileexplorer-tab-active' : 'fileexplorer-tab-inactive'}`}
-        >
-          <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('tree'); }}>
-            {t('tree')}
-          </a>
+        <li role="tab" className={activeTab === 'tree' ? 'active' : ''}>
+          <a href="#tree" onClick={(e) => { e.preventDefault(); setActiveTab('tree'); }}>{t('treeView')}</a>
         </li>
       </menu>
-      
-      <div className="fileexplorer-content">
-        {activeTab === 'table' ? renderTable() : (
-          <ul className="tree-view" key="tree">
-            {renderTree()}
-          </ul>
-        )}
-      </div>
-      
-      <div className="status-bar">
-        <p className="status-bar-field">{fileStructure.length} {t('folder')}</p>
-        <p className="status-bar-field">
-          {fileStructure.reduce((acc, f) => acc + (f.children?.length || 0), 0)} {t('file')}
-        </p>
-        <p className="status-bar-field">{t('ready')}</p>
+      <div role="tabpanel" style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+        {activeTab === 'tree' ? (
+          <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', padding: '10px' }}>
+            <ul className="tree-view">
+              {renderTree()}
+            </ul>
+          </div>
+        ) : renderTable()}
       </div>
     </div>
   );

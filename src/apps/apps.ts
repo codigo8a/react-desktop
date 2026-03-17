@@ -4,8 +4,9 @@ import { FileExplorerApp } from './FileExplorerApp';
 import { FileViewerApp } from './FileViewerApp';
 import { SearchApp } from './SearchApp';
 import { SettingsApp } from './SettingsApp';
+import { AppDefinition } from '../types';
 
-export const APPS = {
+export const APPS: Record<string, AppDefinition> = {
   welcome: {
     id: 'welcome',
     title: 'Welcome',
@@ -57,10 +58,10 @@ export const APPS = {
   }
 };
 
-export const getAppById = (id) => {
+export const getAppById = (id: string): AppDefinition | null => {
   return APPS[id] || null;
 };
 
-export const getAppList = () => {
+export const getAppList = (): AppDefinition[] => {
   return Object.values(APPS);
 };

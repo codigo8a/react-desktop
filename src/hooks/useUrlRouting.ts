@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import { useFileSystem } from './useFileSystem';
+import { WindowConfig } from '../types';
 
-export const useUrlRouting = (windows, openApp) => {
+export const useUrlRouting = (windows: WindowConfig[], openApp: (appId: string, appData?: any) => void) => {
   const { findFileByUrl } = useFileSystem();
 
   // Handle initial URL routing on mount

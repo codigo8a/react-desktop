@@ -16,9 +16,9 @@ export const useStartMenu = () => {
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = (e: MouseEvent) => {
       const startMenu = document.querySelector('.start-menu');
-      if (isOpen && startMenu && !startMenu.contains(e.target)) {
+      if (isOpen && startMenu && !startMenu.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };

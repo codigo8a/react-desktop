@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import { useTranslation } from '../../i18n/translations';
+import { File } from '../../types';
 import './index.css';
 
-const MarkdownComponents = {
+const MarkdownComponents: Record<string, React.FC<any>> = {
   h1: ({ children }) => <h1>{children}</h1>,
   h2: ({ children }) => <h2>{children}</h2>,
   h3: ({ children }) => <h3>{children}</h3>,
@@ -22,8 +23,12 @@ const MarkdownComponents = {
   hr: () => <hr />
 };
 
-export const FileViewerApp = ({ file }) => {
-  const [activeTab, setActiveTab] = useState('preview');
+interface FileViewerAppProps {
+  file?: File;
+}
+
+export const FileViewerApp: React.FC<FileViewerAppProps> = ({ file }) => {
+  const [activeTab, setActiveTab] = useState<'preview' | 'source'>('preview');
   const { t } = useTranslation();
 
   if (!file) {

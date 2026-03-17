@@ -1,29 +1,37 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
-export const ErrorWindow = ({ error, onReset }) => {
+interface ErrorWindowProps {
+  error: Error | null;
+  onReset: () => void;
+}
+
+export const ErrorWindow: React.FC<ErrorWindowProps> = ({ error, onReset }) => {
   const errorMessage = error?.message || 'An unknown error occurred';
   const errorStack = error?.stack || '';
   const [isDragging, setIsDragging] = useState(false);
   const dragStart = useRef({ x: 0, y: 0, posX: 0, posY: 0 });
 
-  const handleMouseDown = (e) => {
-    if (e.target.closest('.title-bar')) {
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('.title-bar')) {
       setIsDragging(true);
       dragStart.current = {
         x: e.clientX,
-        y: e.clientY
+        y: e.clientY,
+        posX: 0, // Simplified for now
+        posY: 0
       };
     }
   };
 
-  const handleMouseMove = (e) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     if (isDragging) {
       const dx = e.clientX - dragStart.current.x;
-      const el = document.querySelector('.error-window');
+      const el = document.querySelector('.error-window') as HTMLElement;
       if (el) {
-        el.style.left = `${dragStart.current.posX + dx + 50}%`;
+        el.style.left = `calc(50% + ${dx}px)`;
         el.style.top = '50%';
-        el.style.transform = 'translate(0, 0)';
+        el.style.transform = 'translate(-50%, -50%)';
       }
     }
   };

@@ -1,9 +1,29 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { TitleBar } from '../../molecules/TitleBar';
 import { WindowProvider } from '../../../context/WindowContext';
 import './index.css';
 
-export const Window = ({ 
+interface WindowProps {
+  id: string;
+  title: string;
+  children: React.ReactNode;
+  initialPosition?: { x: number; y: number };
+  initialSize?: { width: number; height: number };
+  isActive?: boolean;
+  isMinimized?: boolean;
+  centered?: boolean;
+  zIndex?: number;
+  isMaximized?: boolean;
+  currentPosition?: { x: number; y: number } | null;
+  onFocus?: (id: string) => void;
+  onMinimize?: (id: string) => void;
+  onMaximize?: (id: string) => void;
+  onClose?: (id: string) => void;
+  onMove?: (id: string, position: { x: number; y: number }) => void;
+  onResize?: (id: string, size: { width: number; height: number }) => void;
+}
+
+export const Window: React.FC<WindowProps> = ({ 
   id, 
   title, 
   children, 
@@ -45,6 +65,63 @@ export const Window = ({
     onClose?.(id);
   };
 
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.closest('.title-bar')) {
+      setIsDragging(true);
+      dragStart.current = {
+        x: e.clientX,
+        y: e.clientY,
+        posX: position.x,
+        posY: position.y,
+        width: size.width,
+        height: size.height
+      };
+    }
+  };
+
+  const handleResizeMouseDown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsResizing(true);
+    dragStart.current = {
+      x: e.clientX,
+      y: e.clientY,
+      posX: position.x,
+      posY: position.y,
+      width: size.width,
+      height: size.height
+    };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (isDragging) {
+      const dx = e.clientX - dragStart.current.x;
+      const dy = e.clientY - dragStart.current.y;
+      setPosition({
+        x: dragStart.current.posX + dx,
+        y: dragStart.current.posY + dy
+      });
+    }
+    if (isResizing) {
+      const dx = e.clientX - dragStart.current.x;
+      const dy = e.clientY - dragStart.current.y;
+      const newWidth = Math.max(200, dragStart.current.width + dx);
+      const newHeight = Math.max(150, dragStart.current.height + dy);
+      setSize({ width: newWidth, height: newHeight });
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (isDragging) {
+      setIsDragging(false);
+      onMove?.(id, position);
+    }
+    if (isResizing) {
+      setIsResizing(false);
+      onResize?.(id, size);
+    }
+  };
+
   if (isMinimized) {
     return null;
   }
@@ -84,58 +161,6 @@ export const Window = ({
     );
   }
 
-  const handleMouseDown = (e) => {
-    if (e.target.closest('.title-bar')) {
-      setIsDragging(true);
-      dragStart.current = {
-        x: e.clientX,
-        y: e.clientY,
-        posX: position.x,
-        posY: position.y
-      };
-    }
-  };
-
-  const handleResizeMouseDown = (e) => {
-    e.stopPropagation();
-    setIsResizing(true);
-    dragStart.current = {
-      x: e.clientX,
-      y: e.clientY,
-      width: size.width,
-      height: size.height
-    };
-  };
-
-  const handleMouseMove = (e) => {
-    if (isDragging) {
-      const dx = e.clientX - dragStart.current.x;
-      const dy = e.clientY - dragStart.current.y;
-      setPosition({
-        x: dragStart.current.posX + dx,
-        y: dragStart.current.posY + dy
-      });
-    }
-    if (isResizing) {
-      const dx = e.clientX - dragStart.current.x;
-      const dy = e.clientY - dragStart.current.y;
-      const newWidth = Math.max(200, dragStart.current.width + dx);
-      const newHeight = Math.max(150, dragStart.current.height + dy);
-      setSize({ width: newWidth, height: newHeight });
-    }
-  };
-
-  const handleMouseUp = () => {
-    if (isDragging) {
-      setIsDragging(false);
-      onMove?.(id, position);
-    }
-    if (isResizing) {
-      setIsResizing(false);
-      onResize?.(id, size);
-    }
-  };
-
   return (
     <div 
       className={`window ${isActive ? 'active' : ''}`}
@@ -149,11 +174,11 @@ export const Window = ({
         cursor: isDragging ? 'move' : 'default',
         userSelect: isDragging || isResizing ? 'none' : 'auto'
       }}
-      onClick={() => onFocus?.(id)}
       onMouseDown={handleMouseDown}
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
+      onClick={() => onFocus?.(id)}
     >
       {renderContent()}
     </div>

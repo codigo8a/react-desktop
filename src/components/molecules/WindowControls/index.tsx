@@ -1,6 +1,17 @@
+import React from 'react';
 import './index.css';
 
-export const WindowControls = ({ onMinimize, onMaximize, onClose }) => {
+interface WindowControlsProps {
+  onMinimize: () => void;
+  onMaximize: () => void;
+  onClose: () => void;
+}
+
+export const WindowControls: React.FC<WindowControlsProps> = ({ 
+  onMinimize, 
+  onMaximize, 
+  onClose 
+}) => {
   return (
     <div className="title-bar-controls">
       <button aria-label="Minimize" onClick={onMinimize} />

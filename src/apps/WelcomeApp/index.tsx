@@ -1,16 +1,27 @@
-import { useState } from 'react';
+import React, { useState, useEffect, JSX } from 'react';
 import { useWindow } from '../../context/WindowContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useDesktop } from '../../context/DesktopContext';
 import { useFileSystem } from '../../hooks/useFileSystem';
 import { useTranslation } from '../../i18n/translations';
+import { LOCAL_STORAGE_KEYS } from '../../constants';
 import './index.css';
 
-export const WelcomeApp = () => {
-  const [showAtStartup, setShowAtStartup] = useState(true);
+export const WelcomeApp: React.FC = () => {
+  const [showAtStartup, setShowAtStartup] = useState(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEYS.SHOW_WELCOME);
+    return saved !== 'false';
+  });
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.SHOW_WELCOME, String(showAtStartup));
+  }, [showAtStartup]);
+
   const [currentTip, setCurrentTip] = useState(0);
-  const { onClose } = useWindow() || {};
-  const { language, changeLanguage } = useLanguage();
+  const windowContext = useWindow();
+  const onClose = windowContext?.onClose;
+  
+  const { language } = useLanguage();
   const { openApp } = useDesktop();
   const { getRawFileContent } = useFileSystem();
   const { t } = useTranslation();
@@ -43,7 +54,7 @@ export const WelcomeApp = () => {
     });
   };
 
-  const tips = {
+  const tips: Record<string, (string | JSX.Element)[]> = {
     en: [
       "Full Stack Developer expert in Cloud Process Automation, PaintBall, Softcombat and Roller derby Player, Robotics, Electronics and Technology Lover.",
       <div>
@@ -53,9 +64,9 @@ export const WelcomeApp = () => {
             onClick={handleOpenResume}
             style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
           >📄 Resume</div>
-          <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
-          <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
-          <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
+          <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" rel="noopener noreferrer" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
+          <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" rel="noopener noreferrer" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
+          <a href="https://www.instagram.com/zarkito8a" target="_blank" rel="noopener noreferrer" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
         </div>
       </div>,
       <div>
@@ -77,9 +88,9 @@ export const WelcomeApp = () => {
             onClick={handleOpenResume}
             style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }}
           >📄 Hoja de vida</div>
-          <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
-          <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
-          <a href="https://www.instagram.com/zarkito8a" target="_blank" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
+          <a href="https://www.linkedin.com/in/juandavid8a" target="_blank" rel="noopener noreferrer" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>💼 LinkedIn</a>
+          <a href="https://www.youtube.com/@JuanDavidOchoa" target="_blank" rel="noopener noreferrer" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>▶️ YouTube</a>
+          <a href="https://www.instagram.com/zarkito8a" target="_blank" rel="noopener noreferrer" style={{ color: '#0000ff', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>📷 Instagram</a>
         </div>
       </div>,
       <div>
@@ -104,12 +115,8 @@ export const WelcomeApp = () => {
     onClose?.();
   };
 
-  const handleLanguageChange = (lang) => {
-    changeLanguage(lang);
-  };
-
   return (
-    <div style={{ 
+    <div className="welcome-container" style={{ 
       height: '100%', 
       display: 'flex', 
       flexDirection: 'column', 
@@ -126,7 +133,7 @@ export const WelcomeApp = () => {
         fontWeight: 'normal',
         color: '#000'
       }}>
-        {t('welcome')}
+        Welcome
       </h2>
 
       <div style={{ 
@@ -134,6 +141,7 @@ export const WelcomeApp = () => {
         flex: 1,
         gap: '20px'
       }}>
+        {/* Column 1: Tips */}
         <div style={{ 
           flex: 1,
           background: '#fff',
@@ -141,20 +149,22 @@ export const WelcomeApp = () => {
           padding: '20px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '20px'
+          gap: '20px',
+          overflowY: 'auto'
         }}>
            <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start' }}>
              <div style={{ fontSize: '32px' }}>💡</div>
-              <div style={{ flex: 1 }}>
-                 <p style={{ margin: '0 0 12px 0', fontWeight: 'bold', fontSize: '13px' }}>{t('welcomeTip')}</p>
-                 <div style={{ margin: 0, lineHeight: '1.5', fontSize: '12px' }}>
-                   {currentTips[currentTip]}
-                 </div>
-              </div>
+             <div style={{ flex: 1 }}>
+                <p style={{ margin: '0 0 12px 0', fontWeight: 'bold', fontSize: '13px' }}>{t('didYouKnow')}</p>
+                <div style={{ margin: 0, lineHeight: '1.5', fontSize: '12px' }}>
+                  {currentTips[currentTip]}
+                </div>
+             </div>
            </div>
         </div>
 
-        <div style={{ 
+        {/* Column 2: Buttons */}
+        <div className="welcome-buttons" style={{ 
           width: '140px', 
           display: 'flex', 
           flexDirection: 'column', 
@@ -189,6 +199,19 @@ export const WelcomeApp = () => {
             {t('whatsNew')}
           </button>
           <button 
+            style={{
+              padding: '6px 12px',
+              background: '#c0c0c0',
+              border: '2px outset #ffffff',
+              boxShadow: '1px 1px 0px #000',
+              cursor: 'pointer',
+              textAlign: 'left',
+              width: '100%'
+            }}
+          >
+            {t('onlineRegistration')}
+          </button>
+          <button 
             onClick={handleClose}
             style={{
               padding: '6px 12px',
@@ -203,43 +226,20 @@ export const WelcomeApp = () => {
           >
             {t('close')}
           </button>
-          
-          <fieldset style={{ marginTop: '10px' }}>
-            <legend>{t('language')}</legend>
-            <div className="field-row">
-              <input 
-                id="lang-en" 
-                type="radio" 
-                name="language" 
-                checked={language === 'en'}
-                onChange={() => handleLanguageChange('en')}
-              />
-              <label htmlFor="lang-en">English</label>
-            </div>
-            <div className="field-row">
-              <input 
-                id="lang-es" 
-                type="radio" 
-                name="language" 
-                checked={language === 'es'}
-                onChange={() => handleLanguageChange('es')}
-              />
-              <label htmlFor="lang-es">Español</label>
-            </div>
-          </fieldset>
         </div>
       </div>
 
-      <div style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+      {/* Footer: Checkbox */}
+      <div className="welcome-footer" style={{ marginTop: '20px', display: 'flex', alignItems: 'center', gap: '8px', justifyContent: 'flex-start' }}>
         <input 
           type="checkbox" 
           checked={showAtStartup}
-          onChange={() => setShowAtStartup(!showAtStartup)}
+          onChange={(e) => setShowAtStartup(e.target.checked)}
           id="startup-check"
           style={{ cursor: 'pointer' }}
         />
         <label htmlFor="startup-check" style={{ cursor: 'pointer' }}>
-          {t('showWelcomeScreen')}
+          Show this Welcome Screen next time you start Windows
         </label>
       </div>
     </div>

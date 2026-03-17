@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { useFileSystem } from '../../hooks/useFileSystem';
+import React, { useState } from 'react';
+import { useFileSystem, FileData } from '../../hooks/useFileSystem';
 import { useDesktop } from '../../context/DesktopContext';
 import { useTranslation } from '../../i18n/translations';
 import './index.css';
 
-export const SearchApp = () => {
+export const SearchApp: React.FC = () => {
   const { getAllFiles, getRawFileContent } = useFileSystem();
   const { openApp } = useDesktop();
   const [searchTerm, setSearchTerm] = useState('');
@@ -21,7 +21,7 @@ export const SearchApp = () => {
       })
     : [];
 
-  const handleFileClick = (file) => {
+  const handleFileClick = (file: FileData) => {
     const content = getRawFileContent(file.name, file.folder);
     openApp('fileViewer', {
       file: {

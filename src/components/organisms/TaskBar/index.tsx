@@ -1,7 +1,18 @@
+import React from 'react';
 import { useClock } from '../../../hooks/useWindow';
+import { WindowConfig } from '../../../types';
 import './index.css';
 
-export const TaskBar = ({ 
+interface TaskBarProps {
+  windows: WindowConfig[];
+  activeWindowId: string | null;
+  onWindowClick: (id: string) => void;
+  onRestore: (id: string) => void;
+  isStartOpen: boolean;
+  onStartClick: (e: React.MouseEvent) => void;
+}
+
+export const TaskBar: React.FC<TaskBarProps> = ({ 
   windows, 
   activeWindowId, 
   onWindowClick, 

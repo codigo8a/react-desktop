@@ -1,3 +1,4 @@
+import React from 'react';
 import { Window } from './organisms/Window';
 import { TaskBar } from './organisms/TaskBar';
 import { StartMenu } from './organisms/StartMenu';
@@ -5,8 +6,9 @@ import { DesktopIcons } from './DesktopIcons';
 import { useDesktop } from '../context/DesktopContext';
 import { useStartMenu } from '../hooks/useWindow';
 import { useUrlRouting } from '../hooks/useUrlRouting';
+import { WindowConfig } from '../types';
 
-export const Desktop = () => {
+export const Desktop: React.FC = () => {
   const {
     windows,
     activeWindowId,
@@ -24,7 +26,7 @@ export const Desktop = () => {
   // Use the new URL routing hook
   useUrlRouting(windows, openApp);
 
-  const handleStartClick = (e) => {
+  const handleStartClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     toggleStart();
   };
@@ -55,7 +57,7 @@ export const Desktop = () => {
         />
       )}
       
-      {windows.map(win => (
+      {windows.map((win: WindowConfig) => (
         <Window
           key={win.id}
           id={win.id}

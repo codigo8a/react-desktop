@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import './index.css';
 
-export const NotepadApp = () => {
+export const NotepadApp: React.FC = () => {
   const [content, setContent] = useState('');
   const [line, setLine] = useState(1);
   const [col, setCol] = useState(1);
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setContent(e.target.value);
     const text = e.target.value;
     const lines = text.split('\n');
