@@ -31,7 +31,7 @@ export const APPS = {
   },
   fileViewer: {
     id: 'fileViewer',
-    title: 'Visor de Archivo',
+    title: 'File Viewer',
     icon: '📄',
     component: FileViewerApp,
     defaultSize: { width: 1000, height: 800 },
@@ -40,7 +40,7 @@ export const APPS = {
   },
   search: {
     id: 'search',
-    title: 'Buscar Archivos',
+    title: 'Search Files',
     icon: '🔍',
     component: SearchApp,
     defaultSize: { width: 500, height: 350 },

@@ -162,7 +162,7 @@ export const FileViewerApp = ({ file }) => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('preview'); }}>
-            Vista Previa
+            Preview
           </a>
         </li>
         <li 
@@ -175,7 +175,7 @@ export const FileViewerApp = ({ file }) => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('source'); }}>
-            Codigo Fuente
+            Source
           </a>
         </li>
       </menu>

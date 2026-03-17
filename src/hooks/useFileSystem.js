@@ -54,13 +54,13 @@ export const useFileSystem = () => {
   const getFileContent = (filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
     const content = files[path];
-    return content ? extractContentWithoutDate(content) : 'Archivo no encontrado';
+    return content ? extractContentWithoutDate(content) : 'File not found';
   };
 
   const getRawFileContent = (filename, folderName) => {
     const path = `../data/files/${folderName}/${filename}`;
     const content = files[path];
-    return content ? extractRawContent(content) : 'Archivo no encontrado';
+    return content ? extractRawContent(content) : 'File not found';
   };
 
   const getAllFiles = () => {

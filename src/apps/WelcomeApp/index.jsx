@@ -8,7 +8,7 @@ export const WelcomeApp = () => {
   const { onClose } = useWindow() || {};
 
   const tips = [
-    "Full Stack Developer experto en Sistematización de Procesos en la Nube, Jugador de PaintBall, Softcombat, Gomoso de la Robótica, Electrónica y La Tecnología.",
+    "Full Stack Developer expert in Cloud Process Automation, PaintBall Player, Softcombat Enthusiast, Robotics, Electronics and Technology Lover.",
     "The buttons on the right give a variety of actions you can perform.",
     "Click on the Next Tip button to see a new tip in the Welcome window.",
     "You can de-select the option 'Show this Welcome Screen next time you start Windows' if you prefer not to see this window again."
@@ -40,7 +40,7 @@ export const WelcomeApp = () => {
         fontWeight: 'normal',
         color: '#000'
       }}>
-        Bienvenido a juandavid.site
+        Welcome to juandavid.site
       </h2>
 
       <div style={{ 

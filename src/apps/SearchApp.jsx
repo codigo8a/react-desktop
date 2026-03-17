@@ -41,13 +41,13 @@ export const SearchApp = () => {
     }}>
       <div style={{ padding: '8px' }}>
         <div className="field-row" style={{ marginBottom: '8px' }}>
-          <label>Buscar:</label>
+          <label>Search:</label>
           <input 
             type="text" 
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{ flex: 1 }}
-            placeholder="Escribe una palabra..."
+            placeholder="Type a word..."
           />
         </div>
       </div>
@@ -55,19 +55,19 @@ export const SearchApp = () => {
       <div className="sunken-panel" style={{ flex: 1, overflow: 'auto', margin: '0 8px 8px 8px' }}>
         {searchTerm.trim() === '' ? (
           <div style={{ padding: '16px', color: '#666' }}>
-            Escribe una palabra para buscar en los archivos
+            Type a word to search in files
           </div>
         ) : results.length === 0 ? (
           <div style={{ padding: '16px', color: '#666' }}>
-            No se encontraron archivos con "{searchTerm}"
+            No files found matching "{searchTerm}"
           </div>
         ) : (
           <table className="interactive" style={{ width: '100%' }}>
             <thead>
               <tr>
-                <th style={{ textAlign: 'left' }}>Nombre</th>
-                <th style={{ textAlign: 'left' }}>Ubicacion</th>
-                <th style={{ textAlign: 'left' }}>Tipo</th>
+                <th style={{ textAlign: 'left' }}>Name</th>
+                <th style={{ textAlign: 'left' }}>Location</th>
+                <th style={{ textAlign: 'left' }}>Type</th>
               </tr>
             </thead>
             <tbody>
@@ -81,7 +81,7 @@ export const SearchApp = () => {
                   >
                     <td>📄 {file.name}</td>
                     <td>{file.folder}</td>
-                    <td>{nameMatch ? 'Titulo' : 'Contenido'}</td>
+                    <td>{nameMatch ? 'Title' : 'Content'}</td>
                   </tr>
                 );
               })}
@@ -92,9 +92,9 @@ export const SearchApp = () => {
 
       <div className="status-bar">
         <p className="status-bar-field">
-          {searchTerm.trim() === '' ? 'Sin busqueda' : `${results.length} resultado(s)`}
+          {searchTerm.trim() === '' ? 'No search' : `${results.length} result(s)`}
         </p>
-        <p className="status-bar-field">Listo</p>
+        <p className="status-bar-field">Ready</p>
       </div>
     </div>
   );

@@ -83,9 +83,9 @@ export const FileExplorerApp = () => {
         <table className="interactive" style={{ width: '100%' }}>
           <thead>
             <tr>
-              <th style={{ textAlign: 'left', width: '50%' }}>Nombre</th>
-              <th style={{ textAlign: 'left', width: '25%' }}>Ubicacion</th>
-              <th style={{ textAlign: 'left', width: '25%' }}>Fecha</th>
+              <th style={{ textAlign: 'left', width: '50%' }}>Name</th>
+              <th style={{ textAlign: 'left', width: '25%' }}>Location</th>
+              <th style={{ textAlign: 'left', width: '25%' }}>Date</th>
             </tr>
           </thead>
           <tbody>
@@ -137,7 +137,7 @@ export const FileExplorerApp = () => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('table'); }}>
-            Tabla
+            Table
           </a>
         </li>
         <li 
@@ -150,7 +150,7 @@ export const FileExplorerApp = () => {
           }}
         >
           <a href="#" onClick={(e) => { e.preventDefault(); setActiveTab('tree'); }}>
-            Arbol
+            Tree
           </a>
         </li>
       </menu>
