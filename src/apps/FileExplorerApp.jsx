@@ -23,7 +23,8 @@ export const FileExplorerApp = () => {
       file: {
         name: file.name.replace('.md', ''),
         content: content,
-        folder: folderName
+        folder: folderName,
+        date: file.date
       },
       windowKey: `${folderName}/${file.name}`,
       title: file.name.replace('.md', '')
@@ -94,7 +95,8 @@ export const FileExplorerApp = () => {
                     file: {
                       name: item.name.replace('.md', ''),
                       content: content,
-                      folder: item.folder
+                      folder: item.folder,
+                      date: item.date
                     },
                     windowKey: `${item.folder}/${item.name}`,
                     title: item.name.replace('.md', '')
