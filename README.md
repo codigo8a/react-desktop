@@ -1,4 +1,10 @@
-# Documentación del Proyecto
+# react-desktop
+
+Entorno de escritorio estilo Windows 98 construido con React.
+
+## ⚠️ Reglas de Contribución
+
+**NO hacer push a git a menos que el usuario lo exprese directamente en el chat.**
 
 ## Overview
 
